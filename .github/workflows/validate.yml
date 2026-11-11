@@ -21,6 +21,7 @@ jobs:
       - run: node tests/validate.mjs
       - run: node tests/claude-package.mjs
       - run: node --test tests/paths.test.mjs
+      - run: node --test tests/registration.test.mjs
   integration:
     if: github.event_name == 'workflow_dispatch' && inputs.full_integration
     runs-on: windows-latest

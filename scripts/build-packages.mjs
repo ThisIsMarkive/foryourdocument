@@ -41,6 +41,9 @@ desktop.file('manifest.json', await fs.readFile(path.join(repository, 'packaging
 desktop.file('desktop-launch.mjs', await fs.readFile(path.join(repository, 'packaging/desktop-launch.mjs')));
 for (const item of ['LICENSE', 'THIRD_PARTY_NOTICES.md']) desktop.file(item, await fs.readFile(path.join(repository, item)));
 await save(`hwpx-bridge-${assets.bundleVersion}-windows.mcpb`, desktop);
+const installer = await fs.readFile(path.join(repository, 'Install-HwpxBridge.ps1'));
+await fs.writeFile(path.join(output, 'Install-HwpxBridge.ps1'), installer);
+packages.push({ file: 'Install-HwpxBridge.ps1', bytes: installer.length, sha256: createHash('sha256').update(installer).digest('hex') });
 await fs.writeFile(path.join(output, 'SHA256SUMS.txt'), packages.map(p => `${p.sha256}  ${p.file}`).join('\n') + '\n');
 await fs.writeFile(path.join(output, 'packages.json'), JSON.stringify(packages, null, 2));
 console.log(JSON.stringify(packages, null, 2));

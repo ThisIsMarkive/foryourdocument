@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "bundleVersion": "0.2.1",
+  "bundleVersion": "0.2.2",
   "platform": "win32-x64",
   "kordocVersion": "4.24.62",
   "node": {

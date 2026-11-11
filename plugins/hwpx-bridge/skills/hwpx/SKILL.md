@@ -4,6 +4,7 @@ description: HWP/HWPX 한글 문서를 읽거나 고치고, DOCX를 HWPX로 변�
 ---
 
 Use the HWPX Bridge MCP tools for local Korean documents. If only setup tools exist, complete the setup skill first.
+If no HWPX Bridge tools are present, follow the setup skill's independent client-registration path. Skills appearing in the marketplace do not establish MCP connectivity. Do not ask the user to repeat app restarts before registration has been checked.
 
 Choose the engine according to the task:
 

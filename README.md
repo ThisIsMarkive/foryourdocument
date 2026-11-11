@@ -7,7 +7,7 @@ Codex와 Claude에서 **한글 문서를 읽고, DOCX를 HWPX로 바꾸고, 새 
 - OCR: **Tesseract + Filee의 한국어·영어·한자용 언어 데이터 4개**, **kordoc의 인쇄체·손글씨·수식 인식 모델 10개**를 준비합니다.
 - 사용자가 Node.js·.NET SDK·npm·Python·한컴오피스를 따로 설치할 필요가 없습니다. 최초 설정기가 전용 실행 환경과 빌드 도구를 준비하고 소스를 컴파일합니다.
 
-**0.2.1은 소스 통합 제품입니다.** `plugins/hwpx-bridge/vendor/`에 두 프로젝트의 고정 소스를 포함하고 직접 빌드합니다. kordoc 원본 npm 배포물이나 Filee 원본 프로그램을 설치하여 연결하는 방식에서 변경됐습니다. C# 변환 엔진은 내부 실행 파일 `hwpx-converter.exe`로, kordoc 기능은 같은 Node MCP 프로세스 안의 모듈로 동작합니다. 사용자는 하나의 플러그인을 설치하며 문서를 변환 서버에 업로드하지 않습니다. “HWPX로 만들어줘”라는 요청을 받으면 에이전트가 스킬 안내에 따라 새 작성에는 kordoc, 기존 DOCX 변환에는 Filee 도구를 선택합니다. 모든 자연어 문장을 강제 분기하는 고정 규칙은 아닙니다.
+**0.2.2은 소스 통합 제품입니다.** `plugins/hwpx-bridge/vendor/`에 두 프로젝트의 고정 소스를 포함하고 직접 빌드합니다. kordoc 원본 npm 배포물이나 Filee 원본 프로그램을 설치하여 연결하는 방식에서 변경됐습니다. C# 변환 엔진은 내부 실행 파일 `hwpx-converter.exe`로, kordoc 기능은 같은 Node MCP 프로세스 안의 모듈로 동작합니다. 사용자는 하나의 플러그인을 설치하며 문서를 변환 서버에 업로드하지 않습니다. “HWPX로 만들어줘”라는 요청을 받으면 에이전트가 스킬 안내에 따라 새 작성에는 kordoc, 기존 DOCX 변환에는 Filee 도구를 선택합니다. 모든 자연어 문장을 강제 분기하는 고정 규칙은 아닙니다.
 
 GitHub 저장소 하나로 두 클라이언트의 마켓플레이스를 배포합니다. npm 게시, MCP 레지스트리 등록, 도메인, 상시 서버 운영은 필요하지 않습니다. 여기서 마켓플레이스는 **이 저장소의 플러그인 목록**이며, GitHub Actions/Apps 상품을 판매하는 GitHub Marketplace와는 별개입니다.
 
@@ -17,11 +17,11 @@ GitHub 저장소 하나로 두 클라이언트의 마켓플레이스를 배포�
 | --- | --- |
 | Windows x64 Codex 데스크톱/CLI | GitHub 마켓플레이스 |
 | Windows x64 Claude Code | 같은 GitHub 저장소의 Claude 마켓플레이스 |
-| Windows x64 Claude Desktop | 로컬 MCP 지원 플러그인 실행 환경 또는 별도 제공 `.mcpb` 데스크톱 확장 |
+| Windows x64 Claude Desktop | 마켓플레이스 스킬 + 아래 공통 설치기의 최초 MCP 등록 1회 |
 | Claude 웹·모바일만 사용하는 환경 | 로컬 실행 불가 |
 | Linux VM/WSL/macOS/ARM64 | 이 버전의 Windows 엔진 실행 대상 아님 |
 
-Claude의 통합 대화 화면은 계정별로 배포 중입니다. **화면 통합과 로컬 프로그램 실행 지원은 같은 조건이 아닙니다.** 마켓플레이스에서 스킬만 보이고 MCP가 실행되지 않는 경우 아래 데스크톱 확장 경로를 사용하세요. 공용 URL을 입력하는 ‘커스텀 커넥터’에 이 로컬 MCP를 등록하지 않습니다. 파일은 Windows PC에 있어야 합니다. [호환성 설명](docs/COMPATIBILITY.md)
+Claude의 통합 대화 화면은 계정별로 배포 중입니다. **화면 통합과 로컬 프로그램 실행 지원은 같은 조건이 아닙니다.** 마켓플레이스에서 스킬만 보이고 MCP가 실행되지 않는 경우 아래 공통 설치기로 최초 MCP 등록을 진행하세요. 공용 URL을 입력하는 ‘커스텀 커넥터’에 이 로컬 MCP를 등록하지 않습니다. 파일은 Windows PC에 있어야 합니다. [호환성 설명](docs/COMPATIBILITY.md)
 
 ## 설치
 
@@ -47,11 +47,29 @@ claude plugin install hwpx-bridge@hwpx-tools
 
 새 세션에서 `/hwpx-bridge:setup` 또는 “HWPX Bridge 최초 설정을 진행해줘”를 사용합니다. Claude 세션 안에서는 `/plugin marketplace add ThisIsMarkive/foryourdocument`로도 마켓플레이스를 추가할 수 있습니다.
 
-### Claude Windows 앱
+### Claude Windows 앱 — kordoc의 최초 설정 흐름 적용
 
-앱이 제공하는 **Customize → Plugins → Add → Add marketplace**에서 `ThisIsMarkive/foryourdocument`를 추가합니다. 로컬 MCP 실행이 활성화된 환경에서는 같은 설정 흐름을 사용할 수 있습니다.
+마켓플레이스 주소 `ThisIsMarkive/foryourdocument`는 스킬을 배포합니다. **스킬이 보이는 것과 Windows 앱의 MCP 등록은 별개**입니다. kordoc 역시 마켓플레이스 스킬은 CLI를 실행하고, `npx kordoc setup`이 선택한 앱의 MCP 설정을 등록합니다. 이 프로젝트의 공통 설치기도 그 등록 흐름을 적용합니다. **다른 PC에서도 최초 설정을 한 번 실행해야 하며, 마켓플레이스 추가만으로 끝난다고 보장하지 않습니다.**
 
-앱 화면/정책상 플러그인의 로컬 MCP가 실행되지 않는 경우, **[Claude Windows 앱용 설치 파일 다운로드](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.1/hwpx-bridge-0.2.1-windows.mcpb)** 후 Settings의 Desktop Extensions에 설치합니다. [릴리스 페이지](https://github.com/ThisIsMarkive/foryourdocument/releases/tag/v0.2.1)에서도 받을 수 있습니다. 이 확장은 Claude에 포함된 Node로 작은 시작 프로그램만 실행하며, 실제 문서 처리는 공통 설치기가 포함된 소스로 빌드한 내부 엔진을 사용합니다. 별도 Node.js 설치는 필요하지 않습니다. 두 경로를 동시에 활성화해 중복 도구가 나타나면 하나만 켜세요.
+1. 마켓플레이스에서 HWPX Bridge를 설치합니다.
+2. [소스 설치 ZIP](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/hwpx-bridge-0.2.2-github.zip)을 풀고 `Setup.cmd`를 실행한 뒤 **1 — Claude Windows app**을 선택합니다. 설치기는 독립 실행되므로 Claude에 MCP 도구가 없어도 시작할 수 있습니다.
+3. 설치기가 Node·엔진·OCR 준비와 MCP 등록을 마치면 Claude를 한 번 다시 엽니다. `hwpx_runtime_status`와 문서 도구가 실제로 보이는지 확인합니다. 등록 파일 작성 성공과 앱 연결 성공은 구분합니다.
+
+ZIP을 직접 관리하지 않으려면 Windows PowerShell에서 아래 명령으로 같은 [공통 설치기](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/Install-HwpxBridge.ps1)를 실행할 수 있습니다. 관리자 권한이나 미리 설치한 Node.js는 필요하지 않습니다.
+
+```powershell
+$bridgeInstaller = Join-Path $env:TEMP 'Install-HwpxBridge.ps1'
+Invoke-WebRequest -UseBasicParsing 'https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/Install-HwpxBridge.ps1' -OutFile $bridgeInstaller
+powershell -NoProfile -ExecutionPolicy Bypass -File $bridgeInstaller -Clients ClaudeDesktop
+```
+
+설치기는 원본 소스를 `%LOCALAPPDATA%\HwpxBridge\sources`에 검증해 복사한 뒤 그 고정 경로를 등록합니다. 다운로드 폴더나 마켓플레이스 캐시를 지워도 이 경로는 유지됩니다. 일반 Claude와 Microsoft Store Claude의 설정 위치를 구분하며, 기존 설정·다른 MCP 서버를 보존하고 변경 전 백업을 남깁니다. 이미 이 설치기가 등록한 항목은 업데이트할 수 있지만, 같은 이름의 별도 설정은 덮어쓰지 않습니다.
+
+Codex는 앞의 마켓플레이스 설치를 그대로 사용합니다. 별도 MCP 등록이 필요할 때는 같은 설치기의 `-Clients Codex`를 사용할 수 있으며, kordoc처럼 공식 `codex mcp add` 명령을 사용합니다. 이 경로에는 `codex.exe`가 필요합니다. 마켓플레이스 MCP가 이미 작동하는 Codex에 중복 등록할 필요는 없습니다.
+
+설치기 옵션: `-BridgeHome D:\HwpxBridge`로 설치 위치 지정, `-RegisterOnly`로 MCP 등록 후 엔진 준비를 연결된 설정 도구에 맡기기, `-Offline`으로 같은 버전의 오프라인 런타임을 가져온 뒤 다운로드 없이 등록하기. 설정 파일을 쓰거나 런타임 검사를 통과한 사실만으로 실제 Claude 앱에서 연결됐다고 표시하지 않습니다.
+
+기존 `.mcpb` 배포물도 유지하지만 이 절차의 필수 설치물이 아닙니다. 같은 서버를 여러 경로로 등록해 중복 도구가 나오면 하나의 연결만 사용하세요.
 
 ### 최초 설정에서 일어나는 일
 

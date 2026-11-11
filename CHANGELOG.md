@@ -1,5 +1,12 @@
 # 변경 기록
 
+## 0.2.2 — independent client setup
+
+- Adopt kordoc's independent setup → client MCP registration workflow. Setup no longer requires the missing MCP tool to be available first.
+- Add a common Windows installer, automatic private Node preparation, stable source copy, Claude standard/Store configuration discovery, backups and preservation of other servers, and official Codex CLI registration.
+- Correct installation instructions: kordoc's marketplace is a CLI skill; its Desktop MCP requires separate setup. This installer is a one-time per-computer step, not proof that marketplace-only loading works in every Claude conversation.
+- Keep source-integrated Filee/kordoc, automatic builds, all 14 OCR assets and offline use. Engine source and conversion logic are unchanged.
+
 ## 0.2.1 — 2026-11-11
 
 - Claude 앱의 마켓플레이스 동기화 규칙에 맞게 원본 소스의 배포 경로를 정리했습니다. 중첩된 kordoc 플러그인 매니페스트와 원본 스킬 3개를 `.upstream` 참고 파일로 보존합니다.

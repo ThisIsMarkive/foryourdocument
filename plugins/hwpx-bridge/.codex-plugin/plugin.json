@@ -1,6 +1,6 @@
 {
   "name": "hwpx-bridge",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Windows용 HWPX 읽기·작성·변환과 로컬 OCR. Filee + kordoc, Node.js 자동 준비.",
   "author": {
     "name": "HWPX Bridge contributors"

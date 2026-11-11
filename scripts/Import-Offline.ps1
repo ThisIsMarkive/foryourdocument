@@ -45,3 +45,4 @@ Write-Output 'codex plugin add hwpx-bridge@hwpx-tools'
 Write-Output ('claude plugin marketplace add "' + $marketplace + '"')
 Write-Output 'claude plugin install hwpx-bridge@hwpx-tools'
 Write-Output 'If you chose -BridgeHome, set HWPX_BRIDGE_HOME to that same path in the client environment.'
+Write-Output ('Claude Windows registration: powershell -NoProfile -ExecutionPolicy Bypass -File "' + (Join-Path $marketplace 'Install-HwpxBridge.ps1') + '" -Clients ClaudeDesktop -Offline -BridgeHome "' + $bridgeBase + '"')

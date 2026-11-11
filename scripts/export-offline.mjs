@@ -20,7 +20,7 @@ if (inside(home, destination) || inside(repository, destination)) throw new Erro
 await fs.mkdir(destination); // Never overwrite an existing export.
 const marketplace = path.join(destination, 'marketplace');
 await fs.mkdir(marketplace);
-for (const item of ['.agents', '.claude-plugin', '.github', '.gitattributes', '.gitignore', 'plugins', 'scripts', 'packaging', 'tests', 'docs', 'README.md', 'CHANGELOG.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md']) {
+for (const item of ['.agents', '.claude-plugin', '.github', '.gitattributes', '.gitignore', 'plugins', 'scripts', 'packaging', 'tests', 'docs', 'README.md', 'CHANGELOG.md', 'LICENSE', 'THIRD_PARTY_NOTICES.md', 'Install-HwpxBridge.ps1', 'Setup.cmd']) {
   await fs.cp(path.join(repository, item), path.join(marketplace, item), { recursive: true, errorOnExist: true });
 }
 const outputRuntime = path.join(destination, 'runtime', runtimeName);
