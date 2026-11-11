@@ -1,0 +1,124 @@
+{
+  "version": "0.2.3",
+  "date": "2026-11-11",
+  "platform": "Windows x64 / Windows PowerShell 5.1",
+  "registrationTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0
+  },
+  "fullInstaller": {
+    "passed": true,
+    "profile": "isolated Microsoft Store layout",
+    "globalNodeOnPath": false,
+    "realUserSettingsChanged": false
+  },
+  "registeredConfigurationMcp": {
+    "tools": 25,
+    "generateHwpx": true,
+    "parseHwpx": true,
+    "languages": [
+      "Korean",
+      "Hanja",
+      "English",
+      "digits"
+    ]
+  },
+  "integration": {
+    "date": "2026-11-11T07:12:02.461Z",
+    "testDir": "<isolated-test-work>\\hwpx-bridge-test-runtime\\integration-twX1kZ",
+    "checks": [
+      {
+        "name": "MCP initialized without global Node; all tools available",
+        "passed": true,
+        "milliseconds": 29,
+        "detail": {
+          "tools": 25,
+          "node": "v24.22.1",
+          "filee": "filee 2.4.0",
+          "kordoc": "4.24.62"
+        }
+      },
+      {
+        "name": "Generate Korean HWPX and parse it back",
+        "passed": true,
+        "milliseconds": 123,
+        "detail": {
+          "bytes": 67878
+        }
+      },
+      {
+        "name": "Render generated HWPX with bundled native libraries",
+        "passed": true,
+        "milliseconds": 1914,
+        "detail": {
+          "imageBytes": 45369
+        }
+      },
+      {
+        "name": "Filee MCP output equals direct Filee output for every ZIP member",
+        "passed": true,
+        "milliseconds": 5102,
+        "detail": {
+          "identicalMembers": 11
+        }
+      },
+      {
+        "name": "Existing outputs are skipped and source files remain unchanged",
+        "passed": true,
+        "milliseconds": 1410
+      },
+      {
+        "name": "Default Filee OCR recognizes Korean, English and digits in editable HWPX",
+        "passed": true,
+        "milliseconds": 7152,
+        "detail": {
+          "recognized": "[포맷: HWPX | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n한번니다"
+        }
+      },
+      {
+        "name": "kordoc PP-OCR offline recognition from a Korean image",
+        "passed": true,
+        "milliseconds": 1830,
+        "detail": {
+          "recognized": "[포맷: IMAGE | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n테스트 결과를 확인합니다"
+        }
+      },
+      {
+        "name": "Default Filee OCR recognizes Hanja, English and digits; records short Korean line accuracy",
+        "passed": true,
+        "milliseconds": 6294,
+        "detail": {
+          "languages": "kor+eng+chi_tra (default)",
+          "shortKoreanLineExact": false,
+          "recognized": "[포맷: HWPX | 페이지: 1]\n📑 문서 구조:\n- 銀行金融漢字\n\n= 서\n\n그\n\nBANK REPORT 123456\n\n\n# 銀行金融漢字"
+        }
+      },
+      {
+        "name": "Reject missing files and unsupported OCR languages",
+        "passed": true,
+        "milliseconds": 16
+      }
+    ],
+    "stderr": ""
+  },
+  "limitations": {
+    "actualClaudeAppConversationVerified": false,
+    "otherPhysicalWindowsComputerVerified": false,
+    "marketplaceOnlyDesktopMcpGuaranteed": false
+  },
+  "standaloneDownloader": {
+    "isolatedProfile": true,
+    "correctedChecksumHandling": true,
+    "nativeWindowsPowerShell": "5.1",
+    "realUserSettingsChanged": false,
+    "verifiedPublicArchive": "v0.2.2"
+  },
+  "offlineRegistration": {
+    "version": "0.2.3",
+    "isolatedProfile": true,
+    "fullExportImportRerun": false,
+    "existingInstalledRuntime": true,
+    "passed": true
+  }
+}

@@ -114,7 +114,7 @@ async function main() {
         : await registerCodex(args.includes('--codex') ? arg('--codex') : null, entry));
     } catch (error) { results.push({ client, error: error.message }); }
   }
-  console.log(JSON.stringify({ pluginRoot: installed, results, enginesReady: false }, null, 2));
+  console.log(JSON.stringify({ pluginRoot: installed, results }, null, 2));
   if (results.some(r => r.error)) process.exitCode = 1;
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch(error => { console.error(error.message); process.exitCode = 1; });

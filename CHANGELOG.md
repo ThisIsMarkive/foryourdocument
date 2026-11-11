@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.2.3 — Windows standalone installer download fix
+
+- Read GitHub SHA256SUMS release assets from a UTF-8 file. Windows PowerShell returns application/octet-stream Content as byte[]; direct string matching incorrectly rejected a valid archive.
+- Verified the corrected downloader against the real public release archive before shipping. Removed an unverified enginesReady field from the registration-only result.
+- Document engines, client registration logic and OCR definitions remain unchanged.
+
 ## 0.2.2 — independent client setup
 
 - Adopt kordoc's independent setup → client MCP registration workflow. Setup no longer requires the missing MCP tool to be available first.

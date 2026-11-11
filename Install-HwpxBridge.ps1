@@ -6,7 +6,7 @@ param(
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
-$version = '0.2.2'
+$version = '0.2.3'
 if (-not $Clients) {
     Write-Host 'HWPX Bridge: choose where to register the local MCP.'
     Write-Host '1. Claude Windows app'
@@ -33,7 +33,10 @@ if (-not (Test-Path -LiteralPath $entry)) {
     $ProgressPreference = 'SilentlyContinue'
     Write-Output ('Downloading HWPX Bridge ' + $version + ' source...')
     Invoke-WebRequest -UseBasicParsing -Uri ($baseUrl + '/' + $assetName) -OutFile $archive
-    $sums = (Invoke-WebRequest -UseBasicParsing -Uri ($baseUrl + '/SHA256SUMS.txt')).Content
+    # GitHub release assets use application/octet-stream; PowerShell 5.1 returns Content as byte[].
+    $checksumFile = Join-Path $stage 'SHA256SUMS.txt'
+    Invoke-WebRequest -UseBasicParsing -Uri ($baseUrl + '/SHA256SUMS.txt') -OutFile $checksumFile
+    $sums = [IO.File]::ReadAllText($checksumFile, [Text.Encoding]::UTF8)
     $match = [regex]::Match($sums, '(?m)^([a-fA-F0-9]{64})\s+' + [regex]::Escape($assetName) + '\s*$')
     if (-not $match.Success -or (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash -ne $match.Groups[1].Value) { throw 'Source archive checksum mismatch.' }
     Add-Type -AssemblyName System.IO.Compression.FileSystem

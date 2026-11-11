@@ -7,7 +7,7 @@ Codex와 Claude에서 **한글 문서를 읽고, DOCX를 HWPX로 바꾸고, 새 
 - OCR: **Tesseract + Filee의 한국어·영어·한자용 언어 데이터 4개**, **kordoc의 인쇄체·손글씨·수식 인식 모델 10개**를 준비합니다.
 - 사용자가 Node.js·.NET SDK·npm·Python·한컴오피스를 따로 설치할 필요가 없습니다. 최초 설정기가 전용 실행 환경과 빌드 도구를 준비하고 소스를 컴파일합니다.
 
-**0.2.2은 소스 통합 제품입니다.** `plugins/hwpx-bridge/vendor/`에 두 프로젝트의 고정 소스를 포함하고 직접 빌드합니다. kordoc 원본 npm 배포물이나 Filee 원본 프로그램을 설치하여 연결하는 방식에서 변경됐습니다. C# 변환 엔진은 내부 실행 파일 `hwpx-converter.exe`로, kordoc 기능은 같은 Node MCP 프로세스 안의 모듈로 동작합니다. 사용자는 하나의 플러그인을 설치하며 문서를 변환 서버에 업로드하지 않습니다. “HWPX로 만들어줘”라는 요청을 받으면 에이전트가 스킬 안내에 따라 새 작성에는 kordoc, 기존 DOCX 변환에는 Filee 도구를 선택합니다. 모든 자연어 문장을 강제 분기하는 고정 규칙은 아닙니다.
+**0.2.3은 소스 통합 제품입니다.** `plugins/hwpx-bridge/vendor/`에 두 프로젝트의 고정 소스를 포함하고 직접 빌드합니다. kordoc 원본 npm 배포물이나 Filee 원본 프로그램을 설치하여 연결하는 방식에서 변경됐습니다. C# 변환 엔진은 내부 실행 파일 `hwpx-converter.exe`로, kordoc 기능은 같은 Node MCP 프로세스 안의 모듈로 동작합니다. 사용자는 하나의 플러그인을 설치하며 문서를 변환 서버에 업로드하지 않습니다. “HWPX로 만들어줘”라는 요청을 받으면 에이전트가 스킬 안내에 따라 새 작성에는 kordoc, 기존 DOCX 변환에는 Filee 도구를 선택합니다. 모든 자연어 문장을 강제 분기하는 고정 규칙은 아닙니다.
 
 GitHub 저장소 하나로 두 클라이언트의 마켓플레이스를 배포합니다. npm 게시, MCP 레지스트리 등록, 도메인, 상시 서버 운영은 필요하지 않습니다. 여기서 마켓플레이스는 **이 저장소의 플러그인 목록**이며, GitHub Actions/Apps 상품을 판매하는 GitHub Marketplace와는 별개입니다.
 
@@ -52,14 +52,14 @@ claude plugin install hwpx-bridge@hwpx-tools
 마켓플레이스 주소 `ThisIsMarkive/foryourdocument`는 스킬을 배포합니다. **스킬이 보이는 것과 Windows 앱의 MCP 등록은 별개**입니다. kordoc 역시 마켓플레이스 스킬은 CLI를 실행하고, `npx kordoc setup`이 선택한 앱의 MCP 설정을 등록합니다. 이 프로젝트의 공통 설치기도 그 등록 흐름을 적용합니다. **다른 PC에서도 최초 설정을 한 번 실행해야 하며, 마켓플레이스 추가만으로 끝난다고 보장하지 않습니다.**
 
 1. 마켓플레이스에서 HWPX Bridge를 설치합니다.
-2. [소스 설치 ZIP](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/hwpx-bridge-0.2.2-github.zip)을 풀고 `Setup.cmd`를 실행한 뒤 **1 — Claude Windows app**을 선택합니다. 설치기는 독립 실행되므로 Claude에 MCP 도구가 없어도 시작할 수 있습니다.
+2. [소스 설치 ZIP](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.3/hwpx-bridge-0.2.3-github.zip)을 풀고 `Setup.cmd`를 실행한 뒤 **1 — Claude Windows app**을 선택합니다. 설치기는 독립 실행되므로 Claude에 MCP 도구가 없어도 시작할 수 있습니다.
 3. 설치기가 Node·엔진·OCR 준비와 MCP 등록을 마치면 Claude를 한 번 다시 엽니다. `hwpx_runtime_status`와 문서 도구가 실제로 보이는지 확인합니다. 등록 파일 작성 성공과 앱 연결 성공은 구분합니다.
 
-ZIP을 직접 관리하지 않으려면 Windows PowerShell에서 아래 명령으로 같은 [공통 설치기](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/Install-HwpxBridge.ps1)를 실행할 수 있습니다. 관리자 권한이나 미리 설치한 Node.js는 필요하지 않습니다.
+ZIP을 직접 관리하지 않으려면 Windows PowerShell에서 아래 명령으로 같은 [공통 설치기](https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.3/Install-HwpxBridge.ps1)를 실행할 수 있습니다. 관리자 권한이나 미리 설치한 Node.js는 필요하지 않습니다.
 
 ```powershell
 $bridgeInstaller = Join-Path $env:TEMP 'Install-HwpxBridge.ps1'
-Invoke-WebRequest -UseBasicParsing 'https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.2/Install-HwpxBridge.ps1' -OutFile $bridgeInstaller
+Invoke-WebRequest -UseBasicParsing 'https://github.com/ThisIsMarkive/foryourdocument/releases/download/v0.2.3/Install-HwpxBridge.ps1' -OutFile $bridgeInstaller
 powershell -NoProfile -ExecutionPolicy Bypass -File $bridgeInstaller -Clients ClaudeDesktop
 ```
 

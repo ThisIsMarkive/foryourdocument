@@ -26,7 +26,7 @@ tests/                                실제 프로토콜·변환·OCR 검증
 
 ## 설치 및 테스트
 
-0.2.2의 클라이언트 등록 검사는 `node --test tests/registration.test.mjs`입니다. `HWPX_BRIDGE_TEST_CODEX`를 실제 codex.exe 절대 경로로 지정하면 격리된 CODEX_HOME에서 공식 CLI를 검사합니다. `HWPX_BRIDGE_TEST_SDK`를 설치된 런타임의 npm 폴더로 지정하면 복사된 독립 설치 경로의 초기 MCP 프로토콜도 검사합니다. 테스트는 실제 사용자 Claude/Codex 설정을 수정하지 않습니다.
+0.2.3의 클라이언트 등록 검사는 `node --test tests/registration.test.mjs`입니다. `HWPX_BRIDGE_TEST_CODEX`를 실제 codex.exe 절대 경로로 지정하면 격리된 CODEX_HOME에서 공식 CLI를 검사합니다. `HWPX_BRIDGE_TEST_SDK`를 설치된 런타임의 npm 폴더로 지정하면 복사된 독립 설치 경로의 초기 MCP 프로토콜도 검사합니다. 테스트는 실제 사용자 Claude/Codex 설정을 수정하지 않습니다.
 
 전체 공통 설치기는 별도 APPDATA/LOCALAPPDATA와 `-BridgeHome`을 지정한 자식 프로세스에서 검사합니다. 완료 후 `tests/registered-runtime.mjs <테스트 Claude 설정 절대 경로>`가 저장된 명령 그대로 실행해 25개 도구 및 HWPX 생성·읽기를 확인합니다. 실제 Claude 앱 UI 검증으로 표시하지 않습니다.
 
@@ -35,7 +35,7 @@ tests/                                실제 프로토콜·변환·OCR 검증
 ```powershell
 $env:HWPX_BRIDGE_HOME = Join-Path (Get-Location) '.test-runtime'
 powershell -NoProfile -ExecutionPolicy Bypass -File .\plugins\hwpx-bridge\scripts\setup.ps1
-$bridgeNode = Join-Path $env:HWPX_BRIDGE_HOME 'versions\0.2.2-win-x64\node\node.exe'
+$bridgeNode = Join-Path $env:HWPX_BRIDGE_HOME 'versions\0.2.3-win-x64\node\node.exe'
 & $bridgeNode .\tests\validate.mjs
 & $bridgeNode .\tests\claude-package.mjs
 & $bridgeNode --test .\tests\paths.test.mjs
@@ -65,7 +65,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Build-Packages.ps1
 만들어진 확장의 시작 동작도 확인할 수 있습니다.
 
 ```powershell
-& $bridgeNode .\tests\desktop.mjs .\dist\hwpx-bridge-0.2.2-windows.mcpb
+& $bridgeNode .\tests\desktop.mjs .\dist\hwpx-bridge-0.2.3-windows.mcpb
 ```
 
 ## 의존성 업데이트
