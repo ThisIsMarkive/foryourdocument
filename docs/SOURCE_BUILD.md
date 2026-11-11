@@ -1,4 +1,4 @@
-# 소스 통합 구조 — 0.2.0
+# 소스 통합 구조 — 0.2.1
 
 HWPX Bridge는 Filee와 kordoc 소스를 포함하고 자체 빌드하는 하나의 플러그인입니다. 두 언어를 서로 번역하지 않습니다. kordoc TypeScript 코드는 통합 MCP 안에서 직접 실행하고, Filee C# 코드는 내부 변환 실행 파일로 컴파일합니다.
 
@@ -24,6 +24,8 @@ HWPX Bridge
 | kordoc | 4.24.62 | `13a2c31754ff2fd2b4e6ae10de49edd8db31849a` | `plugins/hwpx-bridge/vendor/kordoc/` |
 
 소스·템플릿·테스트·라이선스가 포함됩니다. `runtime/source-lock.json`에 원본 주소, 커밋, 원본 ZIP 해시, 포함한 모든 파일의 SHA-256을 기록합니다. 원본 `.gitignore`와 `.gitattributes`는 내용 그대로 `.upstream` 접미사를 붙였습니다. 상위 저장소에 올릴 때 필요한 소스가 무시되거나 Windows 체크아웃으로 줄바꿈이 바뀌는 것을 방지하기 위한 파일명 변경입니다. 변경 경로도 잠금 파일에 기록합니다.
+
+0.2.1에서는 Claude 앱의 패키지 검증을 위해 원본 kordoc 플러그인의 `plugin.json`과 원본 스킬 3개의 `SKILL.md`에도 `.upstream` 접미사를 붙였습니다. 원본 Filee Linux 설치 자료의 `filee-donut@filee.sh` 폴더는 `filee-donut-at-filee.sh`로 보관합니다. 이 파일들의 내용·해시는 그대로이며, Windows 엔진 빌드에서 사용하지 않는 배포 자료의 경로 변경입니다. 실제 설치되는 플러그인은 HWPX Bridge 하나이고 활성 스킬은 `hwpx`, `setup` 두 개입니다.
 
 Filee의 변환 소스는 수정하지 않습니다. 빌드용 복사본의 `Filee.Cli.csproj`에서 출력 이름 `filee-cli`만 `hwpx-converter`로 바꿉니다. CLI의 입력 처리·변환 경로·문서 모델·출력기는 그대로 컴파일합니다. GUI 프로젝트는 빌드하지 않습니다.
 

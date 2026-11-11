@@ -45,14 +45,14 @@
           "bytes": 2099
         },
         {
-          "path": ".github/labeler.yml",
-          "sha256": "3025b6775fd1f9fd3446e5e8ae11179eb7a97026f31646582e31700d9e4ee9e4",
-          "bytes": 702
-        },
-        {
           "path": ".github/PULL_REQUEST_TEMPLATE.md",
           "sha256": "b8af9ca726ad53e8af60df68b66e38b08a12570f9737e7a97c9c755f9b54094d",
           "bytes": 987
+        },
+        {
+          "path": ".github/labeler.yml",
+          "sha256": "3025b6775fd1f9fd3446e5e8ae11179eb7a97026f31646582e31700d9e4ee9e4",
+          "bytes": 702
         },
         {
           "path": ".github/release.yml",
@@ -104,6 +104,56 @@
           "sha256": "a92fd5df559ca6ed67dd3512d4c040f2d3d6bf21f69f95311a815057d7f6a117",
           "bytes": 414,
           "upstreamPath": ".gitignore"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sha256": "d520b337210e65bd82f6c6fca1f481f934c80df8f33e1f0fe8d4ee365e4a3f24",
+          "bytes": 152638
+        },
+        {
+          "path": "CODE_OF_CONDUCT.md",
+          "sha256": "734269ef47a96776216d85065dfa6444dbb68d792809a2f86695697accd02c03",
+          "bytes": 5607
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "sha256": "1f4bd605a9bcb85ab7a800c054ec284990efd2217763d39475e25e9511113780",
+          "bytes": 12966
+        },
+        {
+          "path": "Directory.Build.props",
+          "sha256": "c8e7c687120e70e7ac3dc72643895ff52331061478c61fd39bf7955a09f96306",
+          "bytes": 3553
+        },
+        {
+          "path": "Directory.Packages.props",
+          "sha256": "36f25b5f2f4e75c2a18186630f78dad300b5639484dd95eb03400e603c72b017",
+          "bytes": 4185
+        },
+        {
+          "path": "Filee.slnx",
+          "sha256": "07db01f01e241f184c001c6ac773daa6e466e828af9fb32f66683c7253d4f789",
+          "bytes": 1245
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "34209d059d78056e9a68c861aebee328c0651c909467479c49b3e2dd1bd9cece",
+          "bytes": 1105
+        },
+        {
+          "path": "README.md",
+          "sha256": "e3cc7c64ed870c18b7e891790a97d3091445739eca5ced85136260e6c75af451",
+          "bytes": 17256
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "403c38d761b19ac262e4c94d395a95342c8012182f93c7a9d9f8a2c18c36f5d2",
+          "bytes": 3442
+        },
+        {
+          "path": "THIRD-PARTY-NOTICES.md",
+          "sha256": "cda1c7eca872e64e682b0baee8a343993eba62f578bfb73ec548823bccb3d67d",
+          "bytes": 11824
         },
         {
           "path": "build/build-explorer-menu.ps1",
@@ -196,31 +246,6 @@
           "bytes": 2613
         },
         {
-          "path": "CHANGELOG.md",
-          "sha256": "d520b337210e65bd82f6c6fca1f481f934c80df8f33e1f0fe8d4ee365e4a3f24",
-          "bytes": 152638
-        },
-        {
-          "path": "CODE_OF_CONDUCT.md",
-          "sha256": "734269ef47a96776216d85065dfa6444dbb68d792809a2f86695697accd02c03",
-          "bytes": 5607
-        },
-        {
-          "path": "CONTRIBUTING.md",
-          "sha256": "1f4bd605a9bcb85ab7a800c054ec284990efd2217763d39475e25e9511113780",
-          "bytes": 12966
-        },
-        {
-          "path": "Directory.Build.props",
-          "sha256": "c8e7c687120e70e7ac3dc72643895ff52331061478c61fd39bf7955a09f96306",
-          "bytes": 3553
-        },
-        {
-          "path": "Directory.Packages.props",
-          "sha256": "36f25b5f2f4e75c2a18186630f78dad300b5639484dd95eb03400e603c72b017",
-          "bytes": 4185
-        },
-        {
           "path": "docs/ADDING-A-CONVERTER.md",
           "sha256": "b01fe985aec395bd23aaba78e65b8080e7a6bd47c3b353e4eab83b1203fa9d4d",
           "bytes": 4799
@@ -241,11 +266,6 @@
           "bytes": 4134
         },
         {
-          "path": "docs/design/mockup.html",
-          "sha256": "91dbae78fe96d5221b06c65e59ced81821fa66d212b1e9cb10061a87d46eb5d1",
-          "bytes": 14657
-        },
-        {
           "path": "docs/ENGINES.md",
           "sha256": "35c83599307ddbb5b1c383eef16b8c2d0ba692f43b79b7ae7e71e9f20d654dbd",
           "bytes": 203792
@@ -264,6 +284,11 @@
           "path": "docs/LOGO.md",
           "sha256": "7c2b2965b11b5e497b01662f58de468529bc82fb7590fc1926d9d029ff0fe592",
           "bytes": 2156
+        },
+        {
+          "path": "docs/design/mockup.html",
+          "sha256": "91dbae78fe96d5221b06c65e59ced81821fa66d212b1e9cb10061a87d46eb5d1",
+          "bytes": 14657
         },
         {
           "path": "docs/media/banner-en.jpg",
@@ -451,6 +476,11 @@
           "bytes": 16153
         },
         {
+          "path": "docs/themes/NOTICE.md",
+          "sha256": "28249f8afdd2b2fbb98e546af4c87cee10c1edeef1f751aab676439ec998a936",
+          "bytes": 7761
+        },
+        {
           "path": "docs/themes/catppuccin.json",
           "sha256": "70851c8562ae67d5985872e7643f8ac91c1009591b1eac4bc071059d0b0d8d8c",
           "bytes": 506
@@ -471,29 +501,26 @@
           "bytes": 506
         },
         {
-          "path": "docs/themes/NOTICE.md",
-          "sha256": "28249f8afdd2b2fbb98e546af4c87cee10c1edeef1f751aab676439ec998a936",
-          "bytes": 7761
-        },
-        {
-          "path": "Filee.slnx",
-          "sha256": "07db01f01e241f184c001c6ac773daa6e466e828af9fb32f66683c7253d4f789",
-          "bytes": 1245
-        },
-        {
           "path": "global.json",
           "sha256": "b48d6da8fa62c0da7cc8a2da4ea036ac55836660a448ba533135abb5b8451b73",
           "bytes": 81
         },
         {
-          "path": "installer/linux/gnome/filee-donut@filee.sh/extension.js",
-          "sha256": "d80a58929572cfe8ffa294ebc7f91384a2bd7a59daa65a90db4a14a2fef4199c",
-          "bytes": 10197
+          "path": "installer/linux/INSTALL.txt",
+          "sha256": "b27e4b4155dc0b9beaaa000421098f5dd63e1684fbdc5aec6c3c8a09c308f457",
+          "bytes": 9087
         },
         {
-          "path": "installer/linux/gnome/filee-donut@filee.sh/metadata.json",
+          "path": "installer/linux/gnome/filee-donut-at-filee.sh/extension.js",
+          "sha256": "d80a58929572cfe8ffa294ebc7f91384a2bd7a59daa65a90db4a14a2fef4199c",
+          "bytes": 10197,
+          "upstreamPath": "installer/linux/gnome/filee-donut@filee.sh/extension.js"
+        },
+        {
+          "path": "installer/linux/gnome/filee-donut-at-filee.sh/metadata.json",
           "sha256": "82534afdf04bbba2dcc22624f8a73365568934c5771a4cbd4cf755b5bc28a4f6",
-          "bytes": 333
+          "bytes": 333,
+          "upstreamPath": "installer/linux/gnome/filee-donut@filee.sh/metadata.json"
         },
         {
           "path": "installer/linux/hyprland/filee-donut.conf",
@@ -504,11 +531,6 @@
           "path": "installer/linux/install.sh",
           "sha256": "ceedb7bc0bf391ce67c9e09ed7c58f7c9b22a155ab12123f7073d5cd2b4ec670",
           "bytes": 16102
-        },
-        {
-          "path": "installer/linux/INSTALL.txt",
-          "sha256": "b27e4b4155dc0b9beaaa000421098f5dd63e1684fbdc5aec6c3c8a09c308f457",
-          "bytes": 9087
         },
         {
           "path": "installer/linux/kwin/filee-donut/contents/code/main.js",
@@ -524,6 +546,16 @@
           "path": "installer/linux/uninstall.sh",
           "sha256": "64e489c484f868e806033e58706d259d006f057b6f8a936c4d75956601bec1f3",
           "bytes": 1495
+        },
+        {
+          "path": "installer/macos/INSTALL.txt",
+          "sha256": "ef10b1d18c9d6f87984a070abd3083c3e659728f5c4e766b6da3a68519524192",
+          "bytes": 2036
+        },
+        {
+          "path": "installer/macos/Info.plist",
+          "sha256": "f9376b74b1936d39078ec5585c62e4d58b4040f1645cb5782efa4cf8f74700b7",
+          "bytes": 2081
         },
         {
           "path": "installer/macos/de.lproj/InfoPlist.strings",
@@ -566,19 +598,9 @@
           "bytes": 121
         },
         {
-          "path": "installer/macos/Info.plist",
-          "sha256": "f9376b74b1936d39078ec5585c62e4d58b4040f1645cb5782efa4cf8f74700b7",
-          "bytes": 2081
-        },
-        {
           "path": "installer/macos/install.sh",
           "sha256": "b24e994e1a723f75270664cbd979803f5dd095ff61621dac4e815e52f360c775",
           "bytes": 1805
-        },
-        {
-          "path": "installer/macos/INSTALL.txt",
-          "sha256": "ef10b1d18c9d6f87984a070abd3083c3e659728f5c4e766b6da3a68519524192",
-          "bytes": 2036
         },
         {
           "path": "installer/macos/it.lproj/InfoPlist.strings",
@@ -641,24 +663,10 @@
           "bytes": 133
         },
         {
-          "path": "LICENSE",
-          "sha256": "34209d059d78056e9a68c861aebee328c0651c909467479c49b3e2dd1bd9cece",
-          "bytes": 1105
-        },
-        {
-          "path": "README.md",
-          "sha256": "e3cc7c64ed870c18b7e891790a97d3091445739eca5ced85136260e6c75af451",
-          "bytes": 17256
-        },
-        {
-          "path": "SECURITY.md",
-          "sha256": "403c38d761b19ac262e4c94d395a95342c8012182f93c7a9d9f8a2c18c36f5d2",
-          "bytes": 3442
-        },
-        {
-          "path": "skills/filee/SKILL.md",
+          "path": "skills/filee/SKILL.md.upstream",
           "sha256": "7173f32f32802e7e1c547a13f4dafcd8a9aa61357d298c69b32b67c11f12576c",
-          "bytes": 4513
+          "bytes": 4513,
+          "upstreamPath": "skills/filee/SKILL.md"
         },
         {
           "path": "src/Filee.App/App.axaml",
@@ -669,121 +677,6 @@
           "path": "src/Filee.App/App.axaml.cs",
           "sha256": "28c0ee9652f19b4a9a819d06955754edf8b2308ec8ed6e5604a800305e82311c",
           "bytes": 24842
-        },
-        {
-          "path": "src/Filee.App/app.manifest",
-          "sha256": "21fc5f8d6f9e03748b2d1c8ad42161b81c62bfcbc0a24b3f6a8f97d8253e0a46",
-          "bytes": 1246
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/ar.json",
-          "sha256": "e10edba81d5ddc5b32156041489b700bcad66632ef1fe49cf80b67f220ab7131",
-          "bytes": 151069
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/bn-BD.json",
-          "sha256": "884d36faae45df41d6c09c36704422a165159f625c3929c45d1415942d4c8242",
-          "bytes": 216488
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/de.json",
-          "sha256": "4be5b13a7afd314b1b1cff1cef101a1b23cdfdfec1dd637156ffb6b898706e71",
-          "bytes": 124651
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/en.json",
-          "sha256": "9ae9d1f81e5d6fb4056db837a001b0cfa68d47bb9b74f273c2864866489a0749",
-          "bytes": 110579
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/es.json",
-          "sha256": "903c159888b5d86f5928c2f97c64169b185e4f5ecab3ebd63454ba74739ad1f5",
-          "bytes": 122020
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/fa.json",
-          "sha256": "00210cf84ad001081d0fc24434ed4e8735374dca13b7e6e0a7c94fbd3d2b1a09",
-          "bytes": 163303
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/fr.json",
-          "sha256": "994a8419ffc8abf5933c4c4ce30c6654ec57cf38efe918115cb6e978b5b55271",
-          "bytes": 126582
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/hi.json",
-          "sha256": "b233cbc5acb59c303319c33b1d5df4af8ce79e0b7d5a937fc8a30386add29907",
-          "bytes": 203931
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/id.json",
-          "sha256": "500a75be0f839ed8947e3582a6b1d58d7ba36e382ffbc422d67284d6f726cb31",
-          "bytes": 118857
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/it.json",
-          "sha256": "7f42dc76d7025c7017e25c5433fa054a810cc2292fbd6b6b216cf1bd414cadca",
-          "bytes": 117383
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/ja.json",
-          "sha256": "9f541dfa4441d52389064cc767af5ac1e6738958e3173647803b5398614ed446",
-          "bytes": 142419
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/ko.json",
-          "sha256": "0646c625dd2b68448d3da38152446651f50d42378cbae34857b4fd40fedbcab9",
-          "bytes": 124382
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/ne.json",
-          "sha256": "9614dbdb496598cb50494356b639cbee74dd07b1979bd6b8f307418f97f3850e",
-          "bytes": 215502
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/pl.json",
-          "sha256": "72e1c47cac90e28b305200c632d52302211e6da24868866d8a2f75d529c93280",
-          "bytes": 118112
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/pt-BR.json",
-          "sha256": "1dcd9b5ef0cd1c627771166745c82a7e44afdb60b504911a5e32f32c3d06a492",
-          "bytes": 120096
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/pt-PT.json",
-          "sha256": "5dd2b8fd6eafc113083a17f87c009f4fbd2c4c2f468f4dd063908d8830deaf98",
-          "bytes": 124509
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/ru.json",
-          "sha256": "dde35d4bcdfee6fe9938959fd5400266b300d2119de8a8aa006fc36264950532",
-          "bytes": 166094
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/th.json",
-          "sha256": "867324f70e80ccfb539c5711c3e2f1fe1b8eeeebdf8b222fc75cbc055f765b6f",
-          "bytes": 207243
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/tr.json",
-          "sha256": "b4548669d7a480e6cb0e6b0b434f00f0ec3ec42bb7aaaa473ab58de1b9adedf1",
-          "bytes": 121714
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/vi.json",
-          "sha256": "82e51cde393e3b906914b8aa3c6244b6da543ed788a16f3af4181f7d43bb3c57",
-          "bytes": 132798
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/zh-CN.json",
-          "sha256": "07b820b511298c85044c8afa0b704e5e26a2c01187f9faa0d68fe422dfe7f64c",
-          "bytes": 110472
-        },
-        {
-          "path": "src/Filee.App/Assets/i18n/zh-TW.json",
-          "sha256": "15ec6619148781ebf833e48224ea8cbcbeaf579f20878f0f8f07b88fdcdc3b8d",
-          "bytes": 111410
         },
         {
           "path": "src/Filee.App/Assets/Icons/filee.ico",
@@ -921,6 +814,116 @@
           "bytes": 281646
         },
         {
+          "path": "src/Filee.App/Assets/i18n/ar.json",
+          "sha256": "e10edba81d5ddc5b32156041489b700bcad66632ef1fe49cf80b67f220ab7131",
+          "bytes": 151069
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/bn-BD.json",
+          "sha256": "884d36faae45df41d6c09c36704422a165159f625c3929c45d1415942d4c8242",
+          "bytes": 216488
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/de.json",
+          "sha256": "4be5b13a7afd314b1b1cff1cef101a1b23cdfdfec1dd637156ffb6b898706e71",
+          "bytes": 124651
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/en.json",
+          "sha256": "9ae9d1f81e5d6fb4056db837a001b0cfa68d47bb9b74f273c2864866489a0749",
+          "bytes": 110579
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/es.json",
+          "sha256": "903c159888b5d86f5928c2f97c64169b185e4f5ecab3ebd63454ba74739ad1f5",
+          "bytes": 122020
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/fa.json",
+          "sha256": "00210cf84ad001081d0fc24434ed4e8735374dca13b7e6e0a7c94fbd3d2b1a09",
+          "bytes": 163303
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/fr.json",
+          "sha256": "994a8419ffc8abf5933c4c4ce30c6654ec57cf38efe918115cb6e978b5b55271",
+          "bytes": 126582
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/hi.json",
+          "sha256": "b233cbc5acb59c303319c33b1d5df4af8ce79e0b7d5a937fc8a30386add29907",
+          "bytes": 203931
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/id.json",
+          "sha256": "500a75be0f839ed8947e3582a6b1d58d7ba36e382ffbc422d67284d6f726cb31",
+          "bytes": 118857
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/it.json",
+          "sha256": "7f42dc76d7025c7017e25c5433fa054a810cc2292fbd6b6b216cf1bd414cadca",
+          "bytes": 117383
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/ja.json",
+          "sha256": "9f541dfa4441d52389064cc767af5ac1e6738958e3173647803b5398614ed446",
+          "bytes": 142419
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/ko.json",
+          "sha256": "0646c625dd2b68448d3da38152446651f50d42378cbae34857b4fd40fedbcab9",
+          "bytes": 124382
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/ne.json",
+          "sha256": "9614dbdb496598cb50494356b639cbee74dd07b1979bd6b8f307418f97f3850e",
+          "bytes": 215502
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/pl.json",
+          "sha256": "72e1c47cac90e28b305200c632d52302211e6da24868866d8a2f75d529c93280",
+          "bytes": 118112
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/pt-BR.json",
+          "sha256": "1dcd9b5ef0cd1c627771166745c82a7e44afdb60b504911a5e32f32c3d06a492",
+          "bytes": 120096
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/pt-PT.json",
+          "sha256": "5dd2b8fd6eafc113083a17f87c009f4fbd2c4c2f468f4dd063908d8830deaf98",
+          "bytes": 124509
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/ru.json",
+          "sha256": "dde35d4bcdfee6fe9938959fd5400266b300d2119de8a8aa006fc36264950532",
+          "bytes": 166094
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/th.json",
+          "sha256": "867324f70e80ccfb539c5711c3e2f1fe1b8eeeebdf8b222fc75cbc055f765b6f",
+          "bytes": 207243
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/tr.json",
+          "sha256": "b4548669d7a480e6cb0e6b0b434f00f0ec3ec42bb7aaaa473ab58de1b9adedf1",
+          "bytes": 121714
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/vi.json",
+          "sha256": "82e51cde393e3b906914b8aa3c6244b6da543ed788a16f3af4181f7d43bb3c57",
+          "bytes": 132798
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/zh-CN.json",
+          "sha256": "07b820b511298c85044c8afa0b704e5e26a2c01187f9faa0d68fe422dfe7f64c",
+          "bytes": 110472
+        },
+        {
+          "path": "src/Filee.App/Assets/i18n/zh-TW.json",
+          "sha256": "15ec6619148781ebf833e48224ea8cbcbeaf579f20878f0f8f07b88fdcdc3b8d",
+          "bytes": 111410
+        },
+        {
           "path": "src/Filee.App/Controls/AnimatedImage.cs",
           "sha256": "8f983ba4d69664ac2bbf9f6c6cc9b9655f91dc00de765b6a55a7be32ade10ca7",
           "bytes": 10325
@@ -976,11 +979,6 @@
           "bytes": 12876
         },
         {
-          "path": "src/Filee.App/Controls/DonutMenu.cs",
-          "sha256": "84963b2db18bf6d14656c7d7cc0bf678403e942306ff6a220c48acbc290b06d9",
-          "bytes": 66971
-        },
-        {
           "path": "src/Filee.App/Controls/DonutMenu.Flip.cs",
           "sha256": "777c602df75217c59aaae73f684ec9872ce567fbb1b46a002f88273418e1e93c",
           "bytes": 17493
@@ -994,6 +992,11 @@
           "path": "src/Filee.App/Controls/DonutMenu.Progress.cs",
           "sha256": "1ff94bc1a0c36735866fbf2edccbbd0c48b4e28be9740f952ffd24c28a033c3d",
           "bytes": 18703
+        },
+        {
+          "path": "src/Filee.App/Controls/DonutMenu.cs",
+          "sha256": "84963b2db18bf6d14656c7d7cc0bf678403e942306ff6a220c48acbc290b06d9",
+          "bytes": 66971
         },
         {
           "path": "src/Filee.App/Controls/HideAreaSet.cs",
@@ -2006,6 +2009,11 @@
           "bytes": 3447
         },
         {
+          "path": "src/Filee.App/app.manifest",
+          "sha256": "21fc5f8d6f9e03748b2d1c8ad42161b81c62bfcbc0a24b3f6a8f97d8253e0a46",
+          "bytes": 1246
+        },
+        {
           "path": "src/Filee.Cli/Cli.cs",
           "sha256": "66dd18c91ca3953a294e9ac08158ad77dc674771dcbdc78c00970dacd380f817",
           "bytes": 28087
@@ -2491,11 +2499,6 @@
           "bytes": 5000
         },
         {
-          "path": "src/Filee.Engines/Cad/CadSceneBuilder.cs",
-          "sha256": "1414cc486183fc2e7bd9b87d231ab65ac82acbea4e21bb660b0d504517180e08",
-          "bytes": 43364
-        },
-        {
           "path": "src/Filee.Engines/Cad/CadSceneBuilder.Hatch.cs",
           "sha256": "8fa1ad4fad89ec7536795594d4e514f2e8a16aec8f25a2b3620dd0439e8218be",
           "bytes": 11187
@@ -2504,6 +2507,11 @@
           "path": "src/Filee.Engines/Cad/CadSceneBuilder.Text.cs",
           "sha256": "578ba68830c035278ede7ecb8d4c3b3b72fcec43e94599dcae6a8bec71302b6b",
           "bytes": 13995
+        },
+        {
+          "path": "src/Filee.Engines/Cad/CadSceneBuilder.cs",
+          "sha256": "1414cc486183fc2e7bd9b87d231ab65ac82acbea4e21bb660b0d504517180e08",
+          "bytes": 43364
         },
         {
           "path": "src/Filee.Engines/Cad/CadTextCodes.cs",
@@ -2836,19 +2844,9 @@
           "bytes": 9095
         },
         {
-          "path": "src/Filee.Engines/Hwp/Hwpx/blank.hwpx",
-          "sha256": "97279058dda295c0a08985203624ac27900ddb649b6e28fc9e27ce0d061d4035",
-          "bytes": 8005
-        },
-        {
           "path": "src/Filee.Engines/Hwp/Hwpx/DocumentReaders.cs",
           "sha256": "f9de67e12f90dca491d04a3767a033095ef1a7bd5f1a969835e6a0dc5f8a50a8",
           "bytes": 8598
-        },
-        {
-          "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxReader.cs",
-          "sha256": "e57dbbd1c7a6cfc6ab1ede735cb37433bd945f5bde7ebb7bca9ff4c6989a2c98",
-          "bytes": 48620
         },
         {
           "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxReader.Drawing.cs",
@@ -2866,19 +2864,24 @@
           "bytes": 9628
         },
         {
+          "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxReader.cs",
+          "sha256": "e57dbbd1c7a6cfc6ab1ede735cb37433bd945f5bde7ebb7bca9ff4c6989a2c98",
+          "bytes": 48620
+        },
+        {
           "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxWriter.Body.cs",
           "sha256": "d4386e3796d6a290307323ab708702fcfe8dcd20ec9aa6827d3ae0a7942b9a06",
           "bytes": 31706
         },
         {
-          "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxWriter.cs",
-          "sha256": "587ca03cfafc6c7568e994344bdfdbc98aaa816a9171b1058e4f02618aa5ccd8",
-          "bytes": 24448
-        },
-        {
           "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxWriter.Objects.cs",
           "sha256": "33f88cb6dfbb773df33258e2fd972c41656cd1df41228c625f8bc7c77c27e1dc",
           "bytes": 15140
+        },
+        {
+          "path": "src/Filee.Engines/Hwp/Hwpx/Docx/DocxWriter.cs",
+          "sha256": "587ca03cfafc6c7568e994344bdfdbc98aaa816a9171b1058e4f02618aa5ccd8",
+          "bytes": 24448
         },
         {
           "path": "src/Filee.Engines/Hwp/Hwpx/Docx/OmmlReader.cs",
@@ -2921,11 +2924,6 @@
           "bytes": 25964
         },
         {
-          "path": "src/Filee.Engines/Hwp/Hwpx/HwpxReader.cs",
-          "sha256": "66b9a619d9f0fd617b97a7db514297ffdd275b68b271f27c37d31439e55e83d2",
-          "bytes": 21373
-        },
-        {
           "path": "src/Filee.Engines/Hwp/Hwpx/HwpxReader.Header.cs",
           "sha256": "3e76e31ed8e6c6a19c539b54d8fed0349a72cc87e9e4534bad80fa7a01f9ba84",
           "bytes": 17066
@@ -2936,6 +2934,11 @@
           "bytes": 12324
         },
         {
+          "path": "src/Filee.Engines/Hwp/Hwpx/HwpxReader.cs",
+          "sha256": "66b9a619d9f0fd617b97a7db514297ffdd275b68b271f27c37d31439e55e83d2",
+          "bytes": 21373
+        },
+        {
           "path": "src/Filee.Engines/Hwp/Hwpx/HwpxUnits.cs",
           "sha256": "fef0ade2fa1902b0360e3558f5385228ad93d913ad17eb6d67fe7d3dff1206ba",
           "bytes": 1692
@@ -2944,11 +2947,6 @@
           "path": "src/Filee.Engines/Hwp/Hwpx/HwpxWriter.Body.cs",
           "sha256": "8299b6796589b09d8bd4a37c04d7c6931c6eadcdf08ce5f0163b10742f8e76bb",
           "bytes": 23749
-        },
-        {
-          "path": "src/Filee.Engines/Hwp/Hwpx/HwpxWriter.cs",
-          "sha256": "9bedb27a417b68b315ac198006e48f62481882e96f635584ed677352d5040656",
-          "bytes": 12247
         },
         {
           "path": "src/Filee.Engines/Hwp/Hwpx/HwpxWriter.Header.cs",
@@ -2964,6 +2962,11 @@
           "path": "src/Filee.Engines/Hwp/Hwpx/HwpxWriter.Objects.cs",
           "sha256": "c626cc99b7dbed73ccb52f2943d75c098040d9620f3c132952b7904500f4d068",
           "bytes": 19325
+        },
+        {
+          "path": "src/Filee.Engines/Hwp/Hwpx/HwpxWriter.cs",
+          "sha256": "9bedb27a417b68b315ac198006e48f62481882e96f635584ed677352d5040656",
+          "bytes": 12247
         },
         {
           "path": "src/Filee.Engines/Hwp/Hwpx/MarkdownReader.cs",
@@ -2991,14 +2994,14 @@
           "bytes": 8177
         },
         {
-          "path": "src/Filee.Engines/Hwp/Hwpx/Pptx/PptxReader.cs",
-          "sha256": "1e34ecce599719f19074cff646d397d1c783e71d29824dbcaa49202d01bf692b",
-          "bytes": 25296
-        },
-        {
           "path": "src/Filee.Engines/Hwp/Hwpx/Pptx/PptxReader.Text.cs",
           "sha256": "4dd0aea37e34dd09126f18344ecf9c353a9e280a7327ddaeeeb8609f383852ed",
           "bytes": 21031
+        },
+        {
+          "path": "src/Filee.Engines/Hwp/Hwpx/Pptx/PptxReader.cs",
+          "sha256": "1e34ecce599719f19074cff646d397d1c783e71d29824dbcaa49202d01bf692b",
+          "bytes": 25296
         },
         {
           "path": "src/Filee.Engines/Hwp/Hwpx/SheetDocument.cs",
@@ -3016,6 +3019,11 @@
           "bytes": 24994
         },
         {
+          "path": "src/Filee.Engines/Hwp/Hwpx/blank.hwpx",
+          "sha256": "97279058dda295c0a08985203624ac27900ddb649b6e28fc9e27ce0d061d4035",
+          "bytes": 8005
+        },
+        {
           "path": "src/Filee.Engines/Hwp/RhwpConverter.cs",
           "sha256": "63893dbda5915ba858c510004923e882eeda08122770d81f1288846ec3353b19",
           "bytes": 15211
@@ -3026,14 +3034,14 @@
           "bytes": 15005
         },
         {
-          "path": "src/Filee.Engines/Hwp/RhwpInput.cs",
-          "sha256": "05c66acd7f7aab36602ddaa9cb775928d40409c34d3f3b936ab349678a80d32f",
-          "bytes": 24323
-        },
-        {
           "path": "src/Filee.Engines/Hwp/RhwpInput.Punctuation.cs",
           "sha256": "144c237a15740b06ead87f963f1e59e6c0764fc7760f83f0a525b0533b9fbaa7",
           "bytes": 12428
+        },
+        {
+          "path": "src/Filee.Engines/Hwp/RhwpInput.cs",
+          "sha256": "05c66acd7f7aab36602ddaa9cb775928d40409c34d3f3b936ab349678a80d32f",
+          "bytes": 24323
         },
         {
           "path": "src/Filee.Engines/Hwp/UnhwpConverter.cs",
@@ -3096,19 +3104,9 @@
           "bytes": 40733
         },
         {
-          "path": "src/Filee.Engines/Infrastructure/engines.json",
-          "sha256": "eabdb8145251e0b4635e300534437cafabf4d1d6a4e8805f4eb1fb0e2b88a7dd",
-          "bytes": 13749
-        },
-        {
           "path": "src/Filee.Engines/Infrastructure/EngineVersions.cs",
           "sha256": "9af8e2b4ebfc008e95efdeef43f421a64679d9087c3e8563703eb736ad45762d",
           "bytes": 1530
-        },
-        {
-          "path": "src/Filee.Engines/Infrastructure/ocr-languages.json",
-          "sha256": "d7496532d44e961b83c0c9c6c8d55df86ef177e13e924ece4b05cd62f070d207",
-          "bytes": 10623
         },
         {
           "path": "src/Filee.Engines/Infrastructure/ProcessRunner.cs",
@@ -3139,6 +3137,16 @@
           "path": "src/Filee.Engines/Infrastructure/UnpackLimit.cs",
           "sha256": "cf2b1ccc00e81e0d9bbec6f3e4fec5829b9585c9dece878c8f00ef8546afd1c8",
           "bytes": 1662
+        },
+        {
+          "path": "src/Filee.Engines/Infrastructure/engines.json",
+          "sha256": "eabdb8145251e0b4635e300534437cafabf4d1d6a4e8805f4eb1fb0e2b88a7dd",
+          "bytes": 13749
+        },
+        {
+          "path": "src/Filee.Engines/Infrastructure/ocr-languages.json",
+          "sha256": "d7496532d44e961b83c0c9c6c8d55df86ef177e13e924ece4b05cd62f070d207",
+          "bytes": 10623
         },
         {
           "path": "src/Filee.Engines/Infrastructure/upscale-models.json",
@@ -3441,11 +3449,6 @@
           "bytes": 6425
         },
         {
-          "path": "src/Filee.Engines/Ofd/OfdReader.cs",
-          "sha256": "e3de728142211efd663b71e20234e5f46678bb1cd726f7debe855f2a811a16e1",
-          "bytes": 39456
-        },
-        {
           "path": "src/Filee.Engines/Ofd/OfdReader.Layout.cs",
           "sha256": "a4087e987d8511718bcae305580d7fa229f4c3347134b1da1e9f5b441f032eea",
           "bytes": 23292
@@ -3459,6 +3462,11 @@
           "path": "src/Filee.Engines/Ofd/OfdReader.Tables.cs",
           "sha256": "ceeece37b57fc3ab59800fcfe264370a66abcc198502c3d97893ea850cd9ce33",
           "bytes": 25761
+        },
+        {
+          "path": "src/Filee.Engines/Ofd/OfdReader.cs",
+          "sha256": "e3de728142211efd663b71e20234e5f46678bb1cd726f7debe855f2a811a16e1",
+          "bytes": 39456
         },
         {
           "path": "src/Filee.Engines/Office/DocumentFonts.cs",
@@ -3606,11 +3614,6 @@
           "bytes": 19001
         },
         {
-          "path": "src/Filee.Engines/Pdf/PdfDocumentReader.cs",
-          "sha256": "15017cf6b9c3d1c0ddc5cc047deada452f5898e7769b50d3538dfe30488c37de",
-          "bytes": 59699
-        },
-        {
           "path": "src/Filee.Engines/Pdf/PdfDocumentReader.Layout.cs",
           "sha256": "37a455e92d6f91d56cf79417432e7aca92ad4121f3286dfafdca25a0ccfc2729",
           "bytes": 18653
@@ -3621,14 +3624,14 @@
           "bytes": 28289
         },
         {
+          "path": "src/Filee.Engines/Pdf/PdfDocumentReader.cs",
+          "sha256": "15017cf6b9c3d1c0ddc5cc047deada452f5898e7769b50d3538dfe30488c37de",
+          "bytes": 59699
+        },
+        {
           "path": "src/Filee.Engines/Pdf/PdfFinishing.cs",
           "sha256": "7b54d461f684deb933bbee487f1fceac7463acb8d1be0d6b0c84ace7824ddc6e",
           "bytes": 9273
-        },
-        {
-          "path": "src/Filee.Engines/Pdf/PdfiumConverter.cs",
-          "sha256": "aff3989d8129759e3dac86eb3bafe22bedac8890c14cad07933d66faed5a1dd4",
-          "bytes": 13166
         },
         {
           "path": "src/Filee.Engines/Pdf/PdfMergeStructure.cs",
@@ -3646,14 +3649,14 @@
           "bytes": 9343
         },
         {
-          "path": "src/Filee.Engines/Pdf/PdfPictures.cs",
-          "sha256": "8e951a4b1882deb2de2aeb2d2b518f58b9d0b07443adc4b0ea92df3fbd5b8266",
-          "bytes": 4741
-        },
-        {
           "path": "src/Filee.Engines/Pdf/PdfPictureUses.cs",
           "sha256": "366fd61b50af4429f0f13831db0e49a953c7eb8883ca1e006598586fe5bf0e0c",
           "bytes": 11228
+        },
+        {
+          "path": "src/Filee.Engines/Pdf/PdfPictures.cs",
+          "sha256": "8e951a4b1882deb2de2aeb2d2b518f58b9d0b07443adc4b0ea92df3fbd5b8266",
+          "bytes": 4741
         },
         {
           "path": "src/Filee.Engines/Pdf/PdfRepair.cs",
@@ -3684,6 +3687,11 @@
           "path": "src/Filee.Engines/Pdf/PdfTextConverter.cs",
           "sha256": "ce668902a01b9c796d62c464ee1c0acd8618c261a68bc1ecb023dee6e8a2978f",
           "bytes": 5237
+        },
+        {
+          "path": "src/Filee.Engines/Pdf/PdfiumConverter.cs",
+          "sha256": "aff3989d8129759e3dac86eb3bafe22bedac8890c14cad07933d66faed5a1dd4",
+          "bytes": 13166
         },
         {
           "path": "src/Filee.Engines/Pdf/PictureDeckWriter.cs",
@@ -4076,11 +4084,6 @@
           "bytes": 2001
         },
         {
-          "path": "src/Filee.Setup/app.manifest",
-          "sha256": "e36a95d48831f66c5f68029aec3fa18e3a74589dc5814fac12c9e86e0f0a8aad",
-          "bytes": 1463
-        },
-        {
           "path": "src/Filee.Setup/Controls/CheckBurst.cs",
           "sha256": "a8fadf7fddbd61b225539caf513167f8f8ecf7e41161bcf74d25854ce84e610e",
           "bytes": 3645
@@ -4121,14 +4124,14 @@
           "bytes": 6368
         },
         {
-          "path": "src/Filee.Setup/Installation/Installer.cs",
-          "sha256": "b0f72399dbad4348e35adde0989bc4f41a440778c1a526b9573a5367b7a048c8",
-          "bytes": 20111
-        },
-        {
           "path": "src/Filee.Setup/Installation/InstallRecord.cs",
           "sha256": "3d58d135cb084a48112ef9421a330fa2ba686229c0371bffdbcd129541e012d4",
           "bytes": 2376
+        },
+        {
+          "path": "src/Filee.Setup/Installation/Installer.cs",
+          "sha256": "b0f72399dbad4348e35adde0989bc4f41a440778c1a526b9573a5367b7a048c8",
+          "bytes": 20111
         },
         {
           "path": "src/Filee.Setup/Installation/PathVariable.cs",
@@ -4261,6 +4264,11 @@
           "bytes": 9101
         },
         {
+          "path": "src/Filee.Setup/app.manifest",
+          "sha256": "e36a95d48831f66c5f68029aec3fa18e3a74589dc5814fac12c9e86e0f0a8aad",
+          "bytes": 1463
+        },
+        {
           "path": "tests/Filee.App.Tests/AccentContrastTests.cs",
           "sha256": "2b2a17601a1ab7417df6b268dd6d72a6b1912dc3c6b99b1b799f7a85abde4343",
           "bytes": 21758
@@ -4306,14 +4314,14 @@
           "bytes": 25031
         },
         {
-          "path": "tests/Filee.App.Tests/ClipboardShortcutTests.cs",
-          "sha256": "4f791b4fe0b0b5d1edd78fd60c23e90d79a3ccbc80af56e937b245d671620d4d",
-          "bytes": 8562
-        },
-        {
           "path": "tests/Filee.App.Tests/ClipWindowTests.cs",
           "sha256": "5360e6cdfdfdc4347b84b47a3f4e1df423b9c7556ebe2fe5c8280d443d1f4110",
           "bytes": 45575
+        },
+        {
+          "path": "tests/Filee.App.Tests/ClipboardShortcutTests.cs",
+          "sha256": "4f791b4fe0b0b5d1edd78fd60c23e90d79a3ccbc80af56e937b245d671620d4d",
+          "bytes": 8562
         },
         {
           "path": "tests/Filee.App.Tests/CloseActionTests.cs",
@@ -4406,14 +4414,14 @@
           "bytes": 9736
         },
         {
-          "path": "tests/Filee.App.Tests/EnginesPageTests.cs",
-          "sha256": "508b8f81c2c1786519a9062cae9e2225a8edb025c3cae44d60a64efc40f3cd09",
-          "bytes": 11563
-        },
-        {
           "path": "tests/Filee.App.Tests/EngineUpdateTests.cs",
           "sha256": "2b9c1cd2c7bb1f9c46a475b98885418f5f8bb75428b51f04b18860103d4f4256",
           "bytes": 2804
+        },
+        {
+          "path": "tests/Filee.App.Tests/EnginesPageTests.cs",
+          "sha256": "508b8f81c2c1786519a9062cae9e2225a8edb025c3cae44d60a64efc40f3cd09",
+          "bytes": 11563
         },
         {
           "path": "tests/Filee.App.Tests/ExplorerMenuTests.cs",
@@ -4431,24 +4439,14 @@
           "bytes": 3468
         },
         {
-          "path": "tests/Filee.App.Tests/FieldsPageTests.cs",
-          "sha256": "26435a72f1cb994599eeb9e762be25813c68e6ac21d0dc8a4d4e650a34b134e4",
-          "bytes": 9814
-        },
-        {
           "path": "tests/Filee.App.Tests/FieldSwitchTests.cs",
           "sha256": "2a101d8311f40e78cfe329785d4aa0948c970fe89a0eba4be3bfe0ca6163c1c4",
           "bytes": 18849
         },
         {
-          "path": "tests/Filee.App.Tests/Filee.App.Tests.csproj",
-          "sha256": "191a199c4091bd1b5d81f822aab05f5ced0fbbc82b2d65f4680f3839ff6b5c04",
-          "bytes": 604
-        },
-        {
-          "path": "tests/Filee.App.Tests/FileeFontCollectionTests.cs",
-          "sha256": "a435185d3304a807554ae6832748a6d792aa3a5cf316c1e9b8cbd37c389745dc",
-          "bytes": 6009
+          "path": "tests/Filee.App.Tests/FieldsPageTests.cs",
+          "sha256": "26435a72f1cb994599eeb9e762be25813c68e6ac21d0dc8a4d4e650a34b134e4",
+          "bytes": 9814
         },
         {
           "path": "tests/Filee.App.Tests/FileManagerScopeTests.cs",
@@ -4459,6 +4457,16 @@
           "path": "tests/Filee.App.Tests/FileQueueTests.cs",
           "sha256": "44aa21476c1c6e8925d4f3e1e613012c3459cde1679d1b5759dad0708fcfff70",
           "bytes": 2190
+        },
+        {
+          "path": "tests/Filee.App.Tests/Filee.App.Tests.csproj",
+          "sha256": "191a199c4091bd1b5d81f822aab05f5ced0fbbc82b2d65f4680f3839ff6b5c04",
+          "bytes": 604
+        },
+        {
+          "path": "tests/Filee.App.Tests/FileeFontCollectionTests.cs",
+          "sha256": "a435185d3304a807554ae6832748a6d792aa3a5cf316c1e9b8cbd37c389745dc",
+          "bytes": 6009
         },
         {
           "path": "tests/Filee.App.Tests/FolderCopyTests.cs",
@@ -4796,14 +4804,14 @@
           "bytes": 7274
         },
         {
-          "path": "tests/Filee.Core.Tests/BackFaceTests.cs",
-          "sha256": "6062764f4ef0c687b19aa4df388fdb35d88a328d5a416095ce869c92a24128e4",
-          "bytes": 20922
-        },
-        {
           "path": "tests/Filee.Core.Tests/BackFaceTests.SlotTable.cs",
           "sha256": "ebdb901a463b15ba3e6d3a38de1fdc2c6ebf694c1100b2655c42730142c09248",
           "bytes": 12606
+        },
+        {
+          "path": "tests/Filee.Core.Tests/BackFaceTests.cs",
+          "sha256": "6062764f4ef0c687b19aa4df388fdb35d88a328d5a416095ce869c92a24128e4",
+          "bytes": 20922
         },
         {
           "path": "tests/Filee.Core.Tests/BackgroundToolTests.cs",
@@ -4836,11 +4844,6 @@
           "bytes": 5484
         },
         {
-          "path": "tests/Filee.Core.Tests/ClipboardShortcutTests.cs",
-          "sha256": "cac0a837d495a591bc407aad3740923649fd906b305a6c284bed471ac46ccd4a",
-          "bytes": 2094
-        },
-        {
           "path": "tests/Filee.Core.Tests/ClipCutterTests.cs",
           "sha256": "918b5a9b85bd22164e0e8bb21ae83299f09c3d9e63971df1185a707ad3449c14",
           "bytes": 18551
@@ -4849,6 +4852,11 @@
           "path": "tests/Filee.Core.Tests/ClipToolTests.cs",
           "sha256": "0699f1c9d923e92850cc0b85de13312cb5f2ce1eb47c746c2bf09a291cedfe77",
           "bytes": 13064
+        },
+        {
+          "path": "tests/Filee.Core.Tests/ClipboardShortcutTests.cs",
+          "sha256": "cac0a837d495a591bc407aad3740923649fd906b305a6c284bed471ac46ccd4a",
+          "bytes": 2094
         },
         {
           "path": "tests/Filee.Core.Tests/CompanionFilesTests.cs",
@@ -4901,14 +4909,14 @@
           "bytes": 9316
         },
         {
-          "path": "tests/Filee.Core.Tests/Filee.Core.Tests.csproj",
-          "sha256": "6c0d2606f0eb01a18f4bfb98bb008f75b9e8b4d470792c52bcc138a95c8a72bd",
-          "bytes": 547
-        },
-        {
           "path": "tests/Filee.Core.Tests/FileSorterTests.cs",
           "sha256": "f23eb37b3971a789271d415573c6aad5cb44b5af78af6c723f8fc36f47745e7a",
           "bytes": 4884
+        },
+        {
+          "path": "tests/Filee.Core.Tests/Filee.Core.Tests.csproj",
+          "sha256": "6c0d2606f0eb01a18f4bfb98bb008f75b9e8b4d470792c52bcc138a95c8a72bd",
+          "bytes": 547
         },
         {
           "path": "tests/Filee.Core.Tests/FitFormatRegistrationTests.cs",
@@ -5131,14 +5139,14 @@
           "bytes": 3029
         },
         {
-          "path": "tests/Filee.Core.Tests/UserDataStoreTests.cs",
-          "sha256": "9008c12a5e68ad0736648439a93d9b5fa9d439057d29162e801ed40b9b478263",
-          "bytes": 95466
-        },
-        {
           "path": "tests/Filee.Core.Tests/UserDataStoreTests.SlotTable.cs",
           "sha256": "862a6b92cd8d8f9e7a2d7f2168f2d4f929b751fdef29e28ff9afe04df49792d3",
           "bytes": 7636
+        },
+        {
+          "path": "tests/Filee.Core.Tests/UserDataStoreTests.cs",
+          "sha256": "9008c12a5e68ad0736648439a93d9b5fa9d439057d29162e801ed40b9b478263",
+          "bytes": 95466
         },
         {
           "path": "tests/Filee.Core.Tests/UsmFormatTests.cs",
@@ -5486,6 +5494,11 @@
           "bytes": 74911
         },
         {
+          "path": "tests/Filee.Engines.Tests/FontTests.cs",
+          "sha256": "191b5e9b226ebab048876300bef087b41da7fdf68563d74bac06374d18af67f1",
+          "bytes": 24359
+        },
+        {
           "path": "tests/Filee.Engines.Tests/Fonts/FileeTest-CID.otf",
           "sha256": "a0339103fd84805c1cd77be5385027b801ae9623143c7f6f5b9ff772b8c31fb7",
           "bytes": 6296
@@ -5506,19 +5519,14 @@
           "bytes": 13052
         },
         {
-          "path": "tests/Filee.Engines.Tests/Fonts/make-test-fonts.py",
-          "sha256": "2861dffe36fbf62fccdc2b47dab27f8646044310ecc5a0b8891072a82a8eda5e",
-          "bytes": 7170
-        },
-        {
           "path": "tests/Filee.Engines.Tests/Fonts/OFL.txt",
           "sha256": "3b7c8ab0eb6e05b63ab322d7fd464a82828473a5e4f0c2968df1a6b0e743dc5f",
           "bytes": 5204
         },
         {
-          "path": "tests/Filee.Engines.Tests/FontTests.cs",
-          "sha256": "191b5e9b226ebab048876300bef087b41da7fdf68563d74bac06374d18af67f1",
-          "bytes": 24359
+          "path": "tests/Filee.Engines.Tests/Fonts/make-test-fonts.py",
+          "sha256": "2861dffe36fbf62fccdc2b47dab27f8646044310ecc5a0b8891072a82a8eda5e",
+          "bytes": 7170
         },
         {
           "path": "tests/Filee.Engines.Tests/FreeMasterTextTests.cs",
@@ -5696,14 +5704,14 @@
           "bytes": 36511
         },
         {
-          "path": "tests/Filee.Engines.Tests/HardwareEncodingTests.cs",
-          "sha256": "f643c34217400dd9194f86ec16e358664614d805ecf1c2aff085ac3130e5b9ea",
-          "bytes": 42744
-        },
-        {
           "path": "tests/Filee.Engines.Tests/HDocumentAssert.cs",
           "sha256": "a327237df3882daa9fb86d79ee67c172278b60b41db0a81d327e1a9a71be78e3",
           "bytes": 24516
+        },
+        {
+          "path": "tests/Filee.Engines.Tests/HardwareEncodingTests.cs",
+          "sha256": "f643c34217400dd9194f86ec16e358664614d805ecf1c2aff085ac3130e5b9ea",
+          "bytes": 42744
         },
         {
           "path": "tests/Filee.Engines.Tests/HeicTests.cs",
@@ -5981,14 +5989,14 @@
           "bytes": 14921
         },
         {
-          "path": "tests/Filee.Engines.Tests/PdfTablesTests.cs",
-          "sha256": "00637cedee9d992e15d8f9560315768271b9dea251b40dcfcbc594c7b759417b",
-          "bytes": 8436
-        },
-        {
           "path": "tests/Filee.Engines.Tests/PdfTableTests.cs",
           "sha256": "105683e0686960914757fd43c65531a67dde9b971b89cb969d1bcdd3e843b415",
           "bytes": 16459
+        },
+        {
+          "path": "tests/Filee.Engines.Tests/PdfTablesTests.cs",
+          "sha256": "00637cedee9d992e15d8f9560315768271b9dea251b40dcfcbc594c7b759417b",
+          "bytes": 8436
         },
         {
           "path": "tests/Filee.Engines.Tests/PlistTests.cs",
@@ -6259,11 +6267,6 @@
           "path": "tests/gnome/session-smoke.py",
           "sha256": "e6e49429dc8cd489913e74d28fc82f4ee8e43523b6267149c5381cf0f032c176",
           "bytes": 6856
-        },
-        {
-          "path": "THIRD-PARTY-NOTICES.md",
-          "sha256": "cda1c7eca872e64e682b0baee8a343993eba62f578bfb73ec548823bccb3d67d",
-          "bytes": 11824
         }
       ],
       "packagingChanges": [
@@ -6276,6 +6279,21 @@
           "from": ".gitignore",
           "to": ".gitignore.upstream",
           "reason": "Keep pinned bytes and all source files when the containing repository is cloned or git-added."
+        },
+        {
+          "from": "skills/filee/SKILL.md",
+          "to": "skills/filee/SKILL.md.upstream",
+          "reason": "Preserve upstream skill text without registering unrelated upstream instructions."
+        },
+        {
+          "from": "installer/linux/gnome/filee-donut@filee.sh/extension.js",
+          "to": "installer/linux/gnome/filee-donut-at-filee.sh/extension.js",
+          "reason": "Avoid the @ path character rejected by Claude cloud plugin validation."
+        },
+        {
+          "from": "installer/linux/gnome/filee-donut@filee.sh/metadata.json",
+          "to": "installer/linux/gnome/filee-donut-at-filee.sh/metadata.json",
+          "reason": "Avoid the @ path character rejected by Claude cloud plugin validation."
         }
       ]
     },
@@ -6286,6 +6304,36 @@
       "version": "4.24.62",
       "archiveSha256": "939510a7aea1c8c91636cb48b2301121ff682f0d9b8561701b6eedd979deb5a0",
       "files": [
+        {
+          "path": ".Codex/plans/PLAN_hwpx-table-exact-100.md",
+          "sha256": "3851c083dc65dfae708fb3eda22446815bea892979352e553c29c19ec49b80b7",
+          "bytes": 2393
+        },
+        {
+          "path": ".Codex/plans/PLAN_production-hardening-v4.md",
+          "sha256": "d86cd943ee252872731459fa682ad4264140f17f0b498daed6c59b272eabbdec",
+          "bytes": 8113
+        },
+        {
+          "path": ".Codex/plans/PLAN_quality-99.md",
+          "sha256": "f346cd90a816a12afefd0c362cb5721b0778a5422339db8b3b62b15900a251d6",
+          "bytes": 2922
+        },
+        {
+          "path": ".Codex/plans/PLAN_quality-followup.md",
+          "sha256": "ad58bce4c83d32da6acf9fcd333ea3c67222ba71cc238cc75fb631bbb63c3bbd",
+          "bytes": 2994
+        },
+        {
+          "path": ".Codex/plans/odl-breakthrough-2026-09-25.md",
+          "sha256": "1ed5adc98a7d635580cc9ffaeaebbd1f951bbba16575bb23198edd82c77ffe9d",
+          "bytes": 31949
+        },
+        {
+          "path": ".Codex/plans/odl-over-0907.md",
+          "sha256": "4936ad7c01b2d8acefd4b665e3bd1621220bf80f554b7ff982ac8646e62ac6a4",
+          "bytes": 8286
+        },
         {
           "path": ".claude-plugin/marketplace.json",
           "sha256": "5181407e60ef2281045722fe0bf77343da6eebdd472214cd179b955cc8632579",
@@ -6337,6 +6385,12 @@
           "bytes": 6400
         },
         {
+          "path": ".claude/skills/gongmunseo/SKILL.md.upstream",
+          "sha256": "d8dfabf9d350b6f0e5d8becdf9b5debc3f7db50d76f78b48266d3351504ad22e",
+          "bytes": 14882,
+          "upstreamPath": ".claude/skills/gongmunseo/SKILL.md"
+        },
+        {
           "path": ".claude/skills/gongmunseo/references/engine-spec.md",
           "sha256": "e0756382e6b619e11945f387565c9822881402e3112aa91893bdff68d61df676",
           "bytes": 63578
@@ -6355,11 +6409,6 @@
           "path": ".claude/skills/gongmunseo/references/reference.md",
           "sha256": "966f29ddf26a88e3c592c92139fbf1abf305a41d4c118e0d0619c85bd616a73d",
           "bytes": 33657
-        },
-        {
-          "path": ".claude/skills/gongmunseo/SKILL.md",
-          "sha256": "d8dfabf9d350b6f0e5d8becdf9b5debc3f7db50d76f78b48266d3351504ad22e",
-          "bytes": 14882
         },
         {
           "path": ".claude/skills/gongmunseo/templates/계획서.md",
@@ -6392,36 +6441,6 @@
           "bytes": 782
         },
         {
-          "path": ".Codex/plans/odl-breakthrough-2026-09-25.md",
-          "sha256": "1ed5adc98a7d635580cc9ffaeaebbd1f951bbba16575bb23198edd82c77ffe9d",
-          "bytes": 31949
-        },
-        {
-          "path": ".Codex/plans/odl-over-0907.md",
-          "sha256": "4936ad7c01b2d8acefd4b665e3bd1621220bf80f554b7ff982ac8646e62ac6a4",
-          "bytes": 8286
-        },
-        {
-          "path": ".Codex/plans/PLAN_hwpx-table-exact-100.md",
-          "sha256": "3851c083dc65dfae708fb3eda22446815bea892979352e553c29c19ec49b80b7",
-          "bytes": 2393
-        },
-        {
-          "path": ".Codex/plans/PLAN_production-hardening-v4.md",
-          "sha256": "d86cd943ee252872731459fa682ad4264140f17f0b498daed6c59b272eabbdec",
-          "bytes": 8113
-        },
-        {
-          "path": ".Codex/plans/PLAN_quality-99.md",
-          "sha256": "f346cd90a816a12afefd0c362cb5721b0778a5422339db8b3b62b15900a251d6",
-          "bytes": 2922
-        },
-        {
-          "path": ".Codex/plans/PLAN_quality-followup.md",
-          "sha256": "ad58bce4c83d32da6acf9fcd333ea3c67222ba71cc238cc75fb631bbb63c3bbd",
-          "bytes": 2994
-        },
-        {
           "path": ".github/PULL_REQUEST_TEMPLATE.md",
           "sha256": "1300b7f3dc69d5d0fc15e2d08134082df69fdee0dbf43ced9ba265252a8e9d48",
           "bytes": 2391
@@ -6451,6 +6470,116 @@
           "path": "AGENTS.md",
           "sha256": "d866dff212ce71b2eb8f8a12d02bdb71e286eeebcae027c29fca86fa34909601",
           "bytes": 10493
+        },
+        {
+          "path": "CHANGELOG-0.1.0-3.5.4.md",
+          "sha256": "1281953c4b630dae41a6f11430f9c662671c20246091d1ed0b67985fef24d955",
+          "bytes": 62122
+        },
+        {
+          "path": "CHANGELOG-3.6.0-3.18.1.md",
+          "sha256": "c3f34ba5ef500161a81673d0180d90fcd5371eecb697ffc93886b783210f1dd5",
+          "bytes": 47868
+        },
+        {
+          "path": "CHANGELOG-4.0.0-4.3.0.md",
+          "sha256": "2b885c6e75d10a0d57a3bac6cd54f7a0fc036833056e98f252ff908c0e4064b0",
+          "bytes": 65424
+        },
+        {
+          "path": "CHANGELOG-4.3.1-4.14.4.md",
+          "sha256": "5de346e82110cd81fdaf744f637d7bef59e89329f17be1bf6ae909b9366af6dc",
+          "bytes": 98168
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sha256": "9099c1570b920be70746cdc8349e97e16e086ddc0ad10d08c669a5e22336487d",
+          "bytes": 477434
+        },
+        {
+          "path": "CITATION.cff",
+          "sha256": "974c63cb8472310406acbc615a47947d964d06f0448fc3f8dfe875bb61b625bd",
+          "bytes": 537
+        },
+        {
+          "path": "CLAUDE.md",
+          "sha256": "cea3ab1160ab2d87c51ced8cb9a316b8521155b85aded62c6512188b600ac4d5",
+          "bytes": 322
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "af5f2aced9ce13fa964a5ec9f7ab3271b139f10a1950f5c5408b7b3012369571",
+          "bytes": 1067
+        },
+        {
+          "path": "NOTICE",
+          "sha256": "45a5a2e5ea4fea4e2a1b09a8b561022b66824d29a52fa747544bc2a0a54bf6e3",
+          "bytes": 12021
+        },
+        {
+          "path": "README-EN.md",
+          "sha256": "80f9fb2fefa4b253a401d3624c1eafb82ba482b81d8a6420f4261ceb914e3d63",
+          "bytes": 13434
+        },
+        {
+          "path": "README.md",
+          "sha256": "386bb9dcae584668bed35e40b4debf494395c198c73cc4fcec0f3577304debb2",
+          "bytes": 13453
+        },
+        {
+          "path": "SECURITY.md",
+          "sha256": "8a63eeaa1d1f5e13fea5463bbfff964fc87cae49781f44f3c640a9bce0e20efb",
+          "bytes": 9141
+        },
+        {
+          "path": "THIRD_PARTY/apache-2.0.LICENSE",
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+          "bytes": 11357
+        },
+        {
+          "path": "THIRD_PARTY/claw-hwp.LICENSE",
+          "sha256": "479bb036c12f061ebba4ce47ca19ad1e23deffbac6dee534c8afeb6691b670e7",
+          "bytes": 1066
+        },
+        {
+          "path": "THIRD_PARTY/hml-equation-parser.LICENSE",
+          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+          "bytes": 11357
+        },
+        {
+          "path": "THIRD_PARTY/hml-equation-parser.txt",
+          "sha256": "0c461b7f454f62b215e95cdea38ef39713a3c7b6dafe2abd008afbdce0605c71",
+          "bytes": 1536
+        },
+        {
+          "path": "THIRD_PARTY/korean-report-hwpx.LICENSE",
+          "sha256": "7f088face15a8050badd74f7f7fc0f88805ed1bb5190cb4261352c309d583a8f",
+          "bytes": 1064
+        },
+        {
+          "path": "THIRD_PARTY/memchr.LICENSE",
+          "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
+          "bytes": 1081
+        },
+        {
+          "path": "THIRD_PARTY/opendataloader-pdf.txt",
+          "sha256": "ab7eb9a62db6aa7164eadace902eed97eceb0103ee6a6638720042b286df2d0b",
+          "bytes": 1258
+        },
+        {
+          "path": "THIRD_PARTY/pix2text.txt",
+          "sha256": "bfb54ee17d23a5429fabbf568d5e12767b96c4428df8c11b250a4384ada217e4",
+          "bytes": 814
+        },
+        {
+          "path": "THIRD_PARTY/quick-xml.LICENSE",
+          "sha256": "5b2c207dcf571267ebe0bbdd5bf321f561ddc22ff597e7b363e96f4539507a29",
+          "bytes": 1105
+        },
+        {
+          "path": "THIRD_PARTY/rhwp-forms.txt",
+          "sha256": "1d7d83b98004a56ced6d8518f70785fa58066e7ca36b56c93384da636fb04395",
+          "bytes": 1841
         },
         {
           "path": "bench/annex-gt.mjs",
@@ -6541,6 +6670,11 @@
           "path": "bench/gen-sweep.mjs",
           "sha256": "bb81f4d88b95629a40107e39a2255925070cba5878e0067240733ee76ea94699",
           "bytes": 2060
+        },
+        {
+          "path": "bench/gongmun-gate/README.md",
+          "sha256": "575d7621335b7752969697dd0774fd3bbd491ede602c3bfef9dc8c2b6e7acee7",
+          "bytes": 753
         },
         {
           "path": "bench/gongmun-gate/ai/haiku_01.md",
@@ -6666,11 +6800,6 @@
           "path": "bench/gongmun-gate/calib.mjs",
           "sha256": "203f27424e8d4000ef2e74ade79cfaddf4b4be0665a84b3f48bf9493daf803a6",
           "bytes": 2967
-        },
-        {
-          "path": "bench/gongmun-gate/README.md",
-          "sha256": "575d7621335b7752969697dd0774fd3bbd491ede602c3bfef9dc8c2b6e7acee7",
-          "bytes": 753
         },
         {
           "path": "bench/gongmun-gate/topics.txt",
@@ -7098,41 +7227,6 @@
           "bytes": 23986
         },
         {
-          "path": "CHANGELOG-0.1.0-3.5.4.md",
-          "sha256": "1281953c4b630dae41a6f11430f9c662671c20246091d1ed0b67985fef24d955",
-          "bytes": 62122
-        },
-        {
-          "path": "CHANGELOG-3.6.0-3.18.1.md",
-          "sha256": "c3f34ba5ef500161a81673d0180d90fcd5371eecb697ffc93886b783210f1dd5",
-          "bytes": 47868
-        },
-        {
-          "path": "CHANGELOG-4.0.0-4.3.0.md",
-          "sha256": "2b885c6e75d10a0d57a3bac6cd54f7a0fc036833056e98f252ff908c0e4064b0",
-          "bytes": 65424
-        },
-        {
-          "path": "CHANGELOG-4.3.1-4.14.4.md",
-          "sha256": "5de346e82110cd81fdaf744f637d7bef59e89329f17be1bf6ae909b9366af6dc",
-          "bytes": 98168
-        },
-        {
-          "path": "CHANGELOG.md",
-          "sha256": "9099c1570b920be70746cdc8349e97e16e086ddc0ad10d08c669a5e22336487d",
-          "bytes": 477434
-        },
-        {
-          "path": "CITATION.cff",
-          "sha256": "974c63cb8472310406acbc615a47947d964d06f0448fc3f8dfe875bb61b625bd",
-          "bytes": 537
-        },
-        {
-          "path": "CLAUDE.md",
-          "sha256": "cea3ab1160ab2d87c51ced8cb9a316b8521155b85aded62c6512188b600ac4d5",
-          "bytes": 322
-        },
-        {
           "path": "demo.gif",
           "sha256": "c565429d7506267b1658bd8fbc915a2177dbce772d08c9235f316e27ba217b63",
           "bytes": 4757013
@@ -7148,11 +7242,6 @@
           "bytes": 698
         },
         {
-          "path": "demo/src/index.ts",
-          "sha256": "1c42a26cc15880c2af62d5b89cb19a9ed7927de1659343313a25f352a9eb7374",
-          "bytes": 106
-        },
-        {
           "path": "demo/src/KordocDemo.tsx",
           "sha256": "48212b89e1f1bb184e3d1976abecbc8e464b324f8720e6e5b0f18e74b5b81898",
           "bytes": 11883
@@ -7163,9 +7252,39 @@
           "bytes": 302
         },
         {
+          "path": "demo/src/index.ts",
+          "sha256": "1c42a26cc15880c2af62d5b89cb19a9ed7927de1659343313a25f352a9eb7374",
+          "bytes": 106
+        },
+        {
           "path": "demo/tsconfig.json",
           "sha256": "d989b0c9ae243fd24f4c38b3b2781ab36c6b4c54f9ac6df03fb265b66e539d13",
           "bytes": 256
+        },
+        {
+          "path": "docs/NEXT-CLAUDE-BENCH99-2026-09-28.md",
+          "sha256": "5e3b77e8383129d205c18fa0aefd18f8ea94decf9f78962a419beafe546965ff",
+          "bytes": 11512
+        },
+        {
+          "path": "docs/NEXT-CLAUDE-ODL-2026-09-28.md",
+          "sha256": "3d9976fba389d7166ec556aae90bf25d0523c69ac242a225b5c3844680786150",
+          "bytes": 7166
+        },
+        {
+          "path": "docs/NEXT-CLAUDE-ODL-STRUCTURAL-2026-09-26.md",
+          "sha256": "9c8feb58cc8efeb9cbfcf93eeb92b24aa741ea6aa76c4373a41e55e085adbcf8",
+          "bytes": 11466
+        },
+        {
+          "path": "docs/NEXT-CLAUDE-ODL-STRUCTURE-ROLES-2026-09-27.md",
+          "sha256": "6b325c0db96bb8f1b690b77983a716072b560b95cbc48e5bd9f3c9d7ab6fce67",
+          "bytes": 7048
+        },
+        {
+          "path": "docs/NEXT-CLAUDE-QUALITY-CAMPAIGN-2026-10-09.md",
+          "sha256": "6e6708da53ca6020a302fa744ce88be075c7ccd45af80e8b5b0eebb23a5ba33c",
+          "bytes": 11665
         },
         {
           "path": "docs/agency-pack-en.md",
@@ -7301,31 +7420,6 @@
           "path": "docs/nested-tables-forms-session-2026-09-27.md",
           "sha256": "98b6d9025accbaab4b22e0781a8731ee237d8c304fcce839c3539138216e16c3",
           "bytes": 5501
-        },
-        {
-          "path": "docs/NEXT-CLAUDE-BENCH99-2026-09-28.md",
-          "sha256": "5e3b77e8383129d205c18fa0aefd18f8ea94decf9f78962a419beafe546965ff",
-          "bytes": 11512
-        },
-        {
-          "path": "docs/NEXT-CLAUDE-ODL-2026-09-28.md",
-          "sha256": "3d9976fba389d7166ec556aae90bf25d0523c69ac242a225b5c3844680786150",
-          "bytes": 7166
-        },
-        {
-          "path": "docs/NEXT-CLAUDE-ODL-STRUCTURAL-2026-09-26.md",
-          "sha256": "9c8feb58cc8efeb9cbfcf93eeb92b24aa741ea6aa76c4373a41e55e085adbcf8",
-          "bytes": 11466
-        },
-        {
-          "path": "docs/NEXT-CLAUDE-ODL-STRUCTURE-ROLES-2026-09-27.md",
-          "sha256": "6b325c0db96bb8f1b690b77983a716072b560b95cbc48e5bd9f3c9d7ab6fce67",
-          "bytes": 7048
-        },
-        {
-          "path": "docs/NEXT-CLAUDE-QUALITY-CAMPAIGN-2026-10-09.md",
-          "sha256": "6e6708da53ca6020a302fa744ce88be075c7ccd45af80e8b5b0eebb23a5ba33c",
-          "bytes": 11665
         },
         {
           "path": "docs/ocr-body-columns-validation.md",
@@ -7773,6 +7867,11 @@
           "bytes": 6180
         },
         {
+          "path": "examples/minicpm-ocr/README.md",
+          "sha256": "a01180e31b34506f41917a34c1513b7956797edcd2f7f337a7d3a694f5eb3b11",
+          "bytes": 4011
+        },
+        {
           "path": "examples/minicpm-ocr/measure.ts",
           "sha256": "cd20603d7c24c65849241a04151546922b5cf9e0a99ce3ec70018700f0777fd9",
           "bytes": 4032
@@ -7786,21 +7885,6 @@
           "path": "examples/minicpm-ocr/provider.ts",
           "sha256": "136448cc608deb92d1abc1a36d0a3ac7209ca1938866011a99d930c25ef799d3",
           "bytes": 6065
-        },
-        {
-          "path": "examples/minicpm-ocr/README.md",
-          "sha256": "a01180e31b34506f41917a34c1513b7956797edcd2f7f337a7d3a694f5eb3b11",
-          "bytes": 4011
-        },
-        {
-          "path": "LICENSE",
-          "sha256": "af5f2aced9ce13fa964a5ec9f7ab3271b139f10a1950f5c5408b7b3012369571",
-          "bytes": 1067
-        },
-        {
-          "path": "NOTICE",
-          "sha256": "45a5a2e5ea4fea4e2a1b09a8b561022b66824d29a52fa747544bc2a0a54bf6e3",
-          "bytes": 12021
         },
         {
           "path": "package-lock.json",
@@ -7818,35 +7902,22 @@
           "bytes": 5775
         },
         {
-          "path": "plugins/kordoc/.claude-plugin/plugin.json",
+          "path": "plugins/kordoc/.claude-plugin/plugin.json.upstream",
           "sha256": "9bb2b81c2efd665aaefeae6be221151193ae519b860bf05de89e5c1d7ebeb49a",
-          "bytes": 911
+          "bytes": 911,
+          "upstreamPath": "plugins/kordoc/.claude-plugin/plugin.json"
         },
         {
-          "path": "plugins/kordoc/skills/kordoc/SKILL.md",
+          "path": "plugins/kordoc/skills/kordoc/SKILL.md.upstream",
           "sha256": "80e41f9fabf861d37ae0d50034d2a09d250dc3fe300dc716ba5b7df399643d09",
-          "bytes": 22030
-        },
-        {
-          "path": "README-EN.md",
-          "sha256": "80f9fb2fefa4b253a401d3624c1eafb82ba482b81d8a6420f4261ceb914e3d63",
-          "bytes": 13434
-        },
-        {
-          "path": "README.md",
-          "sha256": "386bb9dcae584668bed35e40b4debf494395c198c73cc4fcec0f3577304debb2",
-          "bytes": 13453
+          "bytes": 22030,
+          "upstreamPath": "plugins/kordoc/skills/kordoc/SKILL.md"
         },
         {
           "path": "rust/xml-flat/.gitignore.upstream",
           "sha256": "c97ecfda4d205190b973232dcfdb0c29748521c2534dd866bcc782f30b086738",
           "bytes": 7,
           "upstreamPath": "rust/xml-flat/.gitignore"
-        },
-        {
-          "path": "rust/xml-flat/build.mjs",
-          "sha256": "5c6a77c3740b9c860770dcbe3b2933c4237ce745ea25ce2d94c74f366d99fa3d",
-          "bytes": 1376
         },
         {
           "path": "rust/xml-flat/Cargo.lock",
@@ -7857,6 +7928,11 @@
           "path": "rust/xml-flat/Cargo.toml",
           "sha256": "15e49bf9df40de6379382f01033fca48d47dea8c69d56ba5a844279de656ed0d",
           "bytes": 239
+        },
+        {
+          "path": "rust/xml-flat/build.mjs",
+          "sha256": "5c6a77c3740b9c860770dcbe3b2933c4237ce745ea25ce2d94c74f366d99fa3d",
+          "bytes": 1376
         },
         {
           "path": "rust/xml-flat/rust-toolchain.toml",
@@ -7919,6 +7995,16 @@
           "bytes": 6146
         },
         {
+          "path": "sdk/java/LICENSE",
+          "sha256": "af5f2aced9ce13fa964a5ec9f7ab3271b139f10a1950f5c5408b7b3012369571",
+          "bytes": 1067
+        },
+        {
+          "path": "sdk/java/README.md",
+          "sha256": "8414f6b157f756063818095bbaa4bd8c9a009c575df23eb0d7f3ec3820e181a2",
+          "bytes": 11959
+        },
+        {
           "path": "sdk/java/examples/consumer/consumer-pom.xml",
           "sha256": "462978d26dd7906bc1c0af452b447eb1e3fa81af1e440e605ff0496c6d45d31d",
           "bytes": 1805
@@ -7932,16 +8018,6 @@
           "path": "sdk/java/kordoc-pom.xml",
           "sha256": "4e96444bc05622bd2fa0a980d6648e7685f278e49c6f0a70829d7b149fc9e842",
           "bytes": 4169
-        },
-        {
-          "path": "sdk/java/LICENSE",
-          "sha256": "af5f2aced9ce13fa964a5ec9f7ab3271b139f10a1950f5c5408b7b3012369571",
-          "bytes": 1067
-        },
-        {
-          "path": "sdk/java/README.md",
-          "sha256": "8414f6b157f756063818095bbaa4bd8c9a009c575df23eb0d7f3ec3820e181a2",
-          "bytes": 11959
         },
         {
           "path": "sdk/java/src/main/java/app/gomdori/kordoc/Image.java",
@@ -8074,24 +8150,24 @@
           "bytes": 2969
         },
         {
-          "path": "sdk/python/examples/parse_document.py",
-          "sha256": "2467e6a34503ef535928f15fdb3fecf0ff3d2460551ed715e7622c0f028e36f1",
-          "bytes": 778
-        },
-        {
           "path": "sdk/python/LICENSE",
           "sha256": "af5f2aced9ce13fa964a5ec9f7ab3271b139f10a1950f5c5408b7b3012369571",
           "bytes": 1067
         },
         {
-          "path": "sdk/python/pyproject.toml",
-          "sha256": "17226f58ecde8e1bfee396ae0ad692f61a13448320f64be1413e9b02de3a8bc8",
-          "bytes": 1204
-        },
-        {
           "path": "sdk/python/README.md",
           "sha256": "e6e3d56805e4dd2904f70571c19b8cc5e017519bdf5cadb85d20e94298407e14",
           "bytes": 14149
+        },
+        {
+          "path": "sdk/python/examples/parse_document.py",
+          "sha256": "2467e6a34503ef535928f15fdb3fecf0ff3d2460551ed715e7622c0f028e36f1",
+          "bytes": 778
+        },
+        {
+          "path": "sdk/python/pyproject.toml",
+          "sha256": "17226f58ecde8e1bfee396ae0ad692f61a13448320f64be1413e9b02de3a8bc8",
+          "bytes": 1204
         },
         {
           "path": "sdk/python/src/kordoc/__init__.py",
@@ -8157,11 +8233,6 @@
           "path": "sdk/python/tests/test_lifecycle.py",
           "sha256": "2e398ec7ec3e915e548fa8d57ea0ce14c0a699625f1d09f1ffcb074c2d6ac8e5",
           "bytes": 67941
-        },
-        {
-          "path": "SECURITY.md",
-          "sha256": "8a63eeaa1d1f5e13fea5463bbfff964fc87cae49781f44f3c640a9bce0e20efb",
-          "bytes": 9141
         },
         {
           "path": "server.json",
@@ -10274,14 +10345,14 @@
           "bytes": 11901
         },
         {
-          "path": "tests/fixtures/textbox-nested/make-source.mjs",
-          "sha256": "22d366fa96421cd5bef7c8e15c9d9be2cf0430233ab9f37e87c6f41c2e766a07",
-          "bytes": 6857
-        },
-        {
           "path": "tests/fixtures/textbox-nested/README.md",
           "sha256": "995e0d84b3db3cc5d89dd723574dd98db5726c69b9592f0b5c86313b52f827f9",
           "bytes": 980
+        },
+        {
+          "path": "tests/fixtures/textbox-nested/make-source.mjs",
+          "sha256": "22d366fa96421cd5bef7c8e15c9d9be2cf0430233ab9f37e87c6f41c2e766a07",
+          "bytes": 6857
         },
         {
           "path": "tests/fixtures/textbox-nested/textbox-nested.hwp",
@@ -10292,6 +10363,11 @@
           "path": "tests/fixtures/textbox-nested/textbox-nested.hwpx",
           "sha256": "1484f9071c451a6dcaa4657ed935599417d83365a793baf462bbde19851b9d36",
           "bytes": 15470
+        },
+        {
+          "path": "tests/fixtures/xls/README.md",
+          "sha256": "b0960e9fbbfc60d74378299ad2437eaed8c2f2c717a1b3895d8f88bb09da8156",
+          "bytes": 3629
         },
         {
           "path": "tests/fixtures/xls/budget.xls",
@@ -10317,11 +10393,6 @@
           "path": "tests/fixtures/xls/population.xls",
           "sha256": "ada6973ce6e3ad47c667778e78a5c38bb776591d00098835d7913f5c4c526cf7",
           "bytes": 5632
-        },
-        {
-          "path": "tests/fixtures/xls/README.md",
-          "sha256": "b0960e9fbbfc60d74378299ad2437eaed8c2f2c717a1b3895d8f88bb09da8156",
-          "bytes": 3629
         },
         {
           "path": "tests/fixtures/xls/roster.xls",
@@ -12754,56 +12825,6 @@
           "bytes": 4500
         },
         {
-          "path": "THIRD_PARTY/apache-2.0.LICENSE",
-          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
-          "bytes": 11357
-        },
-        {
-          "path": "THIRD_PARTY/claw-hwp.LICENSE",
-          "sha256": "479bb036c12f061ebba4ce47ca19ad1e23deffbac6dee534c8afeb6691b670e7",
-          "bytes": 1066
-        },
-        {
-          "path": "THIRD_PARTY/hml-equation-parser.LICENSE",
-          "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
-          "bytes": 11357
-        },
-        {
-          "path": "THIRD_PARTY/hml-equation-parser.txt",
-          "sha256": "0c461b7f454f62b215e95cdea38ef39713a3c7b6dafe2abd008afbdce0605c71",
-          "bytes": 1536
-        },
-        {
-          "path": "THIRD_PARTY/korean-report-hwpx.LICENSE",
-          "sha256": "7f088face15a8050badd74f7f7fc0f88805ed1bb5190cb4261352c309d583a8f",
-          "bytes": 1064
-        },
-        {
-          "path": "THIRD_PARTY/memchr.LICENSE",
-          "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f",
-          "bytes": 1081
-        },
-        {
-          "path": "THIRD_PARTY/opendataloader-pdf.txt",
-          "sha256": "ab7eb9a62db6aa7164eadace902eed97eceb0103ee6a6638720042b286df2d0b",
-          "bytes": 1258
-        },
-        {
-          "path": "THIRD_PARTY/pix2text.txt",
-          "sha256": "bfb54ee17d23a5429fabbf568d5e12767b96c4428df8c11b250a4384ada217e4",
-          "bytes": 814
-        },
-        {
-          "path": "THIRD_PARTY/quick-xml.LICENSE",
-          "sha256": "5b2c207dcf571267ebe0bbdd5bf321f561ddc22ff597e7b363e96f4539507a29",
-          "bytes": 1105
-        },
-        {
-          "path": "THIRD_PARTY/rhwp-forms.txt",
-          "sha256": "1d7d83b98004a56ced6d8518f70785fa58066e7ca36b56c93384da636fb04395",
-          "bytes": 1841
-        },
-        {
           "path": "tsconfig.json",
           "sha256": "b15a9b21c4bbec8b914daa009e00d1b6b3c299e02c2987585bdf4be95d083ebb",
           "bytes": 401
@@ -12829,6 +12850,21 @@
           "from": "rust/xml-flat/.gitignore",
           "to": "rust/xml-flat/.gitignore.upstream",
           "reason": "Keep pinned bytes and all source files when the containing repository is cloned or git-added."
+        },
+        {
+          "from": "plugins/kordoc/.claude-plugin/plugin.json",
+          "to": "plugins/kordoc/.claude-plugin/plugin.json.upstream",
+          "reason": "Keep upstream manifest as source data, not a second installable plugin manifest."
+        },
+        {
+          "from": ".claude/skills/gongmunseo/SKILL.md",
+          "to": ".claude/skills/gongmunseo/SKILL.md.upstream",
+          "reason": "Preserve upstream skill text without registering unrelated upstream instructions."
+        },
+        {
+          "from": "plugins/kordoc/skills/kordoc/SKILL.md",
+          "to": "plugins/kordoc/skills/kordoc/SKILL.md.upstream",
+          "reason": "Preserve upstream skill text without registering unrelated upstream instructions."
         }
       ]
     }

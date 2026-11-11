@@ -1,0 +1,239 @@
+{
+  "bundleVersion": "0.2.0",
+  "date": "2026-11-11",
+  "platform": "Windows x64",
+  "architecture": "source-integrated",
+  "sources": [
+    {
+      "name": "filee",
+      "version": "2.4.0",
+      "commit": "9a593de37e388758600e878de134557dcb8fd7f4",
+      "files": 1251,
+      "bytes": 25652467
+    },
+    {
+      "name": "kordoc",
+      "version": "4.24.62",
+      "commit": "13a2c31754ff2fd2b4e6ae10de49edd8db31849a",
+      "files": 1306,
+      "bytes": 20794015
+    }
+  ],
+  "build": {
+    "dotnetSdk": "10.0.403",
+    "dotnetRuntime": "10.0.14",
+    "node": "24.22.1",
+    "esbuild": "0.28.1",
+    "kordocSourceModules": 336,
+    "verifiedBuildArtifacts": 349,
+    "kordocProcess": "in-process",
+    "originalFileeReleaseInstalled": false,
+    "upstreamKordocNpmPackageInstalled": false
+  },
+  "integrationChecks": [
+    {
+      "name": "MCP initialized without global Node; all tools available",
+      "passed": true,
+      "milliseconds": 40,
+      "detail": {
+        "tools": 25,
+        "node": "v24.22.1",
+        "filee": "filee 2.4.0",
+        "kordoc": "4.24.62"
+      }
+    },
+    {
+      "name": "Generate Korean HWPX and parse it back",
+      "passed": true,
+      "milliseconds": 152,
+      "detail": {
+        "bytes": 67878
+      }
+    },
+    {
+      "name": "Render generated HWPX with bundled native libraries",
+      "passed": true,
+      "milliseconds": 373,
+      "detail": {
+        "imageBytes": 45369
+      }
+    },
+    {
+      "name": "Filee MCP output equals direct Filee output for every ZIP member",
+      "passed": true,
+      "milliseconds": 4118,
+      "detail": {
+        "identicalMembers": 11
+      }
+    },
+    {
+      "name": "Existing outputs are skipped and source files remain unchanged",
+      "passed": true,
+      "milliseconds": 1793
+    },
+    {
+      "name": "Default Filee OCR recognizes Korean, English and digits in editable HWPX",
+      "passed": true,
+      "milliseconds": 6997,
+      "detail": {
+        "recognized": "[포맷: HWPX | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n한번니다"
+      }
+    },
+    {
+      "name": "kordoc PP-OCR offline recognition from a Korean image",
+      "passed": true,
+      "milliseconds": 1616,
+      "detail": {
+        "recognized": "[포맷: IMAGE | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n테스트 결과를 확인합니다"
+      }
+    },
+    {
+      "name": "Default Filee OCR recognizes Hanja, English and digits; records short Korean line accuracy",
+      "passed": true,
+      "milliseconds": 6470,
+      "detail": {
+        "languages": "kor+eng+chi_tra (default)",
+        "shortKoreanLineExact": false,
+        "recognized": "[포맷: HWPX | 페이지: 1]\n📑 문서 구조:\n- 銀行金融漢字\n\n= 서\n\n그\n\nBANK REPORT 123456\n\n\n# 銀行金融漢字"
+      }
+    },
+    {
+      "name": "Reject missing files and unsupported OCR languages",
+      "passed": true,
+      "milliseconds": 19
+    }
+  ],
+  "conversionEquivalence": [
+    {
+      "fixture": "baseline.docx",
+      "sourceUnchanged": true,
+      "identicalMembers": 12,
+      "passed": true
+    },
+    {
+      "fixture": "complex.docx",
+      "sourceUnchanged": true,
+      "identicalMembers": 13,
+      "passed": true
+    }
+  ],
+  "offlineIntegrationChecks": [
+    {
+      "name": "MCP initialized without global Node; all tools available",
+      "passed": true,
+      "milliseconds": 29,
+      "detail": {
+        "tools": 25,
+        "node": "v24.22.1",
+        "filee": "filee 2.4.0",
+        "kordoc": "4.24.62"
+      }
+    },
+    {
+      "name": "Generate Korean HWPX and parse it back",
+      "passed": true,
+      "milliseconds": 119,
+      "detail": {
+        "bytes": 67878
+      }
+    },
+    {
+      "name": "Render generated HWPX with bundled native libraries",
+      "passed": true,
+      "milliseconds": 1636,
+      "detail": {
+        "imageBytes": 45369
+      }
+    },
+    {
+      "name": "Filee MCP output equals direct Filee output for every ZIP member",
+      "passed": true,
+      "milliseconds": 7069,
+      "detail": {
+        "identicalMembers": 11
+      }
+    },
+    {
+      "name": "Existing outputs are skipped and source files remain unchanged",
+      "passed": true,
+      "milliseconds": 1302
+    },
+    {
+      "name": "Default Filee OCR recognizes Korean, English and digits in editable HWPX",
+      "passed": true,
+      "milliseconds": 6271,
+      "detail": {
+        "recognized": "[포맷: HWPX | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n한번니다"
+      }
+    },
+    {
+      "name": "kordoc PP-OCR offline recognition from a Korean image",
+      "passed": true,
+      "milliseconds": 1412,
+      "detail": {
+        "recognized": "[포맷: IMAGE | 페이지: 1]\n\n한글 문서 OCR 검증\n\nBANK REPORT 123456\n\n테스트 결과를 확인합니다"
+      }
+    },
+    {
+      "name": "Default Filee OCR recognizes Hanja, English and digits; records short Korean line accuracy",
+      "passed": true,
+      "milliseconds": 4829,
+      "detail": {
+        "languages": "kor+eng+chi_tra (default)",
+        "shortKoreanLineExact": false,
+        "recognized": "[포맷: HWPX | 페이지: 1]\n📑 문서 구조:\n- 銀行金融漢字\n\n= 서\n\n그\n\nBANK REPORT 123456\n\n\n# 銀行金融漢字"
+      }
+    },
+    {
+      "name": "Reject missing files and unsupported OCR languages",
+      "passed": true,
+      "milliseconds": 21
+    }
+  ],
+  "offlineExportRestore": {
+    "passed": true,
+    "networkDownloads": false,
+    "rebuiltOnReceiver": false,
+    "verifiedFiles": 10582,
+    "testedBundleBytes": 1547762206,
+    "scope": "Fresh absolute destination on the same PC; restored marketplace and runtime used for all 9 integration checks; no SDK/build caches exported"
+  },
+  "verifiedOcrAssets": 14,
+  "loadedOnnxModels": 8,
+  "installedLanguages": [
+    "kor",
+    "eng",
+    "chi_tra",
+    "chi_sim"
+  ],
+  "defaultLanguages": "kor+eng+chi_tra",
+  "orientationModel": "osd",
+  "coreRuntimeBytes": 1500457344,
+  "automaticSourceBuild": "passed through PowerShell setup; public dependency downloads allowed; native build required host sandbox escalation",
+  "setupRerunWithoutDownload": "passed",
+  "bootstrapWithoutGlobalNode": "passed",
+  "metadataValidation": "passed",
+  "unitTests": {
+    "passed": 3,
+    "skipped": 1,
+    "skipReason": "Host does not support the test junction creation operation"
+  },
+  "codexPluginTest": "0.2.0 installed in isolated Codex home; resolved MCP points to installed cache; that plugin served 25 tools and generated HWPX",
+  "claudeValidation": {
+    "cliVersion": "2.1.322",
+    "marketplace": "passed",
+    "plugin": "passed with host directory/symlink warning",
+    "mcpbValidatorVersion": "2.1.2",
+    "mcpbManifest": "passed"
+  },
+  "desktopBundleProtocolTest": "passed: extracted sources verified, bootstrap 2 tools, installed 25 tools, HWPX generation",
+  "desktopUiInstallTest": "not performed",
+  "secondPhysicalPcTest": "not performed",
+  "remoteGithubInstallTest": "not performed",
+  "chineseSimplifiedRecognitionAccuracy": "not measured; installed and hash verified",
+  "knownOcrLimitation": "The short Korean line in the mixed Hanja fixture was misrecognized; original recognition details are preserved in both integration runs.",
+  "priorValidation": [
+    "validation-results-0.1.1.json",
+    "validation-results-0.1.0.json"
+  ]
+}

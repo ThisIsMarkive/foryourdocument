@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: '24.22.1'
       - run: node tests/validate.mjs
+      - run: node tests/claude-package.mjs
       - run: node --test tests/paths.test.mjs
   integration:
     if: github.event_name == 'workflow_dispatch' && inputs.full_integration

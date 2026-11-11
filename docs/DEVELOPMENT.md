@@ -30,8 +30,9 @@ tests/                                실제 프로토콜·변환·OCR 검증
 ```powershell
 $env:HWPX_BRIDGE_HOME = Join-Path (Get-Location) '.test-runtime'
 powershell -NoProfile -ExecutionPolicy Bypass -File .\plugins\hwpx-bridge\scripts\setup.ps1
-$bridgeNode = Join-Path $env:HWPX_BRIDGE_HOME 'versions\0.2.0-win-x64\node\node.exe'
+$bridgeNode = Join-Path $env:HWPX_BRIDGE_HOME 'versions\0.2.1-win-x64\node\node.exe'
 & $bridgeNode .\tests\validate.mjs
+& $bridgeNode .\tests\claude-package.mjs
 & $bridgeNode --test .\tests\paths.test.mjs
 & $bridgeNode --test .\tests\process.test.mjs
 & $bridgeNode .\tests\bootstrap.mjs
@@ -41,6 +42,8 @@ $env:HWPX_BRIDGE_REFERENCE_FILEE = & $bridgeNode .\tests\download-reference.mjs
 ```
 
 `integration.mjs`는 전역 PATH에서 Node를 제거한 상태로 PowerShell 진입점을 실행하고 MCP initialize/list/call을 확인합니다. 새 보고서 생성·읽기·PNG 렌더, Filee 직접 실행과 모든 HWPX ZIP 멤버 해시 비교, 덮어쓰기 방지, 두 엔진의 실제 한국어 OCR, 기본 언어 조합의 한자·영어·숫자 OCR을 검사합니다. `models.mjs`는 14개 파일 해시와 8개 ONNX 세션의 CPU 로딩을 검사합니다.
+
+`claude-package.mjs`는 Claude Code의 로컬 검사와 별도로, Claude 앱의 클라우드 패키지 제한을 검사합니다. 중첩 매니페스트, 허용되지 않는 경로 문자, 잘못 노출된 원본 스킬, 파일 수·용량·경로 길이 제한을 확인합니다. 로컬 검사 통과만으로 실제 계정의 마켓플레이스 동기화 성공을 대신 판정하지 않습니다.
 
 `inspect-tools.mjs`는 현재 도구 스키마를 테스트 런타임 폴더에 기록합니다. `ocr-diagnose.mjs`는 마지막 통합 테스트의 입력을 이용한 추가 진단용입니다. PDF용 Chromium은 설치하지 않으므로 렌더 검증은 PNG를 사용합니다.
 
@@ -57,7 +60,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Build-Packages.ps1
 만들어진 확장의 시작 동작도 확인할 수 있습니다.
 
 ```powershell
-& $bridgeNode .\tests\desktop.mjs .\dist\hwpx-bridge-0.2.0-windows.mcpb
+& $bridgeNode .\tests\desktop.mjs .\dist\hwpx-bridge-0.2.1-windows.mcpb
 ```
 
 ## 의존성 업데이트
