@@ -1,0 +1,240 @@
+import { describe, it } from "node:test"
+import assert from "node:assert/strict"
+import { detectColumnGutter, detectPersistentColumnGutter, orderByGutter, type ColRect } from "../src/pdf/two-column.js"
+import { extractPageBlocksFallback } from "../src/pdf/page-blocks.js"
+import type { NormItem } from "../src/pdf/text-line.js"
+import { splitImagePanels } from "../src/pdf/image-panels.js"
+
+describe("그림을 포함한 3단 리플릿", () => {
+  const items: NormItem[] = [
+    item("Left title", 44, 570, 178), item("Left first", 30, 540, 200), item("Left middle", 30, 200, 200), item("Left final", 30, 30, 200),
+    item("Middle heading", 306, 539, 178), item("Middle caption first", 355, 85, 141), item("Middle caption second", 350, 72, 155), item("Middle caption final", 392, 31, 70),
+    item("Right title", 542, 491, 233), item("Right subtitle", 553, 461, 217), item("Right date", 635, 400, 51),
+  ]
+  const figures = [rect(528, 8, 264, 612), rect(276, 309, 240, 235), rect(292, 104, 208, 208)]
+  it("중간 단 그림 아래 설명을 오른쪽 표지보다 먼저 읽는다", () => {
+    const blocks = extractPageBlocksFallback(items, 1, true, true, undefined, figures)
+    const text = blocks.map(b => b.text ?? "").join("\n")
+    assert.ok(text.indexOf("Middle caption final") < text.indexOf("Right title"), text)
+    assert.ok(text.indexOf("Left final") < text.indexOf("Middle heading"), text)
+    for (const source of items) assert.ok(text.includes(source.text), source.text)
+  })
+  it("그림이 있어도 같은 행으로 정렬된 3열 표는 분리하지 않는다", () => {
+    const tableItems: NormItem[] = []
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) {
+      tableItems.push(item(r === 0 ? ["구분", "항목", "내용"][c] : ["항목" + r, "종류" + r, "값" + r][c], 30 + c * 300, 500 - r * 100, 150))
+    }
+    const baseline = extractPageBlocksFallback(tableItems, 1, true, true)
+    const withFigure = extractPageBlocksFallback(tableItems, 1, true, true, undefined, [rect(630, 50, 150, 100)])
+    assert.deepEqual(withFigure, baseline)
+    assert.equal(withFigure[0].table?.cols, 3)
+  })
+  it("전폭 제목이 여러 텍스트 조각으로 나뉘어도 단을 가르지 않는다", () => {
+    const title = [item("제목 앞", 30, 650, 215), item("제목 중간", 265, 650, 280), item("제목 끝", 565, 650, 215)]
+    assert.equal(splitImagePanels([...title, ...items], figures), null)
+  })
+})
+
+/**
+ * #64 — 2단 시험지 읽기 순서. 좌표 모델은 이슈 제보 블록 덤프(2026학년도 수능
+ * 물리학Ⅰ 4p) 실측 기하를 따른다: 좌단 x≈88~405, 우단 x≈437~754, 거터 x≈420.
+ */
+
+function rect(x: number, y: number, w: number, h: number): ColRect {
+  return { x, y, w, h }
+}
+
+function item(text: string, x: number, y: number, w: number): NormItem {
+  return { text, x, y, w, h: 12, fontSize: 10, fontName: "Test", isHidden: false }
+}
+
+/** 시험지형 2단 지면 rect 세트 (좌·우 각 14행 · 전폭 헤더 1개).
+ * 실측처럼 좌·우 단의 베이스라인은 서로 어긋난다 (단끼리 독립 조판 — 동시 행이
+ * 많으면 예산서류 행 짝 구조로 판정돼 기각되는 것이 맞다). */
+function examRects(): ColRect[] {
+  const rects: ColRect[] = [rect(88, 1040, 666, 40)] // 전폭 머리글 표
+  for (let i = 0; i < 14; i++) {
+    rects.push(rect(88, 950 - i * 60, 310, 12)) // 좌단
+    rects.push(rect(440, 943 - i * 57, 310, 12)) // 우단 (위상 어긋남)
+  }
+  return rects
+}
+
+describe("detectColumnGutter", () => {
+  it("하단 전폭 요소가 가린 2단 경계를 상단 두 영역의 일치로 복구", () => {
+    const rects: ColRect[] = []
+    for (let i = 0; i < 24; i++) {
+      rects.push(rect(70, 900 - i * 18, 250, 11))
+      rects.push(rect(380, 895 - i * 18, 250, 11))
+    }
+    for (let i = 0; i < 10; i++) rects.push(rect(300, 100 + i * 15, 100, 10))
+    assert.equal(detectColumnGutter(rects), null)
+    const gx = detectPersistentColumnGutter(rects)
+    assert.ok(gx !== null && gx >= 320 && gx <= 380)
+  })
+
+  it("상단 전폭 제목과 저자 영역이 가린 2단 경계를 하단에서 복구", () => {
+    const rects: ColRect[] = []
+    for (let i = 0; i < 24; i++) {
+      rects.push(rect(70, 600 - i * 18, 200, 11))
+      rects.push(rect(300, 594 - i * 17, 200, 11))
+    }
+    for (let i = 0; i < 18; i++) rects.push(rect(255, 850 - i * 4, 60, 11))
+    assert.equal(detectColumnGutter(rects), null)
+    const gx = detectPersistentColumnGutter(rects)
+    assert.ok(gx !== null && gx > 270 && gx < 300)
+  })
+
+  it("2단 시험지 기하 → 거터 x 검출 (좌단 끝~우단 시작 사이)", () => {
+    const gx = detectColumnGutter(examRects())
+    assert.ok(gx !== null, "거터를 검출해야 함")
+    assert.ok(gx! > 398 && gx! < 440, `거터 x=${gx}는 단 사이(398~440)여야 함`)
+  })
+
+  it("전폭 줄이 대부분인 한 단 본문에서 낱말 조각만으로 보이는 거터 → null", () => {
+    // 줄 대부분은 전폭 한 아이템(거터를 가로지름), 글꼴이 바뀐 낱말에서 갈린 조각만 좌·우에 남아 가운데가 비어 보인다 (ODL 003)
+    const page = (fullRows: (i: number) => boolean) => {
+      const rects: ColRect[] = []
+      for (let i = 0; i < 56; i++) {
+        const y = 900 - i * 14
+        if (i % 4 === 0) rects.push(rect(60, y, 180, 11))
+        else if (i % 4 === 2) rects.push(rect(300, y, 260, 11))
+        else if (fullRows(i)) rects.push(rect(60, y, 500, 11))
+      }
+      return rects
+    }
+    assert.equal(detectColumnGutter(page(() => true)), null)
+    // 같은 조각 사이에 전폭 줄이 몇 줄뿐이면(제목·캡션) 2단이다
+    assert.notEqual(detectColumnGutter(page(i => i === 1 || i === 29)), null)
+  })
+
+  it("전폭 프로즈(단일 컬럼) → null", () => {
+    const rects: ColRect[] = []
+    for (let i = 0; i < 20; i++) {
+      // 전폭 줄을 단어 rect 4개로 쪼갬 (단어 갭이 줄마다 다른 위치)
+      const shift = (i % 4) * 13
+      let x = 60 + shift
+      for (const w of [150, 180, 140, 130]) {
+        rects.push(rect(x, 900 - i * 30, w, 12))
+        x += w + 8
+      }
+    }
+    assert.equal(detectColumnGutter(rects), null)
+  })
+
+  it("좁은 라벨열 + 넓은 본문(비대칭) → null", () => {
+    const rects: ColRect[] = []
+    for (let i = 0; i < 12; i++) {
+      rects.push(rect(60, 900 - i * 40, 60, 12)) // 라벨열 (좁음)
+      rects.push(rect(260, 900 - i * 40, 340, 12)) // 본문열 (넓음)
+    }
+    assert.equal(detectColumnGutter(rects), null)
+  })
+
+  it("좌·우 폭이 대칭이어도 베이스라인 공유(라벨-값 유사표) → null", () => {
+    // 예산서류: 같은 행에 좌(사업명)·우(금액)가 나란한 구조 — 단 분리 시 행이 찢긴다
+    const rects: ColRect[] = []
+    for (let i = 0; i < 14; i++) {
+      rects.push(rect(60, 900 - i * 30, 250, 12))
+      rects.push(rect(420, 900 - i * 30, 250, 12)) // 동일 베이스라인
+    }
+    assert.equal(detectColumnGutter(rects), null)
+  })
+
+  it("같은 줄 격자에 맞춘 두 단 산문(양 단 문단 첫 줄 들여쓰기 꼴이 같다) → 거터", () => {
+    // 속기록·시험지: 좌우 단 줄이 같은 높이에 서서 행 짝 가드에 걸렸다 — 문단 첫 줄은 10pt 들여 쓴다
+    const rects: ColRect[] = []
+    for (let i = 0; i < 24; i++) {
+      const indent = i % 6 === 0 ? 10 : 0
+      rects.push(rect(50 + indent, 900 - i * 16, 237 - indent, 11))
+      rects.push(rect(309 + (i % 6 === 3 ? 10 : 0), 900 - i * 16, 237 - (i % 6 === 3 ? 10 : 0), 11))
+    }
+    const gx = detectColumnGutter(rects)
+    assert.ok(gx !== null && gx > 287 && gx < 309, String(gx))
+    // 단 사이 빈 띠가 넓어 띠마다 고른 거터 자리가 10pt 넘게 달라도 같은 거터다
+    assert.notEqual(detectPersistentColumnGutter(rects), null)
+  })
+
+  it("우측 상단 작은 사이드바(서명란류) → null", () => {
+    const rects: ColRect[] = []
+    for (let i = 0; i < 14; i++) rects.push(rect(60, 900 - i * 40, 300, 12)) // 본문 좌측
+    for (let i = 0; i < 5; i++) rects.push(rect(450, 900 - i * 16, 120, 12)) // 상단 구석
+    assert.equal(detectColumnGutter(rects), null)
+  })
+})
+
+describe("orderByGutter", () => {
+  it("전폭 유닛을 밴드 경계로 좌단 전체 → 우단 전체 순서", () => {
+    // 밴드0: L1, R1 / 경계(전폭) / 밴드1: L2, L3, R2
+    const units = [
+      { name: "R2", r: rect(440, 100, 300, 200) },
+      { name: "L1", r: rect(88, 900, 300, 80) },
+      { name: "FULL", r: rect(88, 500, 666, 100) },
+      { name: "L3", r: rect(88, 120, 300, 100) },
+      { name: "R1", r: rect(440, 700, 300, 300) },
+      { name: "L2", r: rect(88, 300, 300, 150) },
+    ]
+    const ordered = orderByGutter(units, u => u.r, 420).map(u => u.name)
+    assert.deepEqual(ordered, ["L1", "R1", "FULL", "L2", "L3", "R2"])
+  })
+})
+
+describe("extractPageBlocksFallback — 2단 시험지 읽기 순서 (#64)", () => {
+  /** 좌단 문항 1·2, 우단 문항 3·4 — 각 7줄. 우단 베이스라인은 좌단과 어긋나게(실측 조판) */
+  function examItems(): NormItem[] {
+    const items: NormItem[] = []
+    // 전폭 머리글 (거터를 가로지르는 아이템 포함 → 밴드 경계)
+    items.push(item("2026학년도 대학수학능력시험 문제지", 250, 1040, 340))
+    const question = (n: number, x: number, yTop: number) => {
+      items.push(item(`${n}. 그림은 물리 현상을 나타낸 것이다`, x, yTop, 310))
+      for (let l = 1; l < 7; l++) {
+        items.push(item(`${n}번 본문 ${l}행 내용이 이어진다`, x + 10, yTop - l * 20, 290))
+      }
+    }
+    question(1, 88, 950)
+    question(2, 88, 700)
+    question(3, 440, 943)
+    question(4, 440, 691)
+    return items
+  }
+
+  it("좌단 문항 전체 → 우단 문항 전체 순서로 복원", () => {
+    const items = examItems()
+    const blocks = extractPageBlocksFallback(items, 1, true, false)
+    const text = blocks.map(b => b.text ?? "").join("\n")
+    const idx = (s: string) => {
+      const i = text.indexOf(s)
+      assert.ok(i >= 0, `"${s}"가 출력에 있어야 함`)
+      return i
+    }
+    // 머리글 → 1 → 2 → 3 → 4
+    assert.ok(idx("문제지") < idx("1. 그림은"), "머리글이 본문보다 먼저")
+    assert.ok(idx("1. 그림은") < idx("2. 그림은"), "좌단 위→아래")
+    assert.ok(idx("2. 그림은") < idx("3. 그림은"), "좌단 전체가 우단보다 먼저")
+    assert.ok(idx("3. 그림은") < idx("4. 그림은"), "우단 위→아래")
+  })
+
+  it("detectTables=true 기본 경로에서도 동일 순서", () => {
+    const items = examItems()
+    const blocks = extractPageBlocksFallback(items, 1, true, true)
+    const text = blocks.map(b => b.text ?? "").join("\n")
+    const pos1 = text.indexOf("1. 그림은")
+    const pos2 = text.indexOf("2. 그림은")
+    const pos3 = text.indexOf("3. 그림은")
+    const pos4 = text.indexOf("4. 그림은")
+    assert.ok(pos1 >= 0 && pos2 >= 0 && pos3 >= 0 && pos4 >= 0, "문항 4개 모두 존재")
+    assert.ok(pos1 < pos2 && pos2 < pos3 && pos3 < pos4, `순서 1→2→3→4 (실제: ${[pos1, pos2, pos3, pos4]})`)
+  })
+})
+
+describe("orderByGutter — 단 통째 유닛의 밴드", () => {
+  it("우단 유닛 맨 위 머리 조각이 전폭 제목보다 조금 높아도 우단을 좌단보다 먼저 읽지 않는다 (수능 국어 16쪽)", () => {
+    const units = [
+      { id: "title", r: rect(284, 1053, 272, 28) },         // 전폭 제목 — 위 1081
+      { id: "right", r: rect(437, 258, 317, 824) },         // "홀수형"(위 1082)부터 우단 끝까지
+      { id: "left", r: rect(89, 651, 308, 428) },           // "4"(위 1079)부터 좌단
+    ]
+    const order = orderByGutter(units, u => u.r, 406).map(u => u.id)
+    assert.deepEqual(order, ["title", "left", "right"])
+  })
+})

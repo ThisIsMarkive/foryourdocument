@@ -1,0 +1,46 @@
+name: Validate marketplace
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_integration:
+        description: Download engines/models and run Windows OCR integration tests
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  metadata:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.1'
+      - run: node tests/validate.mjs
+      - run: node --test tests/paths.test.mjs
+  integration:
+    if: github.event_name == 'workflow_dispatch' && inputs.full_integration
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      HWPX_BRIDGE_HOME: '${{ github.workspace }}\.test-runtime'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install without preinstalled Node
+        shell: powershell
+        run: ./plugins/hwpx-bridge/scripts/setup.ps1
+      - name: Test MCP, conversion and OCR
+        shell: powershell
+        run: |
+          $bundleVersion = (Get-Content ./plugins/hwpx-bridge/runtime/assets.json -Raw | ConvertFrom-Json).bundleVersion
+          $bridgeNode = Join-Path $env:HWPX_BRIDGE_HOME "versions\$bundleVersion-win-x64\node\node.exe"
+          $env:HWPX_BRIDGE_REFERENCE_FILEE = & $bridgeNode tests/download-reference.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $bridgeNode tests/bootstrap.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $bridgeNode tests/integration.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & $bridgeNode tests/models.mjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

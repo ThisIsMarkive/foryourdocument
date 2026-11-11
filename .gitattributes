@@ -1,0 +1,2 @@
+# Preserve pinned source bytes and installer fingerprints on every checkout.
+* -text
