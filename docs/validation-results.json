@@ -96,7 +96,7 @@
   ],
   "desktopBundleProtocolTest": "passed: extracted source validation, bootstrap and full MCP, HWPX generation",
   "claudeManifestValidation": "passed; existing host symlink warning retained",
-  "claudeDesktopMarketplaceSync": "pending user retry; generic app error did not disclose the server-side reason",
+  "claudeDesktopMarketplaceSync": "User confirmed successful marketplace addition after retrying the same GitHub repository with 0.2.1 on 2026-11-11. Actual plugin setup and document generation in the user desktop app remain unverified.",
   "offlineExportRestoreTest": "not rerun for 0.2.1; unchanged export/import code; see 0.2.0 results",
   "secondPhysicalPcTest": "not performed",
   "priorValidation": "validation-results-0.2.0.json"
