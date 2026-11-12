@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.3.3 — 묻지 않고 모든 앱에 등록
+
+- `npx -y hwpx-bridge setup`이 더 이상 앱을 묻지 않습니다. PC에 설치된 AI 앱(Claude 앱, Claude Code, Codex, Cursor, Gemini CLI, Windsurf)을 모두 찾아 등록합니다. 터미널에서 실행하든 Codex·Claude Code가 실행하든 같습니다.
+- Codex는 CLI 대신 `~/.codex/config.toml`에 직접 등록합니다. Codex CLI가 없어도 ChatGPT/Codex 데스크톱 앱과 IDE 확장이 같은 설정을 씁니다. 첫 실행 다운로드를 고려해 시작 대기 180초, 도구 실행 대기 1800초를 지정합니다.
+- `--client`는 일부 앱만 등록할 때 씁니다.
+
 ## 0.3.2 — Windows 한 줄 설치기
 
 - `irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex`: Node.js 20 이상이 없으면 winget으로 Node.js LTS를 설치하고 `hwpx-bridge setup`을 실행합니다. `HWPX_BRIDGE_CLIENTS`로 앱을 미리 지정할 수 있습니다.

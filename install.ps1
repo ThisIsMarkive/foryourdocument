@@ -4,10 +4,9 @@
 #
 # 1. Uses the installed Node.js if it is version 20 or newer.
 # 2. Otherwise installs Node.js LTS with winget (Windows' own package manager).
-# 3. Runs `npx -y hwpx-bridge@latest setup`, which registers the MCP server in the AI apps you pick.
+# 3. Runs `npx -y hwpx-bridge@latest setup`, which registers the MCP server in every AI app on this PC.
 #
-# Non-interactive (for example when an AI agent runs it): set the apps first.
-#   $env:HWPX_BRIDGE_CLIENTS = 'claude-desktop,codex'; irm .../install.ps1 | iex
+# To register only some apps: $env:HWPX_BRIDGE_CLIENTS = 'claude-desktop,codex'; irm .../install.ps1 | iex
 # Values: claude-desktop, claude-code, codex, cursor, gemini, windsurf
 #
 # Nothing else is changed. Use a normal (non-administrator) PowerShell window.

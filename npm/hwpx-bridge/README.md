@@ -9,38 +9,40 @@ AI 에이전트가 한글 문서(HWP·HWPX)를 다룰 수 있게 해 주는 **MC
 
 ## 설치 — 한 줄
 
-**Windows** — PowerShell에 붙여 넣기. Node.js가 없거나 오래됐으면 winget으로 설치한 뒤 등록까지 진행합니다:
+```
+npx -y hwpx-bridge setup
+```
+
+터미널(PowerShell 등)에 입력하든, Codex·Claude Code에 "이 명령 실행해줘"라고 하든 결과는 같습니다. **이 PC에 설치된 AI 앱을 모두 찾아 한 번에 등록**합니다. 묻는 것은 없습니다.
+
+| 찾는 앱 | 등록 위치 |
+| --- | --- |
+| Claude 앱 | `claude_desktop_config.json` |
+| Claude Code | `claude mcp add --scope user` |
+| Codex (ChatGPT 데스크톱 앱·CLI·IDE 확장이 함께 쓰는 설정) | `~/.codex/config.toml` |
+| Cursor, Gemini CLI, Windsurf | 각 앱의 MCP 설정 파일 |
+
+등록한 앱을 한 번 완전히 종료했다가 다시 열면, 그 앱의 **모든 대화**에서 도구가 보입니다. 작업 폴더와 상관없이 PC 안의 어느 파일이든 경로로 다룰 수 있습니다. 나중에 새 AI 앱을 설치했다면 같은 명령을 한 번 더 실행하면 됩니다. 기존 설정은 백업(`.bak-…`)을 남기고 유지됩니다.
+
+**Node.js가 없는 Windows PC**: `npx`가 없다는 오류가 나면 PowerShell에 아래 한 줄을 넣으세요. Node.js LTS를 winget으로 설치한 뒤 위 명령을 대신 실행합니다.
 
 ```
 irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex
 ```
 
-**Node.js 20 이상이 이미 있으면** 어느 OS든 아무 터미널에서:
+일부 앱에만 등록하려면 `npx -y hwpx-bridge setup --client claude-desktop,codex` (값: `claude-desktop, claude-code, codex, cursor, gemini, windsurf`).
 
-```
-npx -y hwpx-bridge setup
-```
+웹·모바일(claude.ai 웹, ChatGPT 웹, 휴대폰 앱)은 내 PC의 프로그램을 실행할 수 없어 지원되지 않습니다.
 
-등록할 앱을 고르면 끝입니다: Claude 앱, Claude Code, Codex, Cursor, Gemini CLI, Windsurf. 앱을 한 번 다시 시작하면 도구가 나타납니다.
-
-번호를 고르지 않고 바로 등록하려면 (AI 에이전트가 대신 실행할 때도 이 형식):
-
-```
-npx -y hwpx-bridge setup --client claude-desktop,claude-code,codex
-$env:HWPX_BRIDGE_CLIENTS='claude-desktop,codex'; irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex
-```
-
-등록은 **그 PC의 그 앱 설정**에 저장됩니다. 계정이나 작업 폴더 단위가 아니므로, 등록한 앱에서는 어느 대화·어느 프로젝트에서든 도구가 보이고 PC 안의 어느 폴더 파일이든 절대 경로로 다룰 수 있습니다. 다른 앱이나 다른 PC는 따로 등록합니다.
-
-직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
+설정 파일에 직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
 
 ```json
-{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.2", "mcp"] } } }
+{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.3", "mcp"] } } }
 ```
 
-Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.2", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
+Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.3", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
 
-Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.2 mcp`)와 사용 안내 스킬이 등록됩니다.
+Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.3 mcp`)와 사용 안내 스킬이 등록됩니다.
 
 확인: `npx -y hwpx-bridge doctor`
 
