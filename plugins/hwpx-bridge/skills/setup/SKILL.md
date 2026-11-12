@@ -17,7 +17,10 @@ Then the app is restarted once.
 1. If `hwpx_bridge_status` is available, call it and report what it says. Nothing needs installing.
 2. If no hwpx-bridge tools exist, give the user the command above. Run it yourself only with a shell on the user's
    own computer (not in a cloud or VM workspace) and only after they agree, since it changes app settings.
-3. If Node.js is missing (`npx` not found), tell the user to install the LTS version from https://nodejs.org first.
+3. If Node.js is missing or older than 20 (`npx` not found) on Windows, use the installer instead; it installs
+   Node.js LTS with winget and then runs setup. Ask before running it:
+   `$env:HWPX_BRIDGE_CLIENTS='<apps>'; irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex`
+   On other systems, tell the user to install the LTS version from https://nodejs.org first.
 4. `npx -y hwpx-bridge doctor` checks kordoc, Filee and the MCP server and prints the result.
 
 Filee conversion is available on Windows x64 and Linux x64. On other systems the kordoc tools still work and
