@@ -2,10 +2,9 @@ name: npm packages
 on:
   push:
     branches: [main]
-    tags: ['v*']
   pull_request:
   release:
-    types: [published]   # GitHub > Releases > "Draft a new release" with tag vX.Y.Z also publishes
+    types: [published]   # Publish: GitHub > Releases > "Draft a new release" with tag vX.Y.Z
   workflow_dispatch:
 permissions:
   contents: read
@@ -90,7 +89,7 @@ jobs:
             name=$(tar -xOzf "$tgz" package/package.json | node -pe 'JSON.parse(require("fs").readFileSync(0)).name')
             version=$(tar -xOzf "$tgz" package/package.json | node -pe 'JSON.parse(require("fs").readFileSync(0)).version')
             [ "v$version" = "$TAG" ] || { echo "Tag $TAG does not match $name $version"; exit 1; }
-            # A tag push and a release for the same tag both run this job; publish each version once.
+            # Re-running a release must not try to publish a version twice.
             if npm view "$name@$version" version > /dev/null 2>&1; then echo "$name@$version already on npm"; continue; fi
             npm publish --access public "./$tgz"   # "./" so npm reads a file, not a GitHub "owner/repo"
           done
