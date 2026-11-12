@@ -1,7 +1,7 @@
 {
   "name": "hwpx-bridge",
-  "version": "0.2.3",
-  "description": "Windows용 HWPX 읽기·작성·변환과 로컬 OCR. Filee + kordoc, Node.js 자동 준비.",
+  "version": "0.3.0",
+  "description": "kordoc의 모든 한글 문서 기능 + Filee 문서 변환(DOCX→HWPX 서식 유지). npx 한 줄 설치.",
   "author": {
     "name": "HWPX Bridge contributors"
   },
@@ -12,14 +12,14 @@
     "docx",
     "ocr",
     "korean",
-    "local-mcp"
+    "kordoc",
+    "filee"
   ],
   "skills": "./skills/",
   "mcpServers": "./codex.mcp.json",
-  "onboardingSkill": "./skills/setup/SKILL.md",
   "interface": {
     "displayName": "HWPX Bridge",
-    "shortDescription": "한글 문서 작성·변환·OCR",
+    "shortDescription": "한글 문서 읽기·작성·변환·OCR",
     "developerName": "HWPX Bridge contributors",
     "category": "Productivity",
     "capabilities": [
@@ -27,8 +27,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "HWPX Bridge 최초 설정을 진행해줘.",
       "이 DOCX를 HWPX로 변환해줘.",
+      "이 HWPX를 읽고 요약해줘.",
       "이 내용으로 HWPX 보고서를 만들어줘."
     ]
   }

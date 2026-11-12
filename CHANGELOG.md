@@ -1,5 +1,13 @@
 # 변경 기록
 
+## 0.3.0 — npm 한 줄 설치
+
+- `npx -y hwpx-bridge setup` 한 줄로 Claude 앱·Claude Code·Codex·Cursor·Gemini CLI·Windsurf에 등록합니다. kordoc의 `setup`과 같은 방식입니다.
+- kordoc은 npm 패키지(4.24.62)를 그대로 실행해 22개 도구를 모두 노출합니다. 소스 복사·빌드를 하지 않습니다. OCR은 kordoc OCR만 사용합니다(모델은 첫 사용 시 자동 다운로드).
+- Filee는 공식 2.4.0 릴리스에서 명령줄 변환기만 추려 플랫폼 패키지(`hwpx-bridge-filee-win32-x64`, `-linux-x64`)로 배포합니다. GUI·Ctrl 단축키·탐색기 메뉴·7-Zip·Tesseract OCR은 포함하지 않습니다. 문서 관련 형식만 `filee_convert` 하나로 노출합니다.
+- 제거: PowerShell 설치기, 사용자 PC의 .NET/Node 다운로드와 소스 빌드, `hwpx_setup` 도구, 앱 재시작이 두 번 필요하던 흐름, 오프라인 내보내기, `.mcpb`.
+- 요구 사항: Node.js 20 이상.
+
 ## 0.2.3 — Windows standalone installer download fix
 
 - Read GitHub SHA256SUMS release assets from a UTF-8 file. Windows PowerShell returns application/octet-stream Content as byte[]; direct string matching incorrectly rejected a valid archive.

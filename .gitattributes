@@ -1,2 +1,2 @@
-# Preserve pinned source bytes and installer fingerprints on every checkout.
-* -text
+# Keep Filee and fixture bytes exactly as committed.
+*.docx binary
