@@ -92,5 +92,5 @@ jobs:
             [ "v$version" = "$TAG" ] || { echo "Tag $TAG does not match $name $version"; exit 1; }
             # A tag push and a release for the same tag both run this job; publish each version once.
             if npm view "$name@$version" version > /dev/null 2>&1; then echo "$name@$version already on npm"; continue; fi
-            npm publish --access public "$tgz"
+            npm publish --access public "./$tgz"   # "./" so npm reads a file, not a GitHub "owner/repo"
           done

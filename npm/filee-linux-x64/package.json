@@ -1,6 +1,6 @@
 {
   "name": "hwpx-bridge-filee-linux-x64",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Filee 2.4.0 command-line document converter (linux-x64) for hwpx-bridge. Unmodified files from the official Filee release.",
   "license": "MIT",
   "repository": { "type": "git", "url": "git+https://github.com/ThisIsMarkive/foryourdocument.git", "directory": "npm/filee-linux-x64" },
