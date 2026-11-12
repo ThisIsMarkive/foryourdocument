@@ -1,0 +1,83 @@
+name: npm packages
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Take Filee CLI from the official release (SHA-256 pinned, no build)
+        run: node npm/scripts/prepare-filee.mjs all
+      - name: Pack
+        run: |
+          mkdir packs
+          for p in filee-win32-x64 filee-linux-x64 hwpx-bridge; do (cd npm/$p && npm pack --pack-destination ../../packs); done
+          ls -la packs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packs
+          path: packs/*.tgz
+          retention-days: 7
+
+  test:
+    needs: pack
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          name: packs
+          path: packs
+      - name: Install packed packages into an empty folder
+        shell: bash
+        run: |
+          mkdir e2e && cd e2e && npm init -y > /dev/null
+          platform=$([ "$RUNNER_OS" = "Windows" ] && echo win32-x64 || echo linux-x64)
+          npm i ../packs/hwpx-bridge-filee-$platform-*.tgz ../packs/hwpx-bridge-0*.tgz
+          cp -r ../npm/test .
+      - name: doctor
+        working-directory: e2e
+        run: npx hwpx-bridge doctor
+      - name: End-to-end MCP test
+        working-directory: e2e
+        run: node test/e2e.mjs
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - uses: actions/download-artifact@v4
+        with:
+          name: packs
+          path: packs
+      - name: Publish (platform packages first, then hwpx-bridge)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish --access public packs/hwpx-bridge-filee-win32-x64-*.tgz
+          npm publish --access public packs/hwpx-bridge-filee-linux-x64-*.tgz
+          npm publish --access public packs/hwpx-bridge-0*.tgz

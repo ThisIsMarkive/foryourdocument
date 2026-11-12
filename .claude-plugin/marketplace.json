@@ -4,15 +4,15 @@
     "name": "HWPX Bridge contributors"
   },
   "metadata": {
-    "description": "Local Korean document tools for Windows x64",
-    "version": "0.2.3"
+    "description": "Korean document tools: kordoc + Filee conversion",
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "hwpx-bridge",
       "source": "./plugins/hwpx-bridge",
-      "description": "Windows용 HWPX 읽기·작성·변환과 로컬 OCR. Filee + kordoc, Node.js 자동 준비.",
-      "version": "0.2.3",
+      "description": "kordoc의 모든 한글 문서 기능 + Filee 문서 변환(DOCX→HWPX 서식 유지). npx 한 줄 설치.",
+      "version": "0.3.0",
       "license": "MIT"
     }
   ]

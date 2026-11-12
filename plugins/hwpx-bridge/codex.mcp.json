@@ -2,15 +2,11 @@
   "mcpServers": {
     "hwpx-bridge": {
       "type": "stdio",
-      "command": "powershell.exe",
+      "command": "npx",
       "args": [
-        "-NoLogo",
-        "-NoProfile",
-        "-NonInteractive",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-File",
-        "${CLAUDE_PLUGIN_ROOT}/scripts/launch.ps1"
+        "-y",
+        "hwpx-bridge@0.3.0",
+        "mcp"
       ]
     }
   }
