@@ -26,12 +26,12 @@ npx -y hwpx-bridge setup --client claude-desktop,claude-code,codex
 직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
 
 ```json
-{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.0", "mcp"] } } }
+{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.1", "mcp"] } } }
 ```
 
-Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.0", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
+Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.1", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
 
-Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.0 mcp`)와 사용 안내 스킬이 등록됩니다.
+Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.1 mcp`)와 사용 안내 스킬이 등록됩니다.
 
 확인: `npx -y hwpx-bridge doctor`
 

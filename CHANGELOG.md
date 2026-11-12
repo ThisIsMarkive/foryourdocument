@@ -1,5 +1,9 @@
 # 변경 기록
 
+## 0.3.1 — 첫 npm 배포
+
+- 배포 워크플로가 `packs/…tgz` 경로를 GitHub 저장소 이름으로 해석해 0.3.0 배포가 실패한 문제를 고쳤습니다. 0.3.0은 npm에 올라가지 않았고, 내용은 0.3.1과 같습니다.
+
 ## 0.3.0 — npm 한 줄 설치
 
 - `npx -y hwpx-bridge setup` 한 줄로 Claude 앱·Claude Code·Codex·Cursor·Gemini CLI·Windsurf에 등록합니다. kordoc의 `setup`과 같은 방식입니다.
