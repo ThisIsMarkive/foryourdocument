@@ -4,9 +4,14 @@ on:
     branches: [main]
     tags: ['v*']
   pull_request:
+  release:
+    types: [published]   # GitHub > Releases > "Draft a new release" with tag vX.Y.Z also publishes
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: npm-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   pack:
@@ -77,7 +82,15 @@ jobs:
       - name: Publish (platform packages first, then hwpx-bridge)
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          TAG: ${{ github.ref_name }}
         run: |
-          npm publish --access public packs/hwpx-bridge-filee-win32-x64-*.tgz
-          npm publish --access public packs/hwpx-bridge-filee-linux-x64-*.tgz
-          npm publish --access public packs/hwpx-bridge-0*.tgz
+          set -e
+          [ -n "$NODE_AUTH_TOKEN" ] || { echo "NPM_TOKEN secret is not set"; exit 1; }
+          for tgz in packs/hwpx-bridge-filee-win32-x64-*.tgz packs/hwpx-bridge-filee-linux-x64-*.tgz packs/hwpx-bridge-0*.tgz; do
+            name=$(tar -xOzf "$tgz" package/package.json | node -pe 'JSON.parse(require("fs").readFileSync(0)).name')
+            version=$(tar -xOzf "$tgz" package/package.json | node -pe 'JSON.parse(require("fs").readFileSync(0)).version')
+            [ "v$version" = "$TAG" ] || { echo "Tag $TAG does not match $name $version"; exit 1; }
+            # A tag push and a release for the same tag both run this job; publish each version once.
+            if npm view "$name@$version" version > /dev/null 2>&1; then echo "$name@$version already on npm"; continue; fi
+            npm publish --access public "$tgz"
+          done

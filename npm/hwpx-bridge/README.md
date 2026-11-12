@@ -79,7 +79,7 @@ Filee는 소스를 빌드하지 않고 **공식 릴리스의 파일을 그대로
 ## 배포 (관리자용)
 
 1. npm 계정을 만들고(2단계 인증 필수) Granular Access Token을 만듭니다: 권한 Read and write, 대상 All packages, **Bypass 2FA** 체크, 만료 최대 90일. GitHub 저장소 Secret `NPM_TOKEN`으로 등록합니다. 첫 배포 뒤에는 각 패키지 설정에서 Trusted Publishing(GitHub Actions)을 켜면 토큰 갱신이 필요 없습니다.
-2. 세 `package.json`과 플러그인 매니페스트의 버전을 올리고 `vX.Y.Z` 태그를 푸시합니다.
+2. 세 `package.json`과 플러그인 매니페스트의 버전을 올리고, `vX.Y.Z` 태그를 푸시하거나 GitHub Releases에서 같은 태그로 릴리스를 만듭니다.
 3. GitHub Actions가 Filee 준비 → 패키지 생성 → Windows·Linux에서 실제 설치·변환 테스트 → npm 배포를 순서대로 합니다.
 
 로컬에서 확인하려면: `node npm/scripts/prepare-filee.mjs all` 후 각 폴더에서 `npm pack`.
