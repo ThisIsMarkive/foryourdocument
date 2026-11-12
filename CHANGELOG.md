@@ -1,5 +1,10 @@
 # 변경 기록
 
+## 0.3.2 — Windows 한 줄 설치기
+
+- `irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex`: Node.js 20 이상이 없으면 winget으로 Node.js LTS를 설치하고 `hwpx-bridge setup`을 실행합니다. `HWPX_BRIDGE_CLIENTS`로 앱을 미리 지정할 수 있습니다.
+- Filee 패키지가 빠졌을 때의 안내를 고쳤습니다(지원 OS인데 설치가 빠진 경우 npx 캐시 정리 안내).
+
 ## 0.3.1 — 첫 npm 배포
 
 - 배포 워크플로가 `packs/…tgz` 경로를 GitHub 저장소 이름으로 해석해 0.3.0 배포가 실패한 문제를 고쳤습니다. 0.3.0은 npm에 올라가지 않았고, 내용은 0.3.1과 같습니다.

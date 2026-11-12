@@ -62,6 +62,18 @@ jobs:
       - name: End-to-end MCP test
         working-directory: e2e
         run: node test/e2e.mjs
+      - name: Windows one-line installer (irm | iex path, Node already present)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $env:HWPX_BRIDGE_PACKAGE = (Resolve-Path (Get-ChildItem packs\hwpx-bridge-0*.tgz)).Path
+          $env:HWPX_BRIDGE_CLIENTS = 'cursor'
+          Get-Content -Raw -Encoding UTF8 install.ps1 | Invoke-Expression
+          if ($LASTEXITCODE -ne 0) { throw "installer exit $LASTEXITCODE" }
+          $config = Get-Content -Raw (Join-Path $env:USERPROFILE '.cursor\mcp.json') | ConvertFrom-Json
+          $entry = $config.mcpServers.'hwpx-bridge'
+          if ($entry.command -ne 'cmd' -or ($entry.args -join ' ') -notmatch 'hwpx-bridge@\d+\.\d+\.\d+ mcp') { throw "unexpected entry: $($entry | ConvertTo-Json -Compress)" }
+          Write-Host "Cursor entry: $($entry | ConvertTo-Json -Compress)"
 
   publish:
     if: startsWith(github.ref, 'refs/tags/v')

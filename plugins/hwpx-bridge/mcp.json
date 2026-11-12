@@ -6,7 +6,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "hwpx-bridge@0.3.1",
+        "hwpx-bridge@0.3.2",
         "mcp"
       ]
     }

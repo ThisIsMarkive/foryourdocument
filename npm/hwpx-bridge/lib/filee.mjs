@@ -21,7 +21,10 @@ export function locateFilee() {
   let root;
   try { root = path.dirname(require.resolve(`${PLATFORM_PACKAGE}/package.json`)); }
   catch {
-    return { error: `Filee is not available for ${process.platform}-${process.arch}. Supported: Windows x64, Linux x64. kordoc tools still work.` };
+    const supported = ['win32-x64', 'linux-x64'].includes(`${process.platform}-${process.arch}`);
+    return { error: supported
+      ? `${PLATFORM_PACKAGE} is not installed (npm skipped it). Clear the npx cache (%LOCALAPPDATA%\\npm-cache\\_npx on Windows, ~/.npm/_npx elsewhere) and run setup again. kordoc tools still work.`
+      : `Filee conversion is not available on ${process.platform}-${process.arch} (Windows x64 and Linux x64 only). kordoc tools still work.` };
   }
   const cli = path.join(root, 'filee', process.platform === 'win32' ? 'filee-cli.exe' : 'filee-cli');
   if (!fss.existsSync(cli)) return { error: `${PLATFORM_PACKAGE} is installed but ${cli} is missing.` };
