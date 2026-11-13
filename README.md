@@ -57,6 +57,23 @@ Claude 앱 버전에 따라 설정 파일 위치가 다릅니다. `setup`은 Cla
 
 Mac·Linux에서는 `"command": "npx", "args": ["-y", "hwpx-bridge@0.3.6", "mcp"]` 입니다. 다른 앱용 설정은 `npx -y hwpx-bridge config`가 출력합니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, 직접 넣은 경우에는 먼저 터미널에서 `npx.cmd -y hwpx-bridge@0.3.6 doctor`를 한 번 실행해 두면 앱 첫 실행이 빠릅니다.
 
+### ChatGPT(Codex)에 도구가 안 보일 때 (직접 등록)
+
+Codex는 Codex 앱·CLI·IDE 확장이 함께 쓰는 `사용자 폴더\.codex\config.toml` 한 곳에 설정을 둡니다(`CODEX_HOME`을 지정했다면 그 폴더). Claude 앱의 `claude_desktop_config.json`과 같은 역할입니다.
+
+1. 터미널에서 `codex mcp list`로 hwpx-bridge가 있는지 봅니다. Codex CLI가 없으면 `config.toml`을 메모장으로 열어 `[mcp_servers.hwpx-bridge]`가 있는지 봅니다.
+2. 없으면 `config.toml` 맨 끝에 아래를 붙여 넣습니다.
+
+   ```toml
+   [mcp_servers.hwpx-bridge]
+   command = "cmd"
+   args = ["/c", "npx", "-y", "hwpx-bridge@0.3.6", "mcp"]
+   startup_timeout_sec = 180
+   tool_timeout_sec = 1800
+   ```
+
+3. ChatGPT(Codex) 앱을 완전히 종료했다가 다시 엽니다.
+
 Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.6 mcp`)와 사용 안내 스킬이 등록됩니다.
 
 확인: `npx -y hwpx-bridge doctor`

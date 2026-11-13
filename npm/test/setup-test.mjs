@@ -23,7 +23,23 @@ if (isWin) {
 fs.writeFileSync(path.join(home, '.codex', 'config.toml'), 'model = "x"\n\n[mcp_servers.other]\ncommand = "other"\n');
 fs.writeFileSync(path.join(home, '.cursor', 'mcp.json'), '{"mcpServers":{"other":{"command":"other"}}}');
 
-const env = { ...process.env, HWPX_BRIDGE_SKIP_PREWARM: '1', HOME: home, USERPROFILE: home, APPDATA: appData, LOCALAPPDATA: path.join(home, 'AppData', 'Local'), CODEX_HOME: '' };
+// A fake npx cache: only folders holding nothing but an older hwpx-bridge (and leftovers) may be removed.
+const npxCache = path.join(home, 'npm-cache');
+const fakeNpx = (name, deps, version) => {
+  const dir = path.join(npxCache, '_npx', name);
+  fs.mkdirSync(path.join(dir, 'node_modules', 'hwpx-bridge'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify({ dependencies: deps }));
+  fs.writeFileSync(path.join(dir, 'node_modules', 'hwpx-bridge', 'package.json'), JSON.stringify({ name: 'hwpx-bridge', version }));
+  return dir;
+};
+const oldDir = fakeNpx('old', { 'hwpx-bridge': '0.0.1' }, '0.0.1');
+const newerDir = fakeNpx('newer', { 'hwpx-bridge': '99.0.0' }, '99.0.0');
+const mixedDir = fakeNpx('mixed', { 'hwpx-bridge': '0.0.1', other: '1.0.0' }, '0.0.1');
+const otherDir = fakeNpx('other', { other: '1.0.0' }, '0.0.1');
+const leftover = path.join(npxCache, '_npx', 'gone.old-123');
+fs.mkdirSync(leftover, { recursive: true });
+
+const env = { ...process.env, HWPX_BRIDGE_SKIP_PREWARM: '1', HWPX_BRIDGE_NPX_CACHE: npxCache, HOME: home, USERPROFILE: home, APPDATA: appData, LOCALAPPDATA: path.join(home, 'AppData', 'Local'), CODEX_HOME: '' };
 // Keep a real Claude Code CLI on the test machine out of this test.
 env.PATH = (env.PATH ?? env.Path ?? '').split(path.delimiter).filter(p => !fs.existsSync(path.join(p, isWin ? 'claude.cmd' : 'claude'))).join(path.delimiter);
 const result = spawnSync(isWin ? 'npx.cmd' : 'npx', ['hwpx-bridge', 'setup'], { env, encoding: 'utf8', shell: isWin });
@@ -46,5 +62,7 @@ assert.ok(cursor.mcpServers.other && pinned.test(cursor.mcpServers['hwpx-bridge'
 const toml = fs.readFileSync(path.join(home, '.codex', 'config.toml'), 'utf8');
 assert.ok(toml.includes('[mcp_servers.other]') && toml.includes('[mcp_servers.hwpx-bridge]') && pinned.test(toml), 'Codex config.toml not merged');
 assert.ok(!fs.existsSync(path.join(home, '.gemini')), 'apps that are not installed must be skipped');
+assert.ok(!fs.existsSync(oldDir) && !fs.existsSync(leftover), 'older hwpx-bridge npx folder not cleaned up');
+assert.ok(fs.existsSync(newerDir) && fs.existsSync(mixedDir) && fs.existsSync(otherDir), 'cleanup removed a folder it must keep');
 fs.rmSync(home, { recursive: true, force: true });
 console.log('SETUP TEST PASSED');

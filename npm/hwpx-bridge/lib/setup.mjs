@@ -204,6 +204,7 @@ export async function runSetup(argv) {
     }
   }
   if (!failed || clients.length > 1) prewarm();
+  removeOldVersions();
   console.log('\n등록한 앱을 완전히 종료했다가 다시 열면 hwpx-bridge 도구(kordoc 전체 + filee_convert)가 모든 대화에서 보입니다.');
   if (failed) process.exitCode = 1;
 }
@@ -226,4 +227,66 @@ function prewarm() {
 export function printConfig() {
   console.log(JSON.stringify({ mcpServers: { [NAME]: serverEntry() } }, null, 2));
   console.log(`\nCodex (~/.codex/config.toml):\n\n${codexBlock()}`);
+}
+
+function npxCacheDir() {
+  // HWPX_BRIDGE_NPX_CACHE is for tests. npx exports npm_config_cache to the programs it starts.
+  const cache = process.env.HWPX_BRIDGE_NPX_CACHE || process.env.npm_config_cache
+    || (isWin ? path.join(process.env.LOCALAPPDATA ?? path.join(home(), 'AppData/Local'), 'npm-cache') : path.join(home(), '.npm'));
+  return path.join(cache, '_npx');
+}
+
+function compareVersions(a, b) {
+  const pa = String(a).split(/[.-]/).map(Number), pb = String(b).split(/[.-]/).map(Number);
+  for (let i = 0; i < 3; i++) if ((pa[i] || 0) !== (pb[i] || 0)) return (pa[i] || 0) - (pb[i] || 0);
+  return 0;
+}
+
+function folderSize(dir) {
+  let total = 0;
+  try {
+    for (const entry of fss.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) total += folderSize(full);
+      else if (entry.isFile()) { try { total += fss.statSync(full).size; } catch { /* gone */ } }
+    }
+  } catch { /* unreadable */ }
+  return total;
+}
+
+/**
+ * npx keeps every version it ran in its own folder (about 300 MB each here) and never removes them. Remove
+ * the folders that hold nothing but an OLDER hwpx-bridge. Folders with other packages, the current or a newer
+ * version, and anything an app still has open (Windows refuses to delete it) are left alone.
+ */
+function removeOldVersions() {
+  if (process.env.HWPX_BRIDGE_KEEP_OLD) return;
+  const root = npxCacheDir();
+  let entries = [];
+  try { entries = fss.readdirSync(root, { withFileTypes: true }); } catch { return; }
+  const removed = [], kept = [];
+  let freed = 0;
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const dir = path.join(root, entry.name);
+    if (/\.old-\d+$/.test(entry.name)) { // left over from an earlier clean-up that could not finish
+      try { const size = folderSize(dir); fss.rmSync(dir, { recursive: true, force: true }); freed += size; } catch { /* next time */ }
+      continue;
+    }
+    try {
+      const deps = Object.keys(JSON.parse(fss.readFileSync(path.join(dir, 'package.json'), 'utf8')).dependencies ?? {});
+      if (deps.length !== 1 || deps[0] !== NAME) continue;
+      const installed = JSON.parse(fss.readFileSync(path.join(dir, 'node_modules', NAME, 'package.json'), 'utf8')).version;
+      if (!installed || compareVersions(installed, pkg.version) >= 0) continue;
+      const size = folderSize(dir);
+      // Rename first: Windows refuses while an app has any file in it open, so a running server is never
+      // left half-deleted. Only then delete the renamed folder.
+      const trash = `${dir}.old-${Date.now()}`;
+      try { fss.renameSync(dir, trash); } catch { kept.push(installed); continue; }
+      fss.rmSync(trash, { recursive: true, force: true, maxRetries: 2 });
+      removed.push(installed); freed += size;
+    } catch { /* not an npx folder we understand: leave it */ }
+  }
+  if (removed.length || freed) console.log(`\n예전 버전 정리: ${[...new Set(removed)].join(', ') || '남은 임시 폴더'} 삭제 (${(freed / 1e6).toFixed(0)} MB 확보)`);
+  if (kept.length) console.log(`  (사용 중이라 남겨 둠: ${[...new Set(kept)].join(', ')} — 앱을 종료한 뒤 setup을 다시 실행하면 정리됩니다)`);
 }

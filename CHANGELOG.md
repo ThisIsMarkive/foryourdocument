@@ -3,6 +3,8 @@
 ## 0.3.6 — Claude 앱 설정 파일을 직접 찾아 등록
 
 - Claude 앱 설정 파일 위치를 짐작하지 않고, `%APPDATA%`·`%LOCALAPPDATA%`·`%LOCALAPPDATA%\Packages` 아래 Claude 폴더에서 `claude_desktop_config.json`을 찾아 **찾은 파일 모두**에 등록합니다. `%LOCALAPPDATA%\claude-data\Claude_*`를 쓰는 Store판에서 등록이 안 되던 문제를 고쳤습니다(캐시 폴더는 건너뜀, 기존 설정 유지).
+- `setup`이 npx 보관 폴더에서 **hwpx-bridge 예전 버전만** 정리합니다(버전당 약 300 MB). 다른 패키지와 함께 있는 폴더, 같거나 새 버전, 앱이 사용 중인 폴더는 건드리지 않습니다. 끄려면 `HWPX_BRIDGE_KEEP_OLD=1`.
+- README에 Claude 앱·ChatGPT(Codex) 직접 등록 방법을 추가했습니다.
 - Claude Code 등록 시 나오던 Node 경고(DEP0190)를 없앴습니다.
 - PowerShell 실행 정책으로 `npx`가 막히면 `npx.cmd`를 쓰라는 안내를 추가했습니다.
 
