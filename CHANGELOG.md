@@ -1,5 +1,10 @@
 # 변경 기록
 
+## 0.3.5 — 등록했는데 도구가 안 보이던 문제
+
+- Claude 앱 설정을 Microsoft Store판 위치와 일반 위치(`%APPDATA%\Claude`) 중 있는 곳 **모두**에 등록합니다. 예전 Store판 폴더가 남아 있으면 일반판 앱이 읽는 파일에 등록되지 않던 문제를 고쳤습니다.
+- 등록 후 앱이 실행할 것과 같은 `hwpx-bridge@버전`을 미리 내려받습니다. 앱 첫 실행이 다운로드로 오래 걸려 시작 대기 시간을 넘기던 문제를 고쳤습니다.
+
 ## 0.3.4 — winget 없는 PC에서도 Node.js 자동 설치
 
 - `install.ps1`이 winget이 없거나 실패하면 nodejs.org의 공식 LTS zip을 내려받아 nodejs.org SHA-256 목록과 대조한 뒤 `%LOCALAPPDATA%\Programs\nodejs-portable`에 설치하고 사용자 PATH에 추가합니다. 관리자 권한과 설치 창이 필요 없습니다.

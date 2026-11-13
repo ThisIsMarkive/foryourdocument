@@ -37,29 +37,42 @@ function onPath(command) {
 
 const exists = file => fss.existsSync(file);
 
-function claudeDesktopConfig() {
+/**
+ * Every Claude app config file that may be read on this computer. On Windows the Microsoft Store build reads a
+ * package-local copy of %APPDATA%, while the regular build (and Store builds that are not virtualized) read
+ * %APPDATA%\Claude. A leftover folder of one build must not hide the other, so every existing location is used.
+ */
+function claudeDesktopConfigs() {
+  const file = dir => path.join(dir, 'claude_desktop_config.json');
   if (isWin) {
     const appData = process.env.APPDATA ?? path.join(home(), 'AppData/Roaming');
     const localAppData = process.env.LOCALAPPDATA ?? path.join(home(), 'AppData/Local');
-    // The Microsoft Store build of Claude reads a package-local copy of %APPDATA%.
+    const regular = path.join(appData, 'Claude');
     const store = path.join(localAppData, 'Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude');
-    return path.join(exists(store) ? store : path.join(appData, 'Claude'), 'claude_desktop_config.json');
+    const found = [regular, store].filter(exists);
+    return (found.length ? found : [regular]).map(file);
   }
-  if (process.platform === 'darwin') return path.join(home(), 'Library/Application Support/Claude/claude_desktop_config.json');
-  return path.join(home(), '.config/Claude/claude_desktop_config.json');
+  if (process.platform === 'darwin') return [file(path.join(home(), 'Library/Application Support/Claude'))];
+  return [file(path.join(home(), '.config/Claude'))];
 }
 
 function claudeDesktopInstalled() {
-  if (exists(path.dirname(claudeDesktopConfig()))) return true;
+  if (claudeDesktopConfigs().some(config => exists(path.dirname(config)))) return true;
   if (isWin) return exists(path.join(process.env.LOCALAPPDATA ?? path.join(home(), 'AppData/Local'), 'AnthropicClaude'));
   if (process.platform === 'darwin') return exists('/Applications/Claude.app');
   return false;
 }
 
+async function registerClaudeDesktop() {
+  const results = [];
+  for (const config of claudeDesktopConfigs()) results.push(await registerJson(config));
+  return results.join(', ');
+}
+
 const codexHome = () => process.env.CODEX_HOME || path.join(home(), '.codex');
 
 export const CLIENTS = [
-  { id: 'claude-desktop', label: 'Claude 앱', found: claudeDesktopInstalled, register: () => registerJson(claudeDesktopConfig()) },
+  { id: 'claude-desktop', label: 'Claude 앱', found: claudeDesktopInstalled, register: registerClaudeDesktop },
   { id: 'claude-code', label: 'Claude Code', found: () => onPath('claude'), register: registerClaudeCode },
   { id: 'codex', label: 'Codex (ChatGPT 데스크톱·CLI·IDE)', found: () => exists(codexHome()) || onPath('codex'), register: registerCodex },
   { id: 'cursor', label: 'Cursor', found: () => exists(path.join(home(), '.cursor')), register: () => registerJson(path.join(home(), '.cursor/mcp.json')) },
@@ -163,8 +176,24 @@ export async function runSetup(argv) {
       console.log(`  x ${client.label}: ${error.code === 'ENOENT' ? '명령을 찾을 수 없습니다.' : error.message.split('\n')[0]}`);
     }
   }
+  if (!failed || clients.length > 1) prewarm();
   console.log('\n등록한 앱을 완전히 종료했다가 다시 열면 hwpx-bridge 도구(kordoc 전체 + filee_convert)가 모든 대화에서 보입니다.');
   if (failed) process.exitCode = 1;
+}
+
+/**
+ * Download the exact package the apps will start (`npx -y hwpx-bridge@<version>`), so their first start does
+ * not spend minutes downloading and hit the app's MCP startup timeout. npx caches per package spec, so the
+ * spec must match the registered one exactly.
+ */
+function prewarm() {
+  if (process.env.HWPX_BRIDGE_SKIP_PREWARM) return;
+  const entry = serverEntry();
+  const args = [...entry.args.slice(0, -1), '--version']; // same spec as the apps, but just print the version
+  console.log(`\n엔진 준비: ${packageSpec()} 내려받는 중 (처음 한 번, 몇 분 걸릴 수 있습니다)...`);
+  const result = spawnSync(entry.command, args, { stdio: ['ignore', 'pipe', 'inherit'], encoding: 'utf8', windowsHide: true, timeout: 20 * 60_000 });
+  if (result.status === 0) console.log(`  + 준비 완료 (${result.stdout.trim()})`);
+  else console.log(`  x 미리 내려받지 못했습니다. 앱 첫 실행이 오래 걸리면 'npx -y ${packageSpec()} doctor'를 한 번 실행하세요.`);
 }
 
 export function printConfig() {
