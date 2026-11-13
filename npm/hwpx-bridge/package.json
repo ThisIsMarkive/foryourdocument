@@ -1,6 +1,6 @@
 {
   "name": "hwpx-bridge",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "One MCP server for Korean documents: every kordoc tool (read/write/edit HWP·HWPX·PDF, OCR) plus Filee document conversion (DOCX→HWPX with formatting). One-line setup for Claude, Codex, Cursor and more.",
   "type": "module",
   "bin": { "hwpx-bridge": "bin/hwpx-bridge.mjs" },
@@ -11,8 +11,8 @@
     "kordoc": "4.24.62"
   },
   "optionalDependencies": {
-    "hwpx-bridge-filee-win32-x64": "0.3.5",
-    "hwpx-bridge-filee-linux-x64": "0.3.5"
+    "hwpx-bridge-filee-win32-x64": "0.3.6",
+    "hwpx-bridge-filee-linux-x64": "0.3.6"
   },
   "keywords": ["hwp", "hwpx", "docx", "mcp", "kordoc", "filee", "korean", "ocr", "claude", "codex"],
   "license": "MIT",
