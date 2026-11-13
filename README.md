@@ -21,7 +21,7 @@ npx -y hwpx-bridge setup
 | --- | --- |
 | Claude 앱 | `claude_desktop_config.json` |
 | Claude Code | `claude mcp add --scope user` |
-| Codex (ChatGPT 데스크톱 앱·CLI·IDE 확장이 함께 쓰는 설정) | `~/.codex/config.toml` |
+| Codex (ChatGPT 데스크톱 앱의 Codex·Work 모드, CLI, IDE 확장이 함께 쓰는 설정) | `~/.codex/config.toml` |
 | Cursor, Gemini CLI, Windsurf | 각 앱의 MCP 설정 파일 |
 
 등록한 앱을 한 번 완전히 종료했다가 다시 열면, 그 앱의 **모든 대화**에서 도구가 보입니다. 작업 폴더와 상관없이 PC 안의 어느 파일이든 경로로 다룰 수 있습니다. 나중에 새 AI 앱을 설치했다면 같은 명령을 한 번 더 실행하면 됩니다. 기존 설정은 백업(`.bak-…`)을 남기고 유지됩니다.

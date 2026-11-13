@@ -10,7 +10,7 @@ same as kordoc):
 npx -y hwpx-bridge setup
 ```
 
-It asks nothing: it finds every AI app on the computer (Claude app, Claude Code, Codex app/CLI/IDE via
+It asks nothing: it finds every AI app on the computer (Claude app, Claude Code, Codex app (Codex and Work modes)/CLI/IDE via
 `~/.codex/config.toml`, Cursor, Gemini CLI, Windsurf) and registers hwpx-bridge in all of them. Each app is then
 restarted once, after which the tools appear in every conversation of that app. `--client a,b` limits the apps.
 
