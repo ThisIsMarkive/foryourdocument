@@ -34,13 +34,28 @@ irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install
 
 웹·모바일(claude.ai 웹, ChatGPT 웹, 휴대폰 앱)은 내 PC의 프로그램을 실행할 수 없어 지원되지 않습니다.
 
-설정 파일에 직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
+### setup 후에도 Claude 앱에 도구가 안 보일 때 (직접 등록)
 
-```json
-{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.6", "mcp"] } } }
-```
+Claude 앱 버전에 따라 설정 파일 위치가 다릅니다. `setup`은 Claude 폴더들에서 설정 파일을 찾아 모두 등록하지만, 그래도 **설정 → 개발자** 화면에 hwpx-bridge가 없다면 직접 넣습니다.
 
-Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.6", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
+1. Claude 앱 **설정 → 개발자 → 구성 편집(Edit Config)** 을 누릅니다. 앱이 실제로 읽는 `claude_desktop_config.json`이 열립니다.
+2. 파일 안에 `"mcpServers"`가 **없으면**, 맨 바깥 `{` 바로 다음 줄에 아래를 넣습니다(끝의 쉼표 포함).
+
+   ```json
+   "mcpServers": {
+     "hwpx-bridge": { "command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.6", "mcp"] }
+   },
+   ```
+
+   `"mcpServers": {` 가 **이미 있으면**, 그 줄 바로 다음에 아래 한 줄만 넣습니다(끝의 쉼표 포함).
+
+   ```json
+   "hwpx-bridge": { "command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.6", "mcp"] },
+   ```
+
+3. 저장하고 Claude 앱을 트레이 아이콘에서 **종료**한 뒤 다시 엽니다. (앱이 켜진 채로 고치면 앱이 종료하면서 덮어쓸 수 있습니다.)
+
+Mac·Linux에서는 `"command": "npx", "args": ["-y", "hwpx-bridge@0.3.6", "mcp"]` 입니다. 다른 앱용 설정은 `npx -y hwpx-bridge config`가 출력합니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, 직접 넣은 경우에는 먼저 터미널에서 `npx.cmd -y hwpx-bridge@0.3.6 doctor`를 한 번 실행해 두면 앱 첫 실행이 빠릅니다.
 
 Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.6 mcp`)와 사용 안내 스킬이 등록됩니다.
 
