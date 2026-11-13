@@ -77,6 +77,28 @@ jobs:
           $entry = $config.mcpServers.'hwpx-bridge'
           if ($entry.command -ne 'cmd' -or ($entry.args -join ' ') -notmatch 'hwpx-bridge@\d+\.\d+\.\d+ mcp') { throw "unexpected entry: $($entry | ConvertTo-Json -Compress)" }
           Write-Host "Cursor entry: $($entry | ConvertTo-Json -Compress)"
+      - name: Windows one-line installer without winget (Node.js downloaded from nodejs.org)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $env:HWPX_BRIDGE_PACKAGE = (Resolve-Path (Get-ChildItem packs\hwpx-bridge-0*.tgz)).Path
+          $env:HWPX_BRIDGE_CLIENTS = 'cursor'
+          $env:HWPX_BRIDGE_NODE_METHOD = 'portable'
+          Remove-Item (Join-Path $env:USERPROFILE '.cursor\mcp.json') -ErrorAction SilentlyContinue
+          Get-Content -Raw -Encoding UTF8 install.ps1 | Invoke-Expression
+          if ($LASTEXITCODE -ne 0) { throw "installer exit $LASTEXITCODE" }
+          $dir = Join-Path $env:LOCALAPPDATA 'Programs\nodejs-portable'
+          $version = & (Join-Path $dir 'node.exe') --version
+          if ([int]($version -replace '^v','').Split('.')[0] -lt 20) { throw "portable Node.js too old: $version" }
+          if (-not (Test-Path (Join-Path $dir 'npx.cmd'))) { throw 'npx.cmd missing' }
+          if (-not (Test-Path (Join-Path $dir 'INSTALLED-BY-HWPX-BRIDGE.txt'))) { throw 'marker missing' }
+          $key = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Environment')
+          $userPath = $key.GetValue('Path', '', [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
+          if (($userPath -split ';')[0] -ne $dir) { throw "user PATH does not start with $dir : $userPath" }
+          if ($key.GetValueKind('Path') -ne [Microsoft.Win32.RegistryValueKind]::ExpandString) { throw 'user PATH lost REG_EXPAND_SZ' }
+          $config = Get-Content -Raw (Join-Path $env:USERPROFILE '.cursor\mcp.json') | ConvertFrom-Json
+          if (-not $config.mcpServers.'hwpx-bridge') { throw 'setup did not run with the downloaded Node.js' }
+          Write-Host "portable Node.js $version OK, user PATH OK, Cursor entry OK"
 
   publish:
     if: startsWith(github.ref, 'refs/tags/v')

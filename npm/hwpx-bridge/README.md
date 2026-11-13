@@ -24,7 +24,7 @@ npx -y hwpx-bridge setup
 
 등록한 앱을 한 번 완전히 종료했다가 다시 열면, 그 앱의 **모든 대화**에서 도구가 보입니다. 작업 폴더와 상관없이 PC 안의 어느 파일이든 경로로 다룰 수 있습니다. 나중에 새 AI 앱을 설치했다면 같은 명령을 한 번 더 실행하면 됩니다. 기존 설정은 백업(`.bak-…`)을 남기고 유지됩니다.
 
-**Node.js가 없는 Windows PC**: `npx`가 없다는 오류가 나면 PowerShell에 아래 한 줄을 넣으세요. Node.js LTS를 winget으로 설치한 뒤 위 명령을 대신 실행합니다.
+**Node.js가 없는 Windows PC**: `npx`가 없다는 오류가 나면 PowerShell에 아래 한 줄을 넣으세요. Node.js LTS를 설치한 뒤(winget이 있으면 winget, 없으면 nodejs.org 공식 파일을 SHA-256 확인 후 사용자 폴더에 설치 — 관리자 권한 불필요) 위 명령을 대신 실행합니다.
 
 ```
 irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex
@@ -37,12 +37,12 @@ irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install
 설정 파일에 직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
 
 ```json
-{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.3", "mcp"] } } }
+{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.4", "mcp"] } } }
 ```
 
-Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.3", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
+Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.4", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
 
-Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.3 mcp`)와 사용 안내 스킬이 등록됩니다.
+Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.4 mcp`)와 사용 안내 스킬이 등록됩니다.
 
 확인: `npx -y hwpx-bridge doctor`
 
