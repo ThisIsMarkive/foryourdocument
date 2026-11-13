@@ -106,6 +106,7 @@ public static extern System.IntPtr SendMessageTimeout(System.IntPtr hWnd, uint M
     }
 
     Write-Host 'hwpx-bridge 설치 (kordoc + Filee 문서 변환 MCP)' -ForegroundColor White
+    Write-Host 'Claude 앱·ChatGPT 앱이 켜져 있으면 트레이 아이콘(화면 오른쪽 아래 ^)에서 우클릭 → 종료한 뒤 진행하세요.'
 
     Write-Step 'Node.js 확인'
     $major = Get-NodeMajor

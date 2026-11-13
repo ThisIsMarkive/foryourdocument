@@ -193,6 +193,7 @@ export async function runSetup(argv) {
       return;
     }
   }
+  await waitForAppsToClose();
   console.log('');
   let failed = false;
   for (const client of clients) {
@@ -289,4 +290,47 @@ function removeOldVersions() {
   }
   if (removed.length || freed) console.log(`\n예전 버전 정리: ${[...new Set(removed)].join(', ') || '남은 임시 폴더'} 삭제 (${(freed / 1e6).toFixed(0)} MB 확보)`);
   if (kept.length) console.log(`  (사용 중이라 남겨 둠: ${[...new Set(kept)].join(', ')} — 앱을 종료한 뒤 setup을 다시 실행하면 정리됩니다)`);
+}
+
+/**
+ * Desktop AI apps that are running now (Windows). The Claude app rewrites claude_desktop_config.json from its
+ * own copy when it quits, which can drop an entry added while it was open; the ChatGPT/Codex app reads its
+ * MCP list only at start. Matched by executable path, so the Claude Code CLI (also claude.exe) is not counted.
+ */
+export function runningDesktopApps() {
+  if (!isWin || process.env.HWPX_BRIDGE_SKIP_APP_CHECK) return [];
+  const result = spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
+    'Get-Process | Where-Object { $_.Path } | ForEach-Object { $_.Path }'], { encoding: 'utf8', windowsHide: true, timeout: 20_000 });
+  if (result.status !== 0 || !result.stdout) return [];
+  const paths = result.stdout.split(/\r?\n/).map(line => line.trim().toLowerCase()).filter(Boolean);
+  const apps = [
+    { label: 'Claude 앱', test: p => p.endsWith('\\claude.exe') && (p.includes('\\anthropicclaude\\') || p.includes('\\windowsapps\\claude_') || p.includes('\\programs\\claude\\')) },
+    { label: 'ChatGPT·Codex 앱', test: p => p.includes('\\windowsapps\\openai.') || /\\(chatgpt|codex)\.exe$/.test(p) && !p.includes('\\node_modules\\') },
+    { label: 'Cursor', test: p => p.endsWith('\\cursor.exe') },
+    { label: 'Windsurf', test: p => p.endsWith('\\windsurf.exe') }
+  ];
+  return apps.filter(app => paths.some(app.test)).map(app => app.label);
+}
+
+/** Ask to quit running AI apps first; without a terminal (an AI agent running setup) only warn. */
+async function waitForAppsToClose() {
+  let running = runningDesktopApps();
+  if (!running.length) return;
+  const how = '트레이 아이콘(화면 오른쪽 아래 ^)에서 우클릭 → 종료';
+  if (!process.stdin.isTTY) {
+    console.log(`\n주의: ${running.join(', ')} 실행 중입니다. 등록이 끝나면 ${how}한 뒤 다시 여세요.`);
+    console.log('      Claude 앱은 켜진 채로 종료하면 방금 추가한 설정을 덮어쓸 수 있어, 앱을 끈 상태에서 setup을 한 번 더 실행하는 것이 가장 확실합니다.');
+    return;
+  }
+  const { createInterface } = await import('node:readline/promises');
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    for (let attempt = 0; attempt < 3 && running.length; attempt++) {
+      console.log(`\n${running.join(', ')}이(가) 실행 중입니다. 설정이 덮어써지지 않도록 ${how}해 주세요.`);
+      await rl.question('종료했으면 Enter (그대로 진행하려면 Enter를 한 번 더): ');
+      const still = runningDesktopApps();
+      if (still.length && attempt > 0) { console.log('  계속 진행합니다. 등록 후 앱을 종료했다가 다시 여세요.'); break; }
+      running = still;
+    }
+  } finally { rl.close(); }
 }
