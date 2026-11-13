@@ -5,7 +5,7 @@
 - Claude 앱 설정 파일 위치를 짐작하지 않고, `%APPDATA%`·`%LOCALAPPDATA%`·`%LOCALAPPDATA%\Packages` 아래 Claude 폴더에서 `claude_desktop_config.json`을 찾아 **찾은 파일 모두**에 등록합니다. `%LOCALAPPDATA%\claude-data\Claude_*`를 쓰는 Store판에서 등록이 안 되던 문제를 고쳤습니다(캐시 폴더는 건너뜀, 기존 설정 유지).
 - `setup`이 npx 보관 폴더에서 **hwpx-bridge 예전 버전만** 정리합니다(버전당 약 300 MB). 다른 패키지와 함께 있는 폴더, 같거나 새 버전, 앱이 사용 중인 폴더는 건드리지 않습니다. 끄려면 `HWPX_BRIDGE_KEEP_OLD=1`.
 - `setup`이 Claude 앱·ChatGPT/Codex 앱·Cursor·Windsurf가 켜져 있는지 확인해, 터미널에서는 종료를 안내하고 기다리며(Enter로 계속 가능), AI가 대신 실행할 때는 경고만 합니다. Claude 앱이 켜진 채 등록하면 앱이 종료하면서 설정을 덮어쓸 수 있기 때문입니다.
-- README에 Claude 앱·ChatGPT(Codex) 직접 등록 방법을 추가했습니다.
+- README에 Claude 앱·ChatGPT(Codex) 직접 등록 방법을 추가했습니다. Codex에 등록하면 ChatGPT 데스크톱 앱의 Work 모드에서도 쓰인다는 것을 실사용으로 확인해 문서에 적었습니다.
 - Claude Code 등록 시 나오던 Node 경고(DEP0190)를 없앴습니다.
 - PowerShell 실행 정책으로 `npx`가 막히면 `npx.cmd`를 쓰라는 안내를 추가했습니다.
 

@@ -98,7 +98,7 @@ const codexHome = () => process.env.CODEX_HOME || path.join(home(), '.codex');
 export const CLIENTS = [
   { id: 'claude-desktop', label: 'Claude 앱', found: claudeDesktopInstalled, register: registerClaudeDesktop },
   { id: 'claude-code', label: 'Claude Code', found: () => onPath('claude'), register: registerClaudeCode },
-  { id: 'codex', label: 'Codex (ChatGPT 데스크톱·CLI·IDE)', found: () => exists(codexHome()) || onPath('codex'), register: registerCodex },
+  { id: 'codex', label: 'Codex (ChatGPT 데스크톱 Codex·Work, CLI, IDE)', found: () => exists(codexHome()) || onPath('codex'), register: registerCodex },
   { id: 'cursor', label: 'Cursor', found: () => exists(path.join(home(), '.cursor')), register: () => registerJson(path.join(home(), '.cursor/mcp.json')) },
   { id: 'gemini', label: 'Gemini CLI', found: () => exists(path.join(home(), '.gemini')), register: () => registerJson(path.join(home(), '.gemini/settings.json')) },
   { id: 'windsurf', label: 'Windsurf', found: () => exists(path.join(home(), '.codeium/windsurf')), register: () => registerJson(path.join(home(), '.codeium/windsurf/mcp_config.json')) }
