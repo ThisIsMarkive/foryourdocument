@@ -18,7 +18,7 @@ restarted once, after which the tools appear in every conversation of that app. 
 2. If no hwpx-bridge tools exist, give the user the command above. Run it yourself only with a shell on the user's
    own computer (not in a cloud or VM workspace) and only after they agree, since it changes app settings.
 3. If Node.js is missing or older than 20 (`npx` not found) on Windows, use the installer instead; it installs
-   Node.js LTS with winget and then runs setup. Ask before running it:
+   Node.js LTS (winget, or the official nodejs.org zip when winget is missing; no administrator rights) and then runs setup. Ask before running it:
    `irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install.ps1 | iex`
    On other systems, tell the user to install the LTS version from https://nodejs.org first.
 4. `npx -y hwpx-bridge doctor` checks kordoc, Filee and the MCP server and prints the result.

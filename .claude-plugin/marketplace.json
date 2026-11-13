@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "Korean document tools: kordoc + Filee conversion",
-    "version": "0.3.3"
+    "version": "0.3.4"
   },
   "plugins": [
     {
       "name": "hwpx-bridge",
       "source": "./plugins/hwpx-bridge",
       "description": "kordoc의 모든 한글 문서 기능 + Filee 문서 변환(DOCX→HWPX 서식 유지). npx 한 줄 설치.",
-      "version": "0.3.3",
+      "version": "0.3.4",
       "license": "MIT"
     }
   ]

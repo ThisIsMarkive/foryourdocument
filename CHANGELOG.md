@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.3.4 — winget 없는 PC에서도 Node.js 자동 설치
+
+- `install.ps1`이 winget이 없거나 실패하면 nodejs.org의 공식 LTS zip을 내려받아 nodejs.org SHA-256 목록과 대조한 뒤 `%LOCALAPPDATA%\Programs\nodejs-portable`에 설치하고 사용자 PATH에 추가합니다. 관리자 권한과 설치 창이 필요 없습니다.
+- 설치 후 Windows에 PATH 변경을 알려, 재시작한 Claude·ChatGPT 앱이 새 Node.js를 찾습니다.
+- CI가 Windows에서 이 경로(다운로드·해시 확인·PATH·등록)를 실제로 실행해 확인합니다.
+
 ## 0.3.3 — 묻지 않고 모든 앱에 등록
 
 - `npx -y hwpx-bridge setup`이 더 이상 앱을 묻지 않습니다. PC에 설치된 AI 앱(Claude 앱, Claude Code, Codex, Cursor, Gemini CLI, Windsurf)을 모두 찾아 등록합니다. 터미널에서 실행하든 Codex·Claude Code가 실행하든 같습니다.
