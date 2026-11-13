@@ -13,7 +13,7 @@ AI 에이전트가 한글 문서(HWP·HWPX)를 다룰 수 있게 해 주는 **MC
 npx -y hwpx-bridge setup
 ```
 
-터미널(PowerShell 등)에 입력하든, Codex·Claude Code에 "이 명령 실행해줘"라고 하든 결과는 같습니다. **이 PC에 설치된 AI 앱을 모두 찾아 한 번에 등록**합니다. 묻는 것은 없습니다.
+터미널(PowerShell 등)에 입력하든(PowerShell에서 "스크립트를 실행할 수 없습니다" 오류가 나면 `npx.cmd -y hwpx-bridge setup`), Codex·Claude Code에 "이 명령 실행해줘"라고 하든 결과는 같습니다. **이 PC에 설치된 AI 앱을 모두 찾아 한 번에 등록**합니다. 묻는 것은 없습니다.
 
 | 찾는 앱 | 등록 위치 |
 | --- | --- |
@@ -37,12 +37,12 @@ irm https://raw.githubusercontent.com/ThisIsMarkive/foryourdocument/main/install
 설정 파일에 직접 넣는 경우 (`npx -y hwpx-bridge config`가 출력하는 것과 같음):
 
 ```json
-{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.5", "mcp"] } } }
+{ "mcpServers": { "hwpx-bridge": { "command": "npx", "args": ["-y", "hwpx-bridge@0.3.6", "mcp"] } } }
 ```
 
-Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.5", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
+Windows의 Claude 앱은 `"command": "cmd", "args": ["/c", "npx", "-y", "hwpx-bridge@0.3.6", "mcp"]` 형식이 필요하며, `setup`이 자동으로 맞춥니다. 처음 실행할 때 엔진(약 100 MB)을 내려받으므로, `setup`을 먼저 실행해 두면 앱 첫 실행이 빠릅니다.
 
-Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.5 mcp`)와 사용 안내 스킬이 등록됩니다.
+Claude Code·Codex 플러그인 마켓플레이스(`ThisIsMarkive/foryourdocument`)로 설치해도 같은 서버(`npx -y hwpx-bridge@0.3.6 mcp`)와 사용 안내 스킬이 등록됩니다.
 
 확인: `npx -y hwpx-bridge doctor`
 

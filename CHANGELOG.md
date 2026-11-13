@@ -1,5 +1,11 @@
 # 변경 기록
 
+## 0.3.6 — Claude 앱 설정 파일을 직접 찾아 등록
+
+- Claude 앱 설정 파일 위치를 짐작하지 않고, `%APPDATA%`·`%LOCALAPPDATA%`·`%LOCALAPPDATA%\Packages` 아래 Claude 폴더에서 `claude_desktop_config.json`을 찾아 **찾은 파일 모두**에 등록합니다. `%LOCALAPPDATA%\claude-data\Claude_*`를 쓰는 Store판에서 등록이 안 되던 문제를 고쳤습니다(캐시 폴더는 건너뜀, 기존 설정 유지).
+- Claude Code 등록 시 나오던 Node 경고(DEP0190)를 없앴습니다.
+- PowerShell 실행 정책으로 `npx`가 막히면 `npx.cmd`를 쓰라는 안내를 추가했습니다.
+
 ## 0.3.5 — 등록했는데 도구가 안 보이던 문제
 
 - Claude 앱 설정을 Microsoft Store판 위치와 일반 위치(`%APPDATA%\Claude`) 중 있는 곳 **모두**에 등록합니다. 예전 Store판 폴더가 남아 있으면 일반판 앱이 읽는 파일에 등록되지 않던 문제를 고쳤습니다.

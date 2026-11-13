@@ -37,23 +37,47 @@ function onPath(command) {
 
 const exists = file => fss.existsSync(file);
 
+const CONFIG_NAME = 'claude_desktop_config.json';
+// Folders inside a Claude data tree that never hold the config file but can be large.
+const SKIP_DIR = /^(app-\d|resources$|node_modules$|logs$|.*cache$|crashpad$|indexeddb$|local storage$|session storage$|blob_storage$|service worker$|vm_bundles$|claude-code|sentry$|webstorage$|shared dictionary$)/i;
+
+/** Find claude_desktop_config.json files below `dir` (depth-limited, skipping cache folders). */
+function findConfigs(dir, depth, found) {
+  let entries;
+  try { entries = fss.readdirSync(dir, { withFileTypes: true }); } catch { return; }
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.toLowerCase() === CONFIG_NAME) found.add(path.join(dir, entry.name));
+    else if (entry.isDirectory() && depth > 0 && !SKIP_DIR.test(entry.name)) findConfigs(path.join(dir, entry.name), depth - 1, found);
+  }
+}
+
 /**
- * Every Claude app config file that may be read on this computer. On Windows the Microsoft Store build reads a
- * package-local copy of %APPDATA%, while the regular build (and Store builds that are not virtualized) read
- * %APPDATA%\Claude. A leftover folder of one build must not hide the other, so every existing location is used.
+ * Every Claude app config file on this computer. Builds differ in where they keep it: the regular installer
+ * uses %APPDATA%\Claude, a virtualized Microsoft Store build reads %LOCALAPPDATA%\Packages\Claude_*\LocalCache\
+ * Roaming\Claude, and other Store builds have been seen using %LOCALAPPDATA%\claude-data\Claude_*. Rather than
+ * guess one, look in every Claude folder under %APPDATA% and %LOCALAPPDATA% (and Packages) and register in each
+ * config file found. With none found, use the regular location.
  */
 function claudeDesktopConfigs() {
-  const file = dir => path.join(dir, 'claude_desktop_config.json');
   if (isWin) {
     const appData = process.env.APPDATA ?? path.join(home(), 'AppData/Roaming');
     const localAppData = process.env.LOCALAPPDATA ?? path.join(home(), 'AppData/Local');
-    const regular = path.join(appData, 'Claude');
-    const store = path.join(localAppData, 'Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude');
-    const found = [regular, store].filter(exists);
-    return (found.length ? found : [regular]).map(file);
+    const found = new Set();
+    for (const root of [appData, localAppData, path.join(localAppData, 'Packages')]) {
+      let entries = [];
+      try { entries = fss.readdirSync(root, { withFileTypes: true }); } catch { /* missing */ }
+      for (const entry of entries) {
+        if (entry.isDirectory() && /claude/i.test(entry.name) && !/^claude-code/i.test(entry.name)) findConfigs(path.join(root, entry.name), 5, found);
+      }
+    }
+    // A Claude data folder without a config file yet (the app creates it on first settings change).
+    for (const dir of [path.join(appData, 'Claude'), path.join(localAppData, 'Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude')]) {
+      if (exists(dir)) found.add(path.join(dir, CONFIG_NAME));
+    }
+    return found.size ? [...found] : [path.join(appData, 'Claude', CONFIG_NAME)];
   }
-  if (process.platform === 'darwin') return [file(path.join(home(), 'Library/Application Support/Claude'))];
-  return [file(path.join(home(), '.config/Claude'))];
+  if (process.platform === 'darwin') return [path.join(home(), 'Library/Application Support/Claude', CONFIG_NAME)];
+  return [path.join(home(), '.config/Claude', CONFIG_NAME)];
 }
 
 function claudeDesktopInstalled() {
@@ -139,11 +163,14 @@ async function registerCodex() {
 }
 
 async function registerClaudeCode() {
-  const options = { windowsHide: true, timeout: 60_000, shell: isWin }; // claude is a .cmd shim on Windows
   const entry = serverEntry();
+  // claude is a .cmd shim on Windows; start it through cmd.exe instead of shell: true.
+  const claude = (args) => isWin
+    ? run(process.env.ComSpec || 'cmd.exe', ['/d', '/c', 'claude', ...args], { windowsHide: true, timeout: 60_000 })
+    : run('claude', args, { timeout: 60_000 });
   // Replace an earlier registration (e.g. an older pinned version).
-  await run('claude', ['mcp', 'remove', '--scope', 'user', NAME], options).catch(() => {});
-  await run('claude', ['mcp', 'add', '--scope', 'user', NAME, '--', entry.command, ...entry.args], options);
+  await claude(['mcp', 'remove', '--scope', 'user', NAME]).catch(() => {});
+  await claude(['mcp', 'add', '--scope', 'user', NAME, '--', entry.command, ...entry.args]);
   return '등록 완료 (claude mcp add --scope user)';
 }
 

@@ -13,7 +13,13 @@ const appData = path.join(home, 'AppData', 'Roaming');
 const desktopDir = isWin ? path.join(appData, 'Claude') : path.join(home, '.config', 'Claude');
 // A leftover Microsoft Store folder must not hide the regular %APPDATA%\Claude config (seen on a real PC).
 const storeDir = path.join(home, 'AppData', 'Local', 'Packages', 'Claude_pzs8sxrjxfjjc', 'LocalCache', 'Roaming', 'Claude');
-for (const dir of [desktopDir, path.join(home, '.codex'), path.join(home, '.cursor'), ...(isWin ? [storeDir] : [])]) fs.mkdirSync(dir, { recursive: true });
+// Another Store build keeps its config in %LOCALAPPDATA%\claude-data\Claude_* (seen on a real PC), next to the app's own settings.
+const dataDir = path.join(home, 'AppData', 'Local', 'claude-data', 'Claude_pzs8sxrjxfjjc');
+for (const dir of [desktopDir, path.join(home, '.codex'), path.join(home, '.cursor'), ...(isWin ? [storeDir, dataDir, path.join(dataDir, 'Cache')] : [])]) fs.mkdirSync(dir, { recursive: true });
+if (isWin) {
+  fs.writeFileSync(path.join(dataDir, 'claude_desktop_config.json'), '{"preferences":{"keep":true},"mcpServers":{"other":{"command":"other"}}}');
+  fs.writeFileSync(path.join(dataDir, 'Cache', 'claude_desktop_config.json'), '{}'); // cache folders are skipped
+}
 fs.writeFileSync(path.join(home, '.codex', 'config.toml'), 'model = "x"\n\n[mcp_servers.other]\ncommand = "other"\n');
 fs.writeFileSync(path.join(home, '.cursor', 'mcp.json'), '{"mcpServers":{"other":{"command":"other"}}}');
 
@@ -30,6 +36,10 @@ assert.match(desktop.mcpServers['hwpx-bridge'].args.join(' '), pinned);
 if (isWin) {
   const store = JSON.parse(fs.readFileSync(path.join(storeDir, 'claude_desktop_config.json'), 'utf8'));
   assert.match(store.mcpServers['hwpx-bridge'].args.join(' '), pinned, 'Store-build config not registered');
+  const data = JSON.parse(fs.readFileSync(path.join(dataDir, 'claude_desktop_config.json'), 'utf8'));
+  assert.ok(data.preferences.keep && data.mcpServers.other, 'existing Claude settings lost');
+  assert.match(data.mcpServers['hwpx-bridge'].args.join(' '), pinned, 'claude-data config not registered');
+  assert.equal(fs.readFileSync(path.join(dataDir, 'Cache', 'claude_desktop_config.json'), 'utf8'), '{}', 'cache folders must be skipped');
 }
 const cursor = JSON.parse(fs.readFileSync(path.join(home, '.cursor', 'mcp.json'), 'utf8'));
 assert.ok(cursor.mcpServers.other && pinned.test(cursor.mcpServers['hwpx-bridge'].args.join(' ')), 'Cursor entry missing or other server lost');
